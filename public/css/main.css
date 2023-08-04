@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i');
+
+
+.border-raduis, .form-group input{
+    border-radius: 10rem;
+}
+
+.form-group input{
+    font-size: .8rem;
+    border-radius: 10rem;
+    padding: 1.5rem 1rem;
+}
+
+
+.padding-left{
+    padding-left: 10px;
+}
+
+.custom-control-label, label, .form-group label{
+    font-weight: 400;
+}
+
+.aligncenter {
+    text-align: center;
+  }
+
+.alignleft{
+    text-align: left;
+}
