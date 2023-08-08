@@ -59,9 +59,6 @@
 
 
 
-   
-     
-
         <div class="container-fluid">
                 
             <div class="row justify-content-center">
@@ -70,10 +67,10 @@
                 <h5 class="my-3">Profile Details</h5>
 
                 <form method="POST" action="{{ url('/settings', ['id' => $user->id]) }}">
+
                     @csrf
                
           
-
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstname">Firstname</label>
@@ -83,6 +80,15 @@
                     <label for="lastname">Lastname</label>
                     <input type="text" id="lastname" class="form-control" name="lastname" value="{{ $user->lastname }}" />
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail4">Email</label>
+                <input type="email" class="form-control" id="inputEmail4"  name="email" value="{{ $user->email }}" />
+            </div>
+            <div class="form-group">
+                <label for="inputAddress5">Address</label>
+                <input type="text" class="form-control" id="inputAddress5" name="presentAddress" value="{{ $user->presentAddress }}" />
             </div>
 
             <div class="form-row">
@@ -96,14 +102,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4"  name="email" value="{{ $user->email }}" />
-            </div>
-            <div class="form-group">
-                <label for="inputAddress5">Address</label>
-                <input type="text" class="form-control" id="inputAddress5" name="presentAddress" value="{{ $user->presentAddress }}" />
-            </div>
+           
 
 
             <div class="form-row">
@@ -134,7 +133,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputZip5">Zip</label>
-                    <input type="text" class="form-control" id="inputZip5" name="zipcode" value="{{ $user->zipcode }}" />
+                    <input type="text" class="form-control" id="inputZip5" name="zipcode"  />
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputState5">City</label>

@@ -79,6 +79,7 @@ class LoginRegisterController extends Controller
             return redirect()->route('login')->withSuccess('Wait for your account to be activated');
         }
 
+        
         User::where('generatedId', $user->generatedId)->increment('sponsor_usage_count');
 
         

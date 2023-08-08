@@ -6,26 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 class UpdateProfilePics extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+   
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('profile_picture');
-            $table->string('company');
-            $table->string('zipcode');
-            $table->string('city');
+            $table->string('profile_picture')->nullable();
+            $table->string('company')->nullable();
+            $table->string('zipcode')->nullable();
+            $table->string('city')->nullable();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {

@@ -69,8 +69,8 @@ Route::controller(MlmController::class)->group(function() {
 
 Route::controller(UserController::class)->group(function() {
 
-    Route::post('settings.index', 'update')->name('updateProfile');
-    Route::get('settings.index', 'update')->name('updateProfile');
+    Route::post('/settings.index', 'update')->name('updateProfile');
+    Route::get('/settings.index', 'update')->name('updateProfile');
 
     Route::post('/settings/{id}', 'update')->name('updateProfile');
     Route::get('/settings/{id}', 'update')->name('updateProfile');
