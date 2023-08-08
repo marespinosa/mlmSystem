@@ -26,7 +26,10 @@ class profileUpdates extends Model
         'status',
         'gender',
         'nationality',
+        'company',
         'phoneNumber',
+        'zipcode',
+        'city',
     ];
 
 

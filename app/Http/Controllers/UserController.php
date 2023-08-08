@@ -18,25 +18,27 @@ class UserController extends Controller
     
     public function update(Request $request, $id)
     {
-
-
         $UpdatedData = $request->validate([
             'name' => 'string',
             'lastname' => 'string',
             'username' => 'string',
             'email' => 'string',
             'presentAddress' => 'string',
-            'birthday' => 'date',
+            'birthday' =>'string',
             'status' => 'string',
             'gender' => 'string',
             'nationality' => 'string',
+            'company' => 'string',
             'phoneNumber'  => 'string',
+            'zipcode' =>'string',
+            'city' =>'string',
+           
         ]);
 
         $member = profileUpdates::find($id);
         $member->update($UpdatedData);
 
-        return view('settings.index', compact('member'));
+        return view('settings.index', compact('updateProfile'));
         
     }
 
