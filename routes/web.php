@@ -38,7 +38,10 @@ Route::controller(MlmController::class)->group(function() {
 Route::controller(MlmController::class)->group(function() {
     Route::post('/tree', 'displayAdmin')->name('tree');
     Route::get('/tree', 'displayAdmin')->name('tree');
+
 });
+
+
 
 
 

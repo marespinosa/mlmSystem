@@ -49,7 +49,7 @@ class User extends Model implements Authenticatable
         static::creating(function ($user) {
             $uniqueGeneratedId = false;
             while (!$uniqueGeneratedId) {
-                $generatedId = Str::random(10);
+                $generatedId = strtoupper(Str::random(10));
                 $existingUser = self::where('generatedId', $generatedId)->first();
                 if (!$existingUser) {
                     $uniqueGeneratedId = true;

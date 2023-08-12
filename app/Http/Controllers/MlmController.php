@@ -65,9 +65,6 @@ class MlmController extends Controller
         return view('superadmin.index', compact('members'));
     }
 
- 
-
-
 
 
     public function update($id)
@@ -106,14 +103,11 @@ class MlmController extends Controller
         }
 
     
-        $members = $query->paginate(10);
+        $members = $query->paginate(20);
 
         return view('superadmin.index', compact('members', 'searchQuery'));
 }
 
-
-
-    
 
 
 

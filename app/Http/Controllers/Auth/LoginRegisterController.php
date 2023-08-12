@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Models\treeUs;
 use Illuminate\Support\Str;
+use App\Rules\UniqueUsername;
 
 
 use Illuminate\Support\Facades\Mail;
@@ -32,13 +33,12 @@ class LoginRegisterController extends Controller
         return view('auth.register');
     }
 
-
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string',
             'lastname' => 'required|string',
-            'username' => 'required|string',
+            'username' => ['required', 'string', 'max:255', new UniqueUsername],
             'password' => 'required|min:8|confirmed',
             'presentAddress' => 'required|string',
             'birthday' => 'required|date',
@@ -86,11 +86,9 @@ class LoginRegisterController extends Controller
        /**  $adminEmail = 'mariconespinosa.info@gmail.com';*/
         /** Mail::to($adminEmail)->send(new AdminRegistrationNotification($user));*/
 
-        
 
         return redirect()->route('login')->withSuccess('Wait for your account to be activated');
     }
-
 
 
     /**
@@ -131,7 +129,7 @@ class LoginRegisterController extends Controller
                         return redirect()->route('dashboard')->withSuccess('Welcome, Member! You have successfully logged in!');
                         break;
                     case 'Stockies':
-                        return redirect()->route('stockies.index')->withSuccess('Welcome, Stockies! You have successfully logged in!');
+                        return redirect()->route('dashboard')->withSuccess('Welcome, Stockies! You have successfully logged in!');
                         break;
                     default:
                         return redirect()->route('dashboard')->withSuccess('Welcome! You have successfully logged in!');
@@ -177,8 +175,6 @@ class LoginRegisterController extends Controller
         return redirect()->route('login')
             ->withSuccess('You have logged out successfully!');;
     }  
-
-
 
 
 
