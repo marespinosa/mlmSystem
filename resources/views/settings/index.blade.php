@@ -35,6 +35,7 @@
                     <h5 class="my-3">Upload Image</h5>
 
                     @if(auth()->user()->profile_picture)
+                    <!----- <img src="{{ asset('public/' . auth()->user()->profile_picture) }}" alt="Profile Picture"> ---->
                         <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture"  class="rounded-circle img-fluid" style="width: 150px;">
                     @else
                         <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}"  class="rounded-circle img-fluid" style="width: 150px;">
@@ -406,5 +407,3 @@
     
                
 @endsection
-
-
