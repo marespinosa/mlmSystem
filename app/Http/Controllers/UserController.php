@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Models\profileUpdates;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+use App\Models\ProfileUpdates;
+
+
 
 
 class UserController extends Controller
@@ -14,33 +19,7 @@ class UserController extends Controller
     protected $table = 'users'; 
 
     protected $id = 'id'; 
-
     
-    public function update(Request $request, $id)
-    {
-        $UpdatedData = $request->validate([
-            'name' => 'string',
-            'lastname' => 'string',
-            'username' => 'string',
-            'email' => 'string',
-            'presentAddress' => 'string',
-            'birthday' =>'string',
-            'status' => 'string',
-            'gender' => 'string',
-            'nationality' => 'string',
-            'company' => 'string',
-            'phoneNumber'  => 'string',
-            'zipcode' =>'string',
-            'city' =>'string',
-           
-        ]);
-
-        $member = profileUpdates::find($id);
-        $member->update($UpdatedData);
-
-        return view('settings.index', compact('updateProfile'));
-        
-    }
 
     public function UpdateProfilesPic(Request $request)
     {
@@ -62,6 +41,55 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Profile picture updated successfully');
     }
+
+    public function index()
+    {
+        $ProfileUpdates = ProfileUpdates::all();
+        return view('settings', compact('settings'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $ProfileUpdates = ProfileUpdates::find($id);
+        $ProfileUpdates->name = $request->input('name');
+        $ProfileUpdates->lastname = $request->input('lastname');
+        $ProfileUpdates->email = $request->input('email');
+        $ProfileUpdates->company = $request->input('company');
+        $ProfileUpdates->zipcode = $request->input('zipcode');
+        $ProfileUpdates->city = $request->input('city');
+        $ProfileUpdates->save(); 
+        
+        return redirect()->back()->with('success', 'Student Updated Successfully');
+    }
+
+
+    public function showChangePasswordForm()
+    {
+        return view('settings');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        if (Hash::check($request->old_password, $user->password)) {
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+
+            return redirect()->route('settings')->with('success', 'Password changed successfully.');
+        } else {
+            return redirect()->route('settings')->with('error', 'The old password is incorrect.');
+        }
+    }
+
+    
+
+
 
     
 }

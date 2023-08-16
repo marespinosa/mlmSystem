@@ -49,6 +49,8 @@
                                     <span class="text-danger">{{ $errors->first('username') }}</span>
                                 @endif
 
+                           
+
                          </div>
 
                             <div class="col-sm-6">
@@ -152,7 +154,7 @@
         <a class="small" href="forgot-password">Forgot Password?</a>
      </div>
     <div class="text-center">
-        <a class="small" href="login">Already have an account? Login!</a>
+        <a class="small" href="index">Already have an account? Login!</a>
     </div>
    
                        
