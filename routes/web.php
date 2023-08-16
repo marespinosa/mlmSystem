@@ -83,3 +83,8 @@ Route::put('settings/{id}', [UserController::class, 'update']);
 
 
 
+
+Route::controller(UserController::class)->group(function() {
+    Route::get('settings', 'showChangePasswordForm')->name('showChangePasswordForm');
+    Route::post('settings', 'changePassword')->name('changePassword');
+});

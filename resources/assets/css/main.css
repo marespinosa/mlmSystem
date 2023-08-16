@@ -27,3 +27,11 @@
 .alignleft{
     text-align: left;
 }
+
+.margin-bottom{
+    margin-bottom: 10px;
+}
+
+.custom-checkbox label{
+    text-align: left;
+}
