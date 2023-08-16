@@ -183,13 +183,13 @@
                             </div>
                           </div>
                         </div>
-                        <section class="container">
-                          <div class="p-btn">
-                              <a class="btn btn-primary btn-xl rounded-pill mt-5" href="/settings">Settings</a>
-            
-                              <a class="btn btn-primary btn-xl rounded-pill mt-5" id="myButton" href="settings/password">Change Password</a>
-                          </div>
-                  </section>
+                    <section class="container">
+                            <div class="p-btn">
+                                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="/settings">Settings</a>
+              
+                                <a class="btn btn-primary btn-xl rounded-pill mt-5" id="myButton" href="settings/password">Change Password</a>
+                            </div>
+                    </section>
                       </div>
                     </div>
                 </div>

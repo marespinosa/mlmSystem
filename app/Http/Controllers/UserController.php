@@ -59,31 +59,33 @@ class UserController extends Controller
         $ProfileUpdates->city = $request->input('city');
         $ProfileUpdates->save(); 
         
-        return redirect()->back()->with('success', 'Student Updated Successfully');
+        return redirect()->back()->with('success', 'Data Updated Successfully');
     }
 
 
     public function showChangePasswordForm()
     {
-        return view('settings');
+        return view('settings.index');
     }
+
 
     public function changePassword(Request $request)
     {
         $request->validate([
-            'password' => 'required',
-            'password' => 'required|min:8|confirmed',
+            'old_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
         ]);
 
         $user = Auth::user();
 
         if (Hash::check($request->old_password, $user->password)) {
-            $user->password = Hash::make($request->new_password);
-            $user->save();
+            $user->update([
+                'password' => Hash::make($request->new_password),
+            ]);
 
-            return redirect()->route('settings')->with('success', 'Password changed successfully.');
+            return redirect()->route('showChangePasswordForm')->with('success', 'Password changed successfully.');
         } else {
-            return redirect()->route('settings')->with('error', 'The old password is incorrect.');
+            return redirect()->route('showChangePasswordForm')->with('error', 'The old password is incorrect.');
         }
     }
 

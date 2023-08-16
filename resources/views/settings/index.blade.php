@@ -54,6 +54,12 @@
                         @csrf
                         @method('PUT')
 
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
                         
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -332,22 +338,70 @@
                 </div>
               
             </div>
+
+
+            <div class="p-btn text-center">
+                <button type="submit" class="btn btn-primary btn-xl rounded-pill mt-5" id="myButton">Update Settings</button>
+                
+            </div>
+
+        </form>
+
+
+
             <hr class="my-4" />
                 <h5 class="my-3">Change Password</h5>
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="inputPassword4">Old Password</label>
-                        <input type="password" class="form-control" id="inputPassword5" />
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword5">New Password</label>
-                        <input type="password" class="form-control" id="inputPassword5" />
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword6">Confirm Password</label>
-                        <input type="password" class="form-control" id="inputPassword6" />
-                    </div>
+                    <form method="POST" action="{{ route('changePassword') }}">
+
+                        @csrf
+
+                        <div class="form-group row margin-bottom">
+                            <label for="old_password" class="col-md-4 col-form-label text-md-right">{{ __('Old Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" name="old_password" required autofocus>
+
+                                @error('old_password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row margin-bottom">
+                            <label for="new_password" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" required>
+
+                                @error('new_password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="new_password_confirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirm New Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="new_password_confirmation" type="password" class="form-control" name="new_password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-xl rounded-pill" id="myButton">
+                                    {{ __('Save Password') }}
+                                </button>
+                            </div>
+                        </div>  
+                    </form>
                 </div>
                 <div class="col-md-6">
                     <p class="mb-2">Password requirements</p>
@@ -358,19 +412,10 @@
                         <li>At least one number</li>
                         <li>Can't be the same as a previous password</li>
                     </ul>
-                    <div class="p-btn text-center">
-                        <a class="btn btn-primary btn-xl rounded-pill mt-5" id="myButton" href="">Save Password</a>
-                    </div>
                 </div>
             </div>
 
-            <div class="p-btn text-center">
-                <button type="submit" class="btn btn-primary btn-xl rounded-pill mt-5" id="myButton">Update Settings</button>
-                
-            </div>
-
-                    </form>
-
+            
 
                 
 
