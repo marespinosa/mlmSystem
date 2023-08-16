@@ -30,7 +30,6 @@
         @endif
 
             @if ($sponsor)
-            
                 @php
                     $otherUsers = \App\Models\User::where('sponsor_id_number', $user->generatedId)
                                             ->where('id', '!=', $user->id)

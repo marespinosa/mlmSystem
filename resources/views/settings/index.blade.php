@@ -35,7 +35,7 @@
                     <h5 class="my-3">Upload Image</h5>
 
                     @if(auth()->user()->profile_picture)
-                        <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture"  class="rounded-circle img-fluid" style="width: 150px;">
+						<img src="{{ asset( auth()->user()->profile_picture) }}" alt="Profile Picture" width="100"> 
                     @else
                         <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}"  class="rounded-circle img-fluid" style="width: 150px;">
                     @endif              
@@ -48,29 +48,13 @@
                     </form>
                 
                 
-                    <hr class="my-4" />   
-                
+                    <hr class="my-4" />  
+                    
+                    <form action="{{ url('settings/'.$user->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
 
-                </div>
-            </div>
-
-
-
-
-
-
-        <div class="container-fluid">
-                
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-10 col-xl-8 mx-auto">
                         
-                <h5 class="my-3">Profile Details</h5>
-
-                <form method="POST" action="{{ url('/settings', ['id' => $user->id]) }}">
-
-                    @csrf
-               
-          
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstname">Firstname</label>
@@ -133,12 +117,12 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputZip5">Zip</label>
-                    <input type="text" class="form-control" id="inputZip5" name="zipcode"  />
+                    <input type="text" class="form-control" id="inputZip5" name="zipcode" value="{{ $user->zipcode }}"  />
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputState5">City</label>
                     <select id="city" name="city"  id="inputState5" class="form-control">
-                        <option value="">Select City</option>
+                        <option value="{{ $user->city }}">{{ $user->city }}</option>
                         <option value="Alejal">Alejal</option>
                         <option value="Andili">Andili</option>
                         <option value="Andop">Andop</option>
@@ -372,7 +356,7 @@
                         <li>Minimum 8 character</li>
                         <li>At least one special character</li>
                         <li>At least one number</li>
-                        <li>Can’t be the same as a previous password</li>
+                        <li>Can't be the same as a previous password</li>
                     </ul>
                     <div class="p-btn text-center">
                         <a class="btn btn-primary btn-xl rounded-pill mt-5" id="myButton" href="">Save Password</a>
@@ -385,10 +369,14 @@
                 
             </div>
 
-        </form>
-       
+                    </form>
+
+
+                
+
+                </div>
+            </div>
     </div>
-</div>
 
 
 

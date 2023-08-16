@@ -54,12 +54,7 @@
                          </div>
 
                             <div class="col-sm-6">
-                                <select name="userlevel" class="border-raduis">
-                                    <option value="Member">Type Membership</option>
-                                    <option value="Member">Member</option>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Stockies">Stockies</option>
-                                </select>
+                                <input type="hidden" name="userlevel" value="Member" />
                             </div>
 
                         </div>
@@ -114,6 +109,7 @@
                                 @if ($errors->has('sponsor_id_number'))
                                     <span class="text-danger">{{ $errors->first('sponsor_id_number') }}</span>
                                 @endif
+
                             </div>
                             <div class="col-sm-6">
                                 <input type="text"  class="form-control form-control-user @error('phoneNumber') is-invalid @enderror" id="phoneNumber"  name="phoneNumber" value="{{ old('phoneNumber') }}" placeholder="Phone Number" />
@@ -143,7 +139,7 @@
                                     <li>Minimum 8 character</li>
                                     <li>At least one special character</li>
                                     <li>At least one number</li>
-                                    <li>Can’t be the same as a previous password</li>
+                                    <li>Can't be the same as a previous password</li>
                                 </ul>
                             </div>
                         </div>

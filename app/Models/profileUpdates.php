@@ -20,7 +20,6 @@ class profileUpdates extends Model
         'name',
         'lastname',
         'email',
-        'password',
         'presentAddress',
         'birthday',
         'status',
