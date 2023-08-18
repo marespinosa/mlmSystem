@@ -63,13 +63,6 @@ Route::group(['middleware' => 'admin'], function () {
 });
 
 
-Route::controller(MlmController::class)->group(function() {
-    Route::post('/settings', 'showTreeIndex')->name('tree');
-    Route::get('/settings', 'showTreeIndex')->name('tree');
-    
-});
-
-
 Route::controller(UserController::class)->group(function() {
     Route::post('/settings/{id}', 'UpdateProfilesPic')->name('update.profiles');
     Route::get('/settings/{id}', 'UpdateProfilesPic')->name('update.profiles');

@@ -39,19 +39,22 @@
                                             ->where('id', '!=', $user->id)
                                             ->get();
 
+
+                                            
                 @endphp
 
                 @if ($otherUsers->count() > 0)
                     <ul>
                         @foreach ($otherUsers as $otherUser)
                         <li> 
+                            
                             <div class="userTree">
                                 <img src="{{ asset('images/favicon.png') }}" alt="{{ $otherUser->name }}">
 
                             <span>{{ $otherUser->name }} {{ $otherUser->lastname }}<br />
                             <b>Sponsor Id:</b> {{ $otherUser->generatedId }}</span>
                             </div>
-
+                            
                         </li>
                         @endforeach
                     </ul>

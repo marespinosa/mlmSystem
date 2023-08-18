@@ -32,6 +32,7 @@ class MlmController extends Controller
         $currentUser = auth()->user();
 
         $sponsor = null;
+        
         if ($currentUser->generatedId) {
             $sponsor = treeUs::where('generatedId', $currentUser->generatedId)->first();
         }
@@ -107,6 +108,8 @@ class MlmController extends Controller
 
         return view('superadmin.index', compact('members', 'searchQuery'));
 }
+
+
 
 
 
