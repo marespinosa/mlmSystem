@@ -16,41 +16,91 @@
 
     @include('tree.sub-content')
 
-    <div>
-        <h2>Current User Information</h2>
-        <p>Name: {{ $user->name }}</p>
-        <p>Email: {{ $user->generatedId }}</p>
+<div class="tree">
 
+    <ul>
+
+        <li>
 
         @if (isset($downlineUsers['level1']) && $downlineUsers['level1']->count() > 0)
-            <h2>Level 1 Downline Users</h2>
-            @foreach ($downlineUsers['level1'] as $downlineUser)
-                <div>
-                    <p>Downline User Name: {{ $downlineUser->name }}</p>
-                    <p>Downline User Sponsored Id: {{ $downlineUser->generatedId }}</p>
-                </div>
-            @endforeach
-        @else
-            <p>No level 1 downline users found.</p>
-        @endif
 
-        @if (isset($downlineUsers['level2']) && count($downlineUsers['level2']) > 0)
-            <h2>Level 2 Downline Users</h2>
+        @foreach ($downlineUsers['level1'] as $level1User)
 
+        <div class="userTree">
 
-            @foreach ($downlineUsers['level2'] as $level2DownlineUsers)
-                @foreach ($level2DownlineUsers as $downlineUser)
-                    <div>
-                        <p>Downline User Name: {{ $downlineUser->name }}</p>
-                        <p>Downline User Same Id: {{ $downlineUser->sponsor_id_number }}</p>
-                        <p>Downline User Sponsored Id: {{ $downlineUser->generatedId }}</p>
+            @if(auth()->user()->profile_picture)
+            <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture">
+            @else
+            <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" />
+    
+            @endif
+
+            {{ $level1User->name }} {{ $level1User->lastname }} <br />
+            <b>Sponsor Id:</b> {{ $level1User->generatedId }}
+           
+            </div> <!---- 1st level ---->
+
+            @if (isset($downlineUsers['level2'][$level1User->generatedId]) && count($downlineUsers['level2'][$level1User->generatedId]) > 0)
+          
+            <ul>
+
+                @foreach ($downlineUsers['level2'][$level1User->generatedId] as $level2User)
+                <li>
+                    <div class="userTree">
+                        {{ $level2User->name }} {{ $level2User->lastname }} <br />
+                        <b>Sponsor Id:</b> {{ $level2User->generatedId }}
                     </div>
+
+                    <ul>
+                       
+                        @if (isset($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId]) && count($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId]) > 0)
+                        <li>    
+                            @foreach ($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId] as $level3User)
+                            <div>
+                                <p>Name: {{ $level3User->name }}</p>
+                                <p>Sponsored Id: {{ $level3User->generatedId }}</p>
+                            </div>
+                            @endforeach
+
+                            @else
+                             <p>No level 3 downline users found.</p>
+                             @endif
+
+                        </li>
+                       
+
+                    </ul>
+                
+
+                </li>
+
                 @endforeach
-            @endforeach
-        @else
-            <p>No level 2 downline users found.</p>
-        @endif
-    </div>
+
+                    @else
+                    <p>No level 2 downline users found.</p>
+                @endif
+
+            </ul> <!--- 2nd level --->
+
+           
+        </li>
+
+        
+        @endforeach
+
+    </ul>
+
+    @else
+     <p>No level 1 downline users found.</p>
+    @endif
+
+
+    
+      
+  
+
+       
+</div>
 
 
 
