@@ -140,6 +140,17 @@ padding-bottom: 5rem;
 	border-color: #94a0b4;
 }
 
+
+.treeus-sponsor{
+	border: 1px solid #94a0b4;
+    border-radius: 10px;
+    width: 25%;
+    margin: 0 auto;
+    padding: 10px;
+
+}
+
+
 /* end of mytree*/
 
 

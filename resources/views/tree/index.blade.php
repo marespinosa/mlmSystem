@@ -16,57 +16,41 @@
 
     @include('tree.sub-content')
 
-    <div class="tree">
-        <ul>
-         <li>
+    <div>
+        <h2>Current User Information</h2>
+        <p>Name: {{ $user->name }}</p>
+        <p>Email: {{ $user->generatedId }}</p>
 
-        <div class="userTree">
-        @if(auth()->user()->profile_picture)
-        <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture">
+
+        @if (isset($downlineUsers['level1']) && $downlineUsers['level1']->count() > 0)
+            <h2>Level 1 Downline Users</h2>
+            @foreach ($downlineUsers['level1'] as $downlineUser)
+                <div>
+                    <p>Downline User Name: {{ $downlineUser->name }}</p>
+                    <p>Downline User Sponsored Id: {{ $downlineUser->generatedId }}</p>
+                </div>
+            @endforeach
         @else
-        <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" />
-
+            <p>No level 1 downline users found.</p>
         @endif
 
-        {{ $user->name }} {{ $user->lastname }} <br />
-        <b>Sponsor Id:</b> {{ $user->generatedId }}
-     
-        </div>
+        @if (isset($downlineUsers['level2']) && count($downlineUsers['level2']) > 0)
+            <h2>Level 2 Downline Users</h2>
 
-            @if ($sponsor)
-                @php
-                    $otherUsers = \App\Models\User::where('sponsor_id_number', $user->generatedId)
-                                            ->where('id', '!=', $user->id)
-                                            ->get();
 
-                @endphp
-
-                @if ($otherUsers->count() > 0)
-                    <ul>
-                        @foreach ($otherUsers as $otherUser)
-                        <li> 
-                            <div class="userTree">
-                                <img src="{{ asset('images/favicon.png') }}" alt="{{ $otherUser->name }}">
-
-                            <span>{{ $otherUser->name }} {{ $otherUser->lastname }}<br />
-                            <b>Sponsor Id:</b> {{ $otherUser->generatedId }}</span>
-                            </div>
-
-                        </li>
-                        @endforeach
-                    </ul>
-                @else
-                    <p>No other users found with the same Sponsor ID</p>
-                @endif
-
-            @else
-                <p>No Sponsor Assigned</p>
-            @endif
-
-         </li>
-       </ul>
+            @foreach ($downlineUsers['level2'] as $level2DownlineUsers)
+                @foreach ($level2DownlineUsers as $downlineUser)
+                    <div>
+                        <p>Downline User Name: {{ $downlineUser->name }}</p>
+                        <p>Downline User Same Id: {{ $downlineUser->sponsor_id_number }}</p>
+                        <p>Downline User Sponsored Id: {{ $downlineUser->generatedId }}</p>
+                    </div>
+                @endforeach
+            @endforeach
+        @else
+            <p>No level 2 downline users found.</p>
+        @endif
     </div>
-
 
 
 
@@ -80,5 +64,3 @@
     
                
 @endsection
-
-

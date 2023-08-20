@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\ProfileUpdates;
 
 
-
-
 class UserController extends Controller
 {
 

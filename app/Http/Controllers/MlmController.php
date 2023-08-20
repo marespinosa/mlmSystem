@@ -10,40 +10,6 @@ use App\Http\Controllers\Controller;
 
 class MlmController extends Controller
 {
-    public function displayAdmin()
-    {
-        $currentUser = auth()->user();
-
-        $sponsor = null;
-        if ($currentUser->generatedId) {
-            $sponsor = treeUs::where('generatedId', $currentUser->generatedId)->first();
-        }
-
-        return view('tree.index', [
-            'user' => $currentUser,
-            'sponsor' => $sponsor,
-            'noSponsor' => (!$sponsor),
-        ]);
-    }
-
-
-    public function showTreeIndex()
-    {
-        $currentUser = auth()->user();
-
-        $sponsor = null;
-        
-        if ($currentUser->generatedId) {
-            $sponsor = treeUs::where('generatedId', $currentUser->generatedId)->first();
-        }
-
-        return view('settings.index', [
-            'user' => $currentUser,
-            'sponsor' => $sponsor,
-            'noSponsor' => (!$sponsor),
-        ]);
-    }
-
 
     public function showProfile()
     {
