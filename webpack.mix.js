@@ -19,18 +19,11 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .copy('resources/assets/extras/fontawesome-free/css/*.min.css', 'public/css')
     .copy('resources/assets/extras/fontawesome-free/css/*.css', 'public/css')
 
-    .copy('resources/js/dist/themes/default/*.css', 'public/css')
-    .copy('resources/js/dist/themes/default/*.min.css', 'public/css')
-
-    .copy('resources/js/dist/themes/default-dark/*.css', 'public/css')
-    .copy('resources/js/dist/themes/default-dark/*.min.css', 'public/css')
 
     .copy('resources/assets/css/*.css', 'public/css')
     .copy('resources/assets/extras/chart/*.js', 'public/js')
     .copy('resources/assets/extras/chart/*.min.js', 'public/js')
     .copy('resources/assets/js/demo/*.js', 'public/js')
-    .copy('resources/js/dist/*.js', 'public/js')
-    .copy('resources/js/dist/themes/*.js', 'public/js');
     
 mix.copyDirectory('resources/assets/img', 'public/images');
 mix.copyDirectory('resources/assets/css/banner', 'public/images');
