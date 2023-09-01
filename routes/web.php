@@ -55,6 +55,10 @@ Route::group(['middleware' => 'admin'], function () {
         Route::post('/superadmin', 'SearchMember')->name('superadmin.index');
         Route::get('/superadmin', 'SearchMember')->name('superadmin.index');
 
+
+        Route::post('/superadmin/edit-data/{id}', 'viewform')->name('superadmin.viewform');
+        Route::get('/superadmin/edit-data/{id}', 'viewform')->name('superadmin.viewform');
+
       
     });
 });

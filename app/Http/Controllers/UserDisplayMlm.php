@@ -37,6 +37,16 @@ class UserDisplayMlm extends Controller
                 $level3Users = sponsorTree::where('sponsor_id_number', $level2User->generatedId)->get();
                 $downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId] = $level3Users;
             }
+
+            // Level 4 downline users
+            $downlineUsers['level4'][$level1User->generatedId][$level2User->generatedId] = [];
+            foreach ($level3Users as $level3User) {
+                $level4Users = sponsorTree::where('sponsor_id_number', $level3User->generatedId)->get();
+                $downlineUsers['level4'][$level1User->generatedId][$level2User->generatedId][$level3User->generatedId] = $level4Users;
+            }
+
+
+
         }
     }
 
