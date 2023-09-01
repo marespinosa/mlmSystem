@@ -15,7 +15,9 @@ class sponsorTree extends Model
 
     protected $id = 'id'; 
 
-    protected $sponsorId = 'sponsor_id_number'; 
+    protected $sponsorId = 'sponsor_id_number';
+    
+    protected $generatedId = 'generatedId'; 
 
 
     protected $fillable = [

@@ -16,68 +16,46 @@
 
     @include('tree.sub-content')
 
-<div class="tree">
 
-    <div class="tree">
-        <ul>
-         <li>
+    <div id="treeData" class="tree">
 
-        <div class="userTree">
-        @if(auth()->user()->profile_picture)
-        <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture">
-        @else
-        <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" />
+      <ul>
+        <li>
+            
+            <div class="userTree">
 
-        @endif
-
-        {{ $user->name }} {{ $user->lastname }} <br />
-        <b>Sponsor Id:</b> {{ $user->generatedId }}
-
-        </div>
-
-            @if ($sponsor)
-                @php
-                    $otherUsers = \App\Models\User::where('sponsor_id_number', $user->generatedId)
-                                            ->where('id', '!=', $user->id)
-                                            ->get();
-                                            
-                @endphp
-
-                @if ($otherUsers->count() > 0)
-                    <ul>
-                        @foreach ($otherUsers as $otherUser)
-                        <li> 
-
-                            <div class="userTree">
-                                <img src="{{ asset('images/favicon.png') }}" alt="{{ $otherUser->name }}">
-                                <span>{{ $otherUser->name }} {{ $otherUser->lastname }}<br />
-                                <b>Sponsor Id:</b> {{ $otherUser->generatedId }}</span>
-                            </div>
-
-                            @include('tree.tree-level1')
-
-                        </li>
-                        @endforeach
-                    </ul>
+                @if(auth()->user()->profile_picture)
+                <a href="#">
+                    <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" width="150"></a>
                 @else
-                    <p>No other users found with the same Sponsor ID</p>
+                <a href="#"><img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" width="150">
+                <span>{{ $user->name }} {{ $user->lastname }} <br /><b>Sponsor Id:</b> {{ $user->generatedId }}</span></a>
+            
                 @endif
 
-            @else
-                <p>No Sponsor Assigned</p>
-            @endif
-    
-      
-  
-
-
-
-     
-  <!-----end content ---->
             </div>
+
+            @include('tree.tree-level1')
+          
+
+
+	
+	</div>
+
+
+
+
+
+
+
+
+
+ 
+<!-----end content ---->
         </div>
     </div>
 </div>
-    
-               
+</div>
+
+           
 @endsection

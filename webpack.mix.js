@@ -9,6 +9,7 @@ mix.webpackConfig({
 
 
 mix.js('resources/assets/js/app.js', 'public/js')
+    .copy('resources/js/showhide.js', 'public/js')
     .copy('resources/assets/extras/jquery/*.min.js', 'public/js')
     .copy('resources/assets/extras/jquery/*.js', 'public/js')
     .copy('resources/assets/extras/bootstrap/js/*.min.js', 'public/js')

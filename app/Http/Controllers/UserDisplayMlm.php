@@ -13,43 +13,54 @@ class UserDisplayMlm extends Controller
     $currentUser = auth()->user();
     $sponsor = null;
 
+    
+
+
+
     if ($currentUser->generatedId) {
-        $sponsor = sponsorTree::where('generatedId', $currentUser->generatedId)->first();
-    }
+       
+        $sponsorCurrent = sponsorTree::where('generatedId', $currentUser->generatedId)->first();
+        
+        $downlineUsers = []; 
 
-    $sponsorTreeEntry = sponsorTree::where('generatedId', $currentUser->generatedId)->first();
+        if ($currentUser) {
 
-    $downlineUsers = []; 
-
-    if ($sponsorTreeEntry) {
-        // Level 1 downline users
-        $downlineUsers['level1'] = sponsorTree::where('sponsor_id_number', $sponsorTreeEntry->sponsor_id_number)->get();
-
-        // Level 2 downline users
-        $downlineUsers['level2'] = [];
-        foreach ($downlineUsers['level1'] as $level1User) {
-            $level2Users = sponsorTree::where('sponsor_id_number', $level1User->generatedId)->get();
-            $downlineUsers['level2'][$level1User->generatedId] = $level2Users;
-
-            // Level 3 downline users
-            $downlineUsers['level3'][$level1User->generatedId] = [];
-            foreach ($level2Users as $level2User) {
-                $level3Users = sponsorTree::where('sponsor_id_number', $level2User->generatedId)->get();
-                $downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId] = $level3Users;
+            $downlineUsers['level1'] = sponsorTree::where('sponsor_id_number', $currentUser->generatedId)->get();
+    
+            // Level 2 downline users
+            $downlineUsers['level2'] = [];
+            foreach ($downlineUsers['level1'] as $level1User) {
+                $level2Users = sponsorTree::where('sponsor_id_number', $level1User->generatedId)->get();
+                $downlineUsers['level2'][$level1User->generatedId] = $level2Users;
+    
+                // Level 3 downline users
+                $downlineUsers['level3'][$level1User->generatedId] = [];
+                foreach ($level2Users as $level2User) {
+                    $level3Users = sponsorTree::where('sponsor_id_number', $level2User->generatedId)->get();
+                    $downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId] = $level3Users;
+                }
+    
+                $downlineUsers['level4'][$level1User->generatedId][$level2User->generatedId] = [];
+                foreach ($level3Users as $level3User) {
+                    $level4Users = sponsorTree::where('sponsor_id_number', $level3User->generatedId)->get();
+                    $downlineUsers['level4'][$level1User->generatedId][$level2User->generatedId][$level3User->generatedId] = $level4Users;
+                }
+    
+    
+    
             }
-
-            // Level 4 downline users
-            $downlineUsers['level4'][$level1User->generatedId][$level2User->generatedId] = [];
-            foreach ($level3Users as $level3User) {
-                $level4Users = sponsorTree::where('sponsor_id_number', $level3User->generatedId)->get();
-                $downlineUsers['level4'][$level1User->generatedId][$level2User->generatedId][$level3User->generatedId] = $level4Users;
-            }
-
-
-
         }
+    
+
+        
+
+
     }
 
+
+    
+
+   
     return view('tree.index', [
         'user' => $currentUser,
         'sponsor' => $sponsor,
@@ -61,4 +72,3 @@ class UserDisplayMlm extends Controller
 
 
 }
-
