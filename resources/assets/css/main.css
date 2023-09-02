@@ -46,6 +46,6 @@
 }
 
 .treelineup ul{
-    display: inline-block;
     width: 13%;
+    float: left;
 }

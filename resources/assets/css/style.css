@@ -130,15 +130,6 @@ padding-bottom: 5rem;
 	letter-spacing: 1px;
 	font-weight: 500;
 }
-/*Hover-Section*/
-.tree .userTree:hover, .tree .userTree:hover i, .tree .userTree:hover span, .tree .userTree:hover+ul li a {
-	background: #c8e4f8;
-	color: #000;
-	border: 1px solid #94a0b4;
-}
-.tree .userTree:hover+ul li::after, .tree .userTree:hover+ul li::before, .tree .userTree:hover+ul::before, .tree .userTree:hover+ul ul::before {
-	border-color: #94a0b4;
-}
 
 
 .treeus-sponsor{
