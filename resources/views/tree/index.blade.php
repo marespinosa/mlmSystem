@@ -7,7 +7,6 @@
 
 @extends('admin.layouts')
 
-
 @section('content')
 
     @include('admin.sidebar')
@@ -18,36 +17,26 @@
 
 
     <div id="treeData" class="tree">
-
-      <ul>
-        <li>
-            
+       
             <div class="userTree">
-
                 @if(auth()->user()->profile_picture)
-                <a href="#">
-                    <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" width="150"></a>
+                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture">
                 @else
-                <a href="#"><img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" width="150">
-                <span>{{ $user->name }} {{ $user->lastname }} <br /><b>Sponsor Id:</b> {{ $user->generatedId }}</span></a>
-            
+                <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" />
+        
                 @endif
-
+        
+                {{ $user->name }} {{ $user->lastname }} <br />
+                <b>Sponsor Id:</b> {{ $user->generatedId }}
+        
             </div>
 
-            @include('tree.tree-level1')
+            <div class="treelineup">
+                @include('tree.tree-level1')
+             </div>
+
+            </div>
           
-
-
-	
-	</div>
-
-
-
-
-
-
-
 
 
  

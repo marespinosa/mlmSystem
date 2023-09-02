@@ -35,3 +35,17 @@
 .custom-checkbox label{
     text-align: left;
 }
+
+.hidebox-div{
+    display: none;
+}
+
+.treelineup{
+   width:100%;
+   overflow: hidden;
+}
+
+.treelineup ul{
+    display: inline-block;
+    width: 13%;
+}
