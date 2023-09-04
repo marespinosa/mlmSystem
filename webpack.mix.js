@@ -22,11 +22,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
 
     .copy('resources/assets/css/*.css', 'public/css')
 
-    .copy('resources/assets/scss/*.scss', 'public/scss')
-
-    .copy('resources/assets/scss/*/*.scss', 'public/scss')
-
-
     
     .copy('resources/assets/extras/chart/*.js', 'public/js')
     .copy('resources/assets/extras/chart/*.min.js', 'public/js')
