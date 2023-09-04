@@ -154,7 +154,7 @@
         <a class="small" href="forgot-password">Forgot Password?</a>
      </div>
     <div class="text-center">
-        <a class="small" href="index">Already have an account? Login!</a>
+        <a class="small" href="/">Already have an account? Login!</a>
     </div>
    
                        

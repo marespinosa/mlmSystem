@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\MlmController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserDisplayMlm;
 
 
 Route::get('/', function () {
@@ -16,11 +17,8 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
-
-
     Route::post('/stockies', 'stockies')->name('stockies.index');
     Route::get('/stockies', 'stockies')->name('stockies.index');
-
     
 });
 
@@ -33,13 +31,12 @@ Route::controller(MlmController::class)->group(function() {
 });
 
 
-
-
 Route::controller(MlmController::class)->group(function() {
     Route::post('/tree', 'displayAdmin')->name('tree');
     Route::get('/tree', 'displayAdmin')->name('tree');
-
 });
+
+
 
 
 
@@ -58,16 +55,14 @@ Route::group(['middleware' => 'admin'], function () {
         Route::post('/superadmin', 'SearchMember')->name('superadmin.index');
         Route::get('/superadmin', 'SearchMember')->name('superadmin.index');
 
+
+        Route::post('/superadmin/edit-data/{id}', 'viewform')->name('superadmin.viewform');
+        Route::get('/superadmin/edit-data/{id}', 'viewform')->name('superadmin.viewform');
+
       
     });
 });
 
-
-Route::controller(MlmController::class)->group(function() {
-    Route::post('/settings', 'showTreeIndex')->name('tree');
-    Route::get('/settings', 'showTreeIndex')->name('tree');
-    
-});
 
 
 Route::controller(UserController::class)->group(function() {
@@ -82,9 +77,14 @@ Route::put('settings/{id}', [UserController::class, 'update']);
 
 
 
-
-
 Route::controller(UserController::class)->group(function() {
     Route::get('settings', 'showChangePasswordForm')->name('showChangePasswordForm');
     Route::post('settings', 'changePassword')->name('changePassword');
+});
+
+
+Route::controller(UserDisplayMlm::class)->group(function() {
+    Route::post('/tree', 'CurrentSponsor')->name('tree');
+    Route::get('/tree', 'CurrentSponsor')->name('tree');
+    
 });

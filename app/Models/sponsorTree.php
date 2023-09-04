@@ -3,12 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 use Illuminate\Database\Eloquent\Model;
 
-class treeUs extends Model
+class sponsorTree extends Model
 {
-
     use HasFactory;
 
     protected $table = 'users'; 
@@ -17,11 +15,14 @@ class treeUs extends Model
 
     protected $id = 'id'; 
 
-    protected $sponsorId = 'sponsor_id_number'; 
+    protected $sponsorId = 'sponsor_id_number';
+    
+    protected $generatedId = 'generatedId'; 
 
 
     protected $fillable = [
         'name',
+        'lastname',
         'email',
         'generatedId', 
         'sponsor_id_number',
@@ -33,11 +34,4 @@ class treeUs extends Model
         'password',
         'remember_token',
     ];
-
- 
-    
-
-    
- 
 }
-

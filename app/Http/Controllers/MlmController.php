@@ -10,39 +10,6 @@ use App\Http\Controllers\Controller;
 
 class MlmController extends Controller
 {
-    public function displayAdmin()
-    {
-        $currentUser = auth()->user();
-
-        $sponsor = null;
-        if ($currentUser->generatedId) {
-            $sponsor = treeUs::where('generatedId', $currentUser->generatedId)->first();
-        }
-
-        return view('tree.index', [
-            'user' => $currentUser,
-            'sponsor' => $sponsor,
-            'noSponsor' => (!$sponsor),
-        ]);
-    }
-
-
-    public function showTreeIndex()
-    {
-        $currentUser = auth()->user();
-
-        $sponsor = null;
-        if ($currentUser->generatedId) {
-            $sponsor = treeUs::where('generatedId', $currentUser->generatedId)->first();
-        }
-
-        return view('settings.index', [
-            'user' => $currentUser,
-            'sponsor' => $sponsor,
-            'noSponsor' => (!$sponsor),
-        ]);
-    }
-
 
     public function showProfile()
     {
@@ -69,22 +36,25 @@ class MlmController extends Controller
 
     public function update($id)
     {
-
-        $accountLevel = auth()->user()->userlevel;
-
-     
         $member = treeUs::find($id);
 
         if ($member) {
-            $member->acountStatus = 'active';
+            if ($member->acountStatus === 'active') {
+                $member->acountStatus = 'deactivate';
+                $message = 'Account deactivated successfully';
+            } else {
+                $member->acountStatus = 'active';
+                $message = 'Account activated successfully';
+            }
+
             $member->save();
 
-            return redirect()->route('superadmin.index')->with('success', 'Account activated successfully');
+            return redirect()->route('superadmin.index')->with('success', $message);
         } else {
             return redirect()->route('superadmin.index')->with('error', 'Member not found');
         }
     }
-    
+
 
     public function SearchMember(Request $request)
     {
@@ -106,7 +76,17 @@ class MlmController extends Controller
         $members = $query->paginate(20);
 
         return view('superadmin.index', compact('members', 'searchQuery'));
-}
+    }
+
+
+    public function viewform($id)
+    {
+        $member = treeUs::find($id);
+        return view('superadmin.edit-data');
+        
+    }
+
+
 
 
 

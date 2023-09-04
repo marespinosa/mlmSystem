@@ -35,3 +35,22 @@
 .custom-checkbox label{
     text-align: left;
 }
+
+.hidebox-div{
+    display: none;
+}
+
+.treelineup{
+   width:100%;
+   overflow: hidden;
+}
+
+.treelineup ul{
+    width: 13%;
+    float: left;
+}
+
+.accordion-button.collapsed{
+    border:0 none;
+    background: transparent !important;
+}

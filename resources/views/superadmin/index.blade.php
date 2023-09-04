@@ -32,9 +32,8 @@
             <tr>
                 <th>Sponsored ID</th>
                 <th>Name</th>
-                <th>Email</th>
                 <th>Account Status</th>
-                <th>Action</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -42,7 +41,6 @@
             <tr>
                 <td>{{ $member->generatedId }}</td>
                 <td>{{ $member->name }} {{ $member->lastname }}</td>
-                <td>{{ $member->email }}</td>
                 <td>{{ $member->acountStatus }}</td>
                 <td>
                     @if ($member->acountStatus === 'deactivate')
@@ -51,9 +49,23 @@
                             <button type="submit" class="btn btn-success">Activate Now</button>
                         </form>
                     @else
-                        <span class="text-success">Active</span>
+                        <span class="text-success">Activated</span>
                     @endif
                 </td>
+                <td>
+                    @if ($member->acountStatus === 'active')
+                        <form action="{{ route('superadmin.update', ['id' => $member->id]) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Deactivate Now</button>
+                        </form>
+                    @else
+                        <span class="text-success">Deactivated</span>
+                    @endif
+
+                </td>
+                <td>
+                    <a href="{{ url('superadmin/edit-data/'.$member->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                </td>            
             </tr>
             @endforeach
         </tbody>
