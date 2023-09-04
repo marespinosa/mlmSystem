@@ -15,8 +15,10 @@
 
     @include('tree.sub-content')
 
+    
 
-    <div id="treeData" class="tree">
+    
+      <div id="treeData" class="tree">
        
             <div class="userTree">
                 @if(auth()->user()->profile_picture)
@@ -31,20 +33,13 @@
         
             </div>
 
-            <div class="treelineup">
+            <div class="accordion accordion-flush" id="accordionFlushExample">
                 @include('tree.tree-level1')
              </div>
 
             </div>
-          
-
-
- 
-<!-----end content ---->
         </div>
     </div>
-</div>
-</div>
-
            
 @endsection
+
