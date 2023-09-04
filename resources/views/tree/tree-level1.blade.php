@@ -15,9 +15,9 @@ $counter = 0;
                 <li><a href="#{{ $tabId }}" data-toggle="tab">
                         <div class="userTree">
                             @if (auth()->user()->profile_picture)
-                                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" width="80">
+                                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" width="80" class="text-align">
                             @else
-                                <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" width="80" />
+                                <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" width="80" class="text-align"/>
                             @endif
                             {{ $level1User->name }} {{ $level1User->lastname }} <br />
                             <b>Sponsor Id:</b> {{ $level1User->generatedId }}
@@ -39,6 +39,10 @@ $counter = 0;
                 $counter++;
                 $tabId = 'tab' . $counter; // Increment the tab ID
                 $collapseId = 'collapse' . $counter; // Increment the collapse ID
+                $toggleTab = 'toggleTab' . $counter; // Increment the collapse ID
+                $heading = 'heading' . $counter; // Increment the collapse ID
+
+
                 @endphp
 
                 <div class="tab-pane" id="{{ $tabId }}">
@@ -47,8 +51,21 @@ $counter = 0;
                             <div class="panel-body">
                                 @if (isset($downlineUsers['level2'][$level1User->generatedId]) && count($downlineUsers['level2'][$level1User->generatedId]) > 0)
                 
+                                @php
+                                $tabCounter = 0; 
+                                @endphp
+
                                 @foreach ($downlineUsers['level2'][$level1User->generatedId] as $level2User)
-                                    
+                                
+                                @php
+                                $tabCounter++;
+                                $collapseId = 'collapse' . $tabCounter; // Increment the collapse ID
+                                $heading = 'heading' . $tabCounter; // Increment the collapse ID
+                                @endphp
+                                                            
+                                <div class="level2-wrapper">
+
+
                                     <div class="userTree level2">
                                         @if($level2User->profile_picture)
                                             <img src="{{ asset($level2User->profile_picture) }}" alt="Profile Picture" width="80" class="text-align">
@@ -59,36 +76,22 @@ $counter = 0;
                                             {{ $level2User->name }} {{ $level2User->lastname }} <br />
                                             <b>Sponsor Id:</b> {{ $level2User->generatedId }}
                                     </div>
-                
-                                    <ul class="level3">
-                                        @if (isset($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId]) && count($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId]) > 0)
-                                        
-                                        @foreach ($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId] as $level3User)
-                                            
-                                        <li>    
-                                           <div class="userTree">
-                                                @if($level2User->profile_picture)
-                                                    <img src="{{ asset($level3User->profile_picture) }}" alt="Profile Picture" width="80">
-                                                @else
-                                                    <img src="{{ asset('images/favicon.png') }}" alt="{{ $level3User->name }}" width="80" />
-                                                @endif
-                                                    <p>Name: {{ $level3User->name }}</p>
-                                                    <p>Sponsored Id: {{ $level3User->generatedId }}</p>
-                                            </div>
-                                        </li>
 
-                                            @endforeach
-                                                @else
-                                                    <p>No level 3 downline users found.</p>
-                                                @endif
-                
-                                        </ul>
-                                    @endforeach
+                                    @include('tree.tree-level3')
+
+                                    
+                                </div>
+
+
+                                @endforeach
+
                                
-                               
-                                    @else
-                                    <p>No level 2 downline users found.</p>
+
+                                @else
+                                <p>No level 2 downline users found.</p>
                                 @endif
+
+                                
                             </div>
                         </div>
                     </div>
