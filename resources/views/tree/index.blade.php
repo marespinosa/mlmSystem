@@ -18,13 +18,13 @@
     
 
     
-      <div id="treeData" class="tree">
+      <div class="tree">
        
-            <div class="userTree">
+            <div class="mainheadTree">
                 @if(auth()->user()->profile_picture)
-                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture">
+                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" width="90">
                 @else
-                <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" />
+                <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" width="90" />
         
                 @endif
         
@@ -33,13 +33,16 @@
         
             </div>
 
-            <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion accordion-flush">
                 @include('tree.tree-level1')
              </div>
 
             </div>
         </div>
     </div>
-           
+
+
 @endsection
+
+</div>
 
