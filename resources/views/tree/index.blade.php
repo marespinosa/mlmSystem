@@ -15,31 +15,31 @@
 
     @include('tree.sub-content')
 
-    
 
-    
-      <div id="treeData" class="tree">
-       
-            <div class="userTree">
+      <div class="tree">
+            <div class="mainheadTree">
                 @if(auth()->user()->profile_picture)
-                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture">
+                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" width="80">
                 @else
-                <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" />
+                <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" width="80" />
         
                 @endif
         
-                {{ $user->name }} {{ $user->lastname }} <br />
+               {{ $user->name }} {{ $user->lastname }} <br />
                 <b>Sponsor Id:</b> {{ $user->generatedId }}
         
             </div>
 
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-                @include('tree.tree-level1')
-             </div>
+            @include('tree.tree-level1')
 
-            </div>
         </div>
+
+
+
+
+    @endsection
+
     </div>
-           
-@endsection
+
+</div>
 

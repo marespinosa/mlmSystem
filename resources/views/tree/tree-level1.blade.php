@@ -1,113 +1,107 @@
-
 @php
-$counter = 1;
-
-function numberToWords($number) {
-    $words = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
-    if ($number >= 1 && $number <= count($words)) {
-        return $words[$number - 1];
-    } else {
-        return $number;
-    }
-}
-
-
+$counter = 0; 
 @endphp
 
+<div class="treetabs">
+    <ul class="nav nav-tabs">
+        @if (isset($downlineUsers['level1']) && $downlineUsers['level1']->count() > 0)
+            @foreach ($downlineUsers['level1'] as $level1User)
+                @php
+                $counter++;
+                $tabId = 'tab' . $counter; // Increment the tab ID
+                $collapseId = 'collapse' . $counter; // Increment the collapse ID
+                @endphp
 
-@if (isset($downlineUsers['level1']) && $downlineUsers['level1']->count() > 0)
+                <li><a href="#{{ $tabId }}" data-toggle="tab">
+                        <div class="userTree">
+                            @if (auth()->user()->profile_picture)
+                                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" width="80" class="text-align">
+                            @else
+                                <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" width="80" class="text-align"/>
+                            @endif
+                            {{ $level1User->name }} {{ $level1User->lastname }} <br />
+                            <b>Sponsor Id:</b> {{ $level1User->generatedId }}
+                        </div>
+                    </a></li>
+            @endforeach
+        @else
+            <p>No level 1 downline users found.</p>
+        @endif
+    </ul>
 
-@foreach ($downlineUsers['level1'] as $level1User)
+    <div class="tab-content">
+        @php
+        $counter = 0; // Reset the counter
+        @endphp
+        @if (isset($downlineUsers['level1']) && $downlineUsers['level1']->count() > 0)
+            @foreach ($downlineUsers['level1'] as $level1User)
+                @php
+                $counter++;
+                $tabId = 'tab' . $counter; // Increment the tab ID
+                $collapseId = 'collapse' . $counter; // Increment the collapse ID
+                $toggleTab = 'toggleTab' . $counter; // Increment the collapse ID
+                $heading = 'heading' . $counter; // Increment the collapse ID
 
-    @php
-    $counter++;
-    $uniqueID = 'flush-collapse' . numberToWords($counter);
-    @endphp
 
-     <div class="accordion-item">
-         <div class="accordion-header userTree" id="flush-headingOne">  
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ $uniqueID }}" aria-expanded="false">
-                      
-            @if(auth()->user()->profile_picture)
-                        <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture">
-                        @else
-                        <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" />
+                @endphp
+
+                <div class="tab-pane" id="{{ $tabId }}">
+                    <div class="panel panel-default">
+                        <div id="{{ $collapseId }}" class="panel-collapse">
+                            <div class="panel-body">
+                                @if (isset($downlineUsers['level2'][$level1User->generatedId]) && count($downlineUsers['level2'][$level1User->generatedId]) > 0)
                 
-                        @endif
+                                @php
+                                $tabCounter = 0; 
+                                @endphp
 
-                        {{ $level1User->name }} {{ $level1User->lastname }} <br />
-                        <b>Sponsor Id:</b> {{ $level1User->generatedId }}
-                            </button>
-            </div>
+                                @foreach ($downlineUsers['level2'][$level1User->generatedId] as $level2User)
+                                
+                                @php
+                                $tabCounter++;
+                                $collapseId = 'collapse' . $tabCounter; // Increment the collapse ID
+                                $heading = 'heading' . $tabCounter; // Increment the collapse ID
+                                @endphp
+                                                            
+                                <div class="level2-wrapper">
 
-   
 
-        <div id="{{ $uniqueID }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
+                                    <div class="userTree level2">
 
-                @if (isset($downlineUsers['level2'][$level1User->generatedId]) && count($downlineUsers['level2'][$level1User->generatedId]) > 0)
-                
-                @foreach ($downlineUsers['level2'][$level1User->generatedId] as $level2User)
-                    
-    
-                            <div class="userTree">
-                                @if($level2User->profile_picture)
-                                <img src="{{ asset($level2User->profile_picture) }}" alt="Profile Picture">
-                                @else
-                                    <img src="{{ asset('images/favicon.png') }}" alt="{{ $level2User->name }}" />
-                                @endif
-
-                                {{ $level2User->name }} {{ $level2User->lastname }} <br />
-                                <b>Sponsor Id:</b> {{ $level2User->generatedId }}
-                            </div>
-
-                            <ul>
-                            
-                                @if (isset($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId]) && count($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId]) > 0)
-                                <li>    
-                                    @foreach ($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId] as $level3User)
-                                    <div class="userTree">
-                                        @if($level2User->profile_picture)
-                                        <img src="{{ asset($level3User->profile_picture) }}" alt="Profile Picture">
-                                        @else
-                                            <img src="{{ asset('images/favicon.png') }}" alt="{{ $level3User->name }}" />
-                                        @endif
-                                        <p>Name: {{ $level3User->name }}</p>
-                                        <p>Sponsored Id: {{ $level3User->generatedId }}</p>
-                                    </div>
-                                    @endforeach
-
+                                    @if($level2User->profile_picture)
+                                        <img src="{{ asset($level2User->profile_picture) }}" alt="Profile Picture" width="80">
                                     @else
-                                    <p>No level 3 downline users found.</p>
+                                        <img src="{{ asset('images/favicon.png') }}" alt="{{ $level2User->name }}" width="80" />
                                     @endif
 
-                                </li>
-                            
+                                        <h6> {{ $level2User->name }} {{ $level2User->lastname }} </h6>
+                                            <b>Sponsor Id:</b> {{ $level2User->generatedId }}
+                                    </div>
 
-                            </ul>
-                        
-                     
+                                    @include('tree.tree-level3')
 
-                        @endforeach
 
-                            @else
-                            <p>No level 2 downline users found.</p>
-                        @endif
+                                </div>
 
-                
-                 </div>
-                  
-                
-            </div>
-            
 
-@endforeach
+                                @endforeach
 
-</div> <!---end:accordion -->
+                               
 
-@else
-<p>No level 1 downline users found.</p>
-@endif
+                                @else
+                                <p>No level 2 downline users found.</p>
+                                @endif
 
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
+             </div>
+        </div>
+    </div>
+</div>
 
 
