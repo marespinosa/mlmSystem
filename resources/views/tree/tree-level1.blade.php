@@ -71,7 +71,7 @@ $counter = 0;
                                     @if($level2User->profile_picture)
                                         <img src="{{ asset($level2User->profile_picture) }}" alt="Profile Picture" width="80">
                                     @else
-                                        <img src="{{ asset('images/favicon.png') }}" alt="{{ $level2User->name }}" width="80" />
+                                        <img src="{{ asset('images/favicon.png') }}" alt="{{ $level3User->name }}" width="80" />
                                     @endif
 
                                         <h6> {{ $level2User->name }} {{ $level2User->lastname }} </h6>

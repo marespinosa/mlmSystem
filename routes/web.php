@@ -88,3 +88,6 @@ Route::controller(UserDisplayMlm::class)->group(function() {
     Route::get('/tree', 'CurrentSponsor')->name('tree');
     
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
