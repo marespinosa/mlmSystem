@@ -67,19 +67,20 @@ $counter = 0;
 
 
                                     <div class="userTree level2">
-                                        @if($level2User->profile_picture)
-                                            <img src="{{ asset($level2User->profile_picture) }}" alt="Profile Picture" width="80" class="text-align">
-                                        @else
-                                            <img src="{{ asset('images/favicon.png') }}" alt="{{ $level2User->name }}" width="80" class="text-align" />
-                                        @endif
-                
-                                            {{ $level2User->name }} {{ $level2User->lastname }} <br />
+
+                                    @if($level2User->profile_picture)
+                                        <img src="{{ asset($level2User->profile_picture) }}" alt="Profile Picture" width="80">
+                                    @else
+                                        <img src="{{ asset('images/favicon.png') }}" alt="{{ $level2User->name }}" width="80" />
+                                    @endif
+
+                                        <h6> {{ $level2User->name }} {{ $level2User->lastname }} </h6>
                                             <b>Sponsor Id:</b> {{ $level2User->generatedId }}
                                     </div>
 
                                     @include('tree.tree-level3')
 
-                                    
+
                                 </div>
 
 

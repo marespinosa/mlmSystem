@@ -600,8 +600,17 @@ padding-bottom: 5rem;
 .level2{
   border: 1px solid #fff;
   margin: 0 auto;
+  padding: 10px;
+}
+
+.level2 h6{
+  font-weight: 600;
 }
 
 
 
-.level2-wrapper .level3{}
+.notfound{
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin:10px;
+}
