@@ -30,11 +30,10 @@
         
             </div>
 
-            <div id="app">
-                <tree-tabs :downline-users="{{ json_encode($downlineUsers) }}"></tree-tabs>
-            </div>
+            @include('tree.tree-level1')
 
         </div>
+
 
 
 
@@ -44,4 +43,5 @@
     </div>
 
 </div>
+
 

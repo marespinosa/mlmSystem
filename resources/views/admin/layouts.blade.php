@@ -18,14 +18,12 @@
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
+  
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>    
-
-
-
-    
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
 
 
@@ -79,15 +77,10 @@
     
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
-    <script src="{{ asset('js/Chart.min.js') }}"></script>
-    <script src="{{ asset('js/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('js/chart-pie-demo.js') }}"></script>
+    <script src="{{ asset('js/toggle.js') }}"></script>
 
    
-    <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">    
-               
-
-
+ 
 </body>
 
 </html>

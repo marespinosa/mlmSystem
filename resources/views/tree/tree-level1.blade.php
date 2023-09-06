@@ -2,6 +2,7 @@
 $counter = 0; 
 @endphp
 
+
 <div class="treetabs">
     <ul class="nav nav-tabs">
         @if (isset($downlineUsers['level1']) && $downlineUsers['level1']->count() > 0)
@@ -58,20 +59,18 @@ $counter = 0;
                                 @foreach ($downlineUsers['level2'][$level1User->generatedId] as $level2User)
                                 
                                 @php
-                                $tabCounter++;
-                                $collapseId = 'collapse' . $tabCounter; // Increment the collapse ID
-                                $heading = 'heading' . $tabCounter; // Increment the collapse ID
+                                    $tabCounter++;
+                                    $collapseId = 'collapse' . $tabCounter; 
+                                    $heading = 'heading' . $tabCounter; 
                                 @endphp
                                                             
                                 <div class="level2-wrapper">
-
-
-                                    <div class="userTree level2">
+                                    <div class="userTree level2" onclick="toggleContent({{ $tabCounter }})">
 
                                     @if($level2User->profile_picture)
                                         <img src="{{ asset($level2User->profile_picture) }}" alt="Profile Picture" width="80">
                                     @else
-                                        <img src="{{ asset('images/favicon.png') }}" alt="{{ $level3User->name }}" width="80" />
+                                        <img src="{{ asset('images/favicon.png') }}" alt="{{ $level2User->name }}" width="80" />
                                     @endif
 
                                         <h6> {{ $level2User->name }} {{ $level2User->lastname }} </h6>
@@ -103,5 +102,4 @@ $counter = 0;
         </div>
     </div>
 </div>
-
 
