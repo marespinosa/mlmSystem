@@ -19,7 +19,7 @@
     </li>
         
         @else
-                <li>No level 3 downline users found.</li>
+                <li class="userTree caret">No level 3 downline users found.</li>
     
         @endif
 

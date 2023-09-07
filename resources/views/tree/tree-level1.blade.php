@@ -72,7 +72,7 @@ $counter = 0;
                    
 
                     @else
-                    <p>No level 2 downline users found.</p>
+                    <li class="userTree caret">No level 2 downline users found.</li>
                     @endif
                 
 
@@ -80,7 +80,7 @@ $counter = 0;
                 </li>
             @endforeach
         @else
-            <p>No level 1 downline users found.</p>
+            <li class="userTree caret">No level 1 downline users found.</li>
         @endif
     </ul>
 
