@@ -5,7 +5,7 @@
     $alignment = 'aligncenter';
 @endphp
 
-@extends('admin.layouts')
+@extends('tree.layouts')
 
 @section('content')
 
