@@ -22,9 +22,11 @@
   
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tree.css') }}" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>    
-
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/toggle.js') }}"></script>
 
 
 </head>
@@ -70,16 +72,21 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+
+
 
     <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
-    
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-
-    <script src="{{ asset('js/toggle.js') }}"></script>
-
-   
+    
+    <script>
+        (function ($) {
+            function init() {
+                $('.easy-tree').EasyTree({
+                });
+            }
+            window.onload = init();
+        })(jQuery)
+    </script>
  
 </body>
 
