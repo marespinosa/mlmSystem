@@ -44,14 +44,14 @@
                     var children = $(this).find(' > ul');
                     $(children).remove();
                     text = $(this).text();
-                    $(this).html('<span><span class="glyphicon"></span><a href="javascript: void(0);"></a> </span>');
+                    $(this).html('<span class="userTree"><span class="glyphicon"></span><a href="#"></a></span>');
                     $(this).find(' > span > span').addClass('glyphicon-folder-open');
                     $(this).find(' > span > a').text(text);
                     $(this).append(children);
                 }
                 else {
                     text = $(this).text();
-                    $(this).html('<span><span class="glyphicon"></span><a href="javascript: void(0);"></a> </span>');
+                    $(this).html('<span class="userTree"><span class="glyphicon"></span><a href="#"></a></span>');
                     $(this).find(' > span > span').addClass('glyphicon-file');
                     $(this).find(' > span > a').text(text);
                 }
@@ -76,7 +76,7 @@
                         if ($(createInput).find('input').val() === '')
                             return;
                         var selected = getSelectedItems();
-                        var item = $('<li><span><span class="glyphicon glyphicon-file"></span><a href="javascript: void(0);">' + $(createInput).find('input').val() + '</a> </span></li>');
+                        var item = $('<li><span><span class="glyphicon glyphicon-file"></span><a href="#">' + $(createInput).find('input').val() + '</a> </span></li>');
                         $(item).find(' > span > span').attr('title', options.i18n.collapseTip);
                         $(item).find(' > span > a').attr('title', options.i18n.selectTip);
                         if (selected.length <= 0) {
@@ -93,6 +93,7 @@
                             }
                         }
                         $(createInput).find('input').val('');
+
                         if (options.selectable) {
                             $(item).find(' > span > a').attr('title', options.i18n.selectTip);
                             $(item).find(' > span > a').click(function (e) {
