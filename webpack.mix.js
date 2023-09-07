@@ -15,7 +15,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .copy('resources/assets/extras/bootstrap/js/*.bundle.min.js', 'public/js')
     .copy('resources/assets/extras/jquery-easing/*.easing.min.js', 'public/js')
     .copy('resources/assets/extras/jquery-easing/*.easing.compatibility.js', 'public/js')
-    .copy('resources/assets/css/*.min.css', 'public/css')
+    .copy('resources/assets/css/sb-admin-2.css', 'public/css')
     .copy('resources/assets/extras/fontawesome-free/css/*.min.css', 'public/css')
     .copy('resources/assets/extras/fontawesome-free/css/*.css', 'public/css')
 

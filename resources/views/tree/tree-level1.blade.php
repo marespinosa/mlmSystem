@@ -14,13 +14,14 @@ $counter = 0;
 
                   <li>
                         <div class="userTree caret">
+                            <small style="color: #68BB59;">Level: 1</small>
                             @if (auth()->user()->profile_picture)
                                 <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" width="80" class="text-align">
                             @else
                                 <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" width="80" class="text-align"/>
                             @endif
-                            {{ $level1User->name }} {{ $level1User->lastname }} <br />
-                            <b>Sponsor Id:</b> {{ $level1User->generatedId }}
+                            <h6>{{ $level1User->name }} {{ $level1User->lastname }}</h6>
+                            <p><b>Sponsor Id:</b> {{ $level1User->generatedId }}</p>
                         </div>
                 
                     <ul class="nested">
@@ -45,15 +46,9 @@ $counter = 0;
                    
                    <li>                           
                       <div class="userTree caret">
-
-                        @if($level2User->profile_picture)
-                            <img src="{{ asset($level2User->profile_picture) }}" alt="Profile Picture" width="80">
-                        @else
-                            <img src="{{ asset('images/favicon.png') }}" alt="{{ $level2User->name }}" width="80" />
-                        @endif
-
-                            <h6> {{ $level2User->name }} {{ $level2User->lastname }} </h6>
-                            <b>Sponsor Id:</b> {{ $level2User->generatedId }}
+                            <small style="color: #68BB59;">Level: 2</small>
+                            <h6>{{ $level2User->name }} {{ $level2User->lastname }}</h6>
+                            <p><b>Sponsor Id:</b> {{ $level2User->generatedId }} </p>
                         </span>
 
                         </div>
@@ -72,7 +67,7 @@ $counter = 0;
                    
 
                     @else
-                    <p>No level 2 downline users found.</p>
+                    <li class="userTree caret">No level 2 downline users found.</li>
                     @endif
                 
 
@@ -80,7 +75,7 @@ $counter = 0;
                 </li>
             @endforeach
         @else
-            <p>No level 1 downline users found.</p>
+            <li class="userTree caret">No level 1 downline users found.</li>
         @endif
     </ul>
 

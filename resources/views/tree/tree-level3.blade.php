@@ -6,20 +6,27 @@
    
     <li>
             <div class="userTree caret">
-            @if($level3User->profile_picture)
-                    <img src="{{ asset($level3User->profile_picture) }}" alt="Profile Picture" width="80">
-                @else
-                    <img src="{{ asset('images/favicon.png') }}" alt="{{ $level3User->name }}" width="80" />
-                @endif
-                <p>{{ $level3User->name }} <br />
-                <b>Sponsored Id:</b> {{ $level3User->generatedId }}</p>
+                <small style="color: #68BB59;">Level: 3</small>
+                <h6>{{ $level3User->name }} {{ $level3User->lastname }}</h6>
+                <p><b>Sponsor Id:</b> {{ $level3User->generatedId }} </p>
+
             </div>
+
+            
+
+
+            @include('tree.tree-level4')
+
+
+
         @endforeach
+
+
 
     </li>
         
         @else
-                <li>No level 3 downline users found.</li>
+                <li class="userTree caret">No level 3 downline users found.</li>
     
         @endif
 

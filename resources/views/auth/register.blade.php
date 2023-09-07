@@ -14,7 +14,7 @@
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-5 d-none d-lg-block bg-register-image" style="background-image: url({{ asset('images/bannerreg.png') }});"></div>
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
@@ -59,7 +59,7 @@
 
                         </div>
                         <div class="form-group width97">
-                                                       <input type="email" class="form-control form-control-user" id="email" name="email" value="{{ old('email') }}" placeholder="Email" />
+                            <input type="email" class="form-control form-control-user" id="email" name="email" value="{{ old('email') }}" placeholder="Email" />
                         </div>
 
                         <div class="form-group row width97">
@@ -151,7 +151,7 @@
                         <hr>
 
     <div class="text-center">
-        <a class="small" href="forgot-password">Forgot Password?</a>
+        <a class="small" href="password/reset">Forgot Password?</a>
      </div>
     <div class="text-center">
         <a class="small" href="/">Already have an account? Login!</a>
