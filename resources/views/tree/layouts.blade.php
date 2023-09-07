@@ -27,7 +27,6 @@
     <link href="{{ asset('css/tree.css') }}" rel="stylesheet">
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/toggle.js') }}"></script>
 
 
 </head>
@@ -78,13 +77,15 @@
 
  
     <script>
-        (function ($) {
-            function init() {
-                $('.easy-tree').EasyTree({
-                });
-            }
-            window.onload = init();
-        })(jQuery)
+      var toggler = document.getElementsByClassName("caret");
+    var i;
+
+    for (i = 0; i < toggler.length; i++) {
+    toggler[i].addEventListener("click", function() {
+        this.parentElement.querySelector(".nested").classList.toggle("active");
+        this.classList.toggle("caret-down");
+    });
+    }
     </script>
  
 </body>

@@ -1,165 +1,37 @@
-.tree{
-  overflow: hidden;
-}
-
-.easy-tree {
-  min-height: 20px;
-  margin-bottom: 20px;
-  color: #202020;
-  border: none;
-  border-top: none;
-  padding-bottom: 15px;
-}
-
-.easy-tree > ul {
-  padding-left: 0;
-  display: flex;
-}
-
-.easy-tree li {
+ul, #myUL {
   list-style-type: none;
+}
+
+#myUL {
   margin: 0;
-  padding: 10px 5px 0 5px;
-  flex: 0 0 12%;
+  padding: 0;
 }
 
-
-.easy-tree li ul li, .easy-tree li ul li ul li{
-  position: relative;
-  width: 100%;
-  float: none;
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
 }
 
-
-.easy-tree li::before, .easy-tree li::after {
-  content: '';
-  left: -30px;
-  position: absolute;
-  right: auto
-}
-
-.easy-tree li::before {
-  border-left: 1px solid #202020;
-  bottom: 50px;
-  height: 100%;
-  top: 0;
-  width: 1px
-}
-
-.easy-tree li::after {
-  border-top: 1px solid #202020;
-  height: 20px;
-  top: 30px;
-  width: 35px
-}
-
-.easy-tree li > span {
-  border: 1px solid #202020;
-  border-radius: 3px;
+.caret::before {
+  content: "\25B6";
+  color: black;
   display: inline-block;
-  padding: 10px;
-  text-decoration: none;
-  text-align: center;
-  font-weight: 600;
-  text-transform: capitalize;
+  margin-right: 6px;
 }
 
-.easy-tree li.parent_li > span {
-  cursor: pointer
+.caret-down::before {
+  -ms-transform: rotate(90deg); 
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);  
 }
 
-
-.easy-tree > ul > li::before, .easy-tree > ul > li::after {
-  border: 0
+.nested {
+  display: none;
 }
 
-.easy-tree li:last-child::before {
-  height: 30px
-}
-
-.easy-tree li.parent_li > span:hover, .easy-tree li.parent_li > span:hover + ul li span {
-  color: #202020;
-}
-
-
-.easy-tree li > span > a {
-  color: #202020;
-  text-decoration: none;
-}
-
-.easy-tree li > span > span.glyphicon-folder-close, .easy-tree li > span > span.glyphicon-folder-open {
-  margin-right: 5px;
-}
-
-.easy-tree li.li_selected > span, .easy-tree li.li_selected > span > a {
-  background-color: #68BB59;
-}
-
-.easy-tree li.li_selected > span:hover, .easy-tree li.li_selected > span:hover > a {
-  background: #fafafa;
-}
-
-.easy-tree .easy-tree-toolbar {
-  background-color: #202020;
-}
-
-.easy-tree .easy-tree-toolbar > div {
-  display: inline-block;
-}
-
-.easy-tree .easy-tree-toolbar > div > button {
-  border-radius: 0;
-  margin: 20px 5px;
-}
-
-.easy-tree .easy-tree-toolbar .create .input-group {
-  top: -15px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.easy-tree .easy-tree-toolbar .create .input-group input {
-  border-radius: 0;
-}
-
-.easy-tree .easy-tree-toolbar .create .input-group button {
-  border-radius: 0;
-}
-
-
-
-
-.mainheadTree{
-  border: 1px solid #ccc;
-  margin: 0 auto;
-  width: 20%;
-  text-align: center;
-  padding: 10px;
-  padding-bottom: 20px;
-}
-
-.text-align{
-  text-align: center;
-  margin: 0;
-}
-
-.mainheadTree img{
+.active {
   display: block;
-  margin: 0 auto;
-}
-
-.glyphicon{
-  position: relative;
-  top: 1px;
-  display: inline-block;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-*[title="collapse"] {
-  background-color: #68BB59;
 }

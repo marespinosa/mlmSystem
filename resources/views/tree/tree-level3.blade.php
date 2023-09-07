@@ -1,5 +1,5 @@
 
-<ul>
+<ul class="nested">
 @if (isset($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId]) && count($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId]) > 0) 
     
 @foreach ($downlineUsers['level3'][$level1User->generatedId][$level2User->generatedId] as $level3User)

@@ -2,8 +2,8 @@
 $counter = 0; 
 @endphp
 
-<div class="easy-tree">
-    <ul>
+<div >
+    <ul id="myUL">
         @if (isset($downlineUsers['level1']) && $downlineUsers['level1']->count() > 0)
             @foreach ($downlineUsers['level1'] as $level1User)
                 @php
@@ -12,7 +12,7 @@ $counter = 0;
                 $collapseId = 'collapse' . $counter; // Increment the collapse ID
                 @endphp
 
-                  <li>
+                  <li><span class="caret">
                         <div class="userTree">
                             @if (auth()->user()->profile_picture)
                                 <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" width="80" class="text-align">
@@ -22,6 +22,8 @@ $counter = 0;
                             {{ $level1User->name }} {{ $level1User->lastname }} <br />
                             <b>Sponsor Id:</b> {{ $level1User->generatedId }}
                         </div>
+
+                    </span>
                 
                     <ul>
 
@@ -43,7 +45,7 @@ $counter = 0;
 
                     @endphp
                    
-                   <li>                             
+                   <li>  <span class="caret">                           
                       <div class="userTree level2">
 
                         @if($level2User->profile_picture)
@@ -54,7 +56,7 @@ $counter = 0;
 
                             <h6> {{ $level2User->name }} {{ $level2User->lastname }} </h6>
                             <b>Sponsor Id:</b> {{ $level2User->generatedId }}
-
+                        </span>
 
                         </div>
 
