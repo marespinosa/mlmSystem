@@ -14,16 +14,12 @@
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet" type="text/css">
 
     <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
-    
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
-  
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     
-    <link href="{{ asset('css/tree.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 
 
 </head>
@@ -33,8 +29,6 @@
     <div id="wrapper">
 
         @yield('content')
-
-    </div>
 
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
@@ -59,7 +53,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">x</span>
+                        <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -71,28 +65,17 @@
         </div>
     </div>
 
-      <!-- Bootstrap core JavaScript-->
-      <script src="{{ asset('js/jquery.min.js') }}"></script>
-      <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-      
-      <!-- Core plugin JavaScript-->
-      <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
-      
-      <!-- Custom scripts for all pages-->
-      <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
- 
-    <script>
-      var toggler = document.getElementsByClassName("caret");
-    var i;
 
-    for (i = 0; i < toggler.length; i++) {
-    toggler[i].addEventListener("click", function() {
-        this.parentElement.querySelector(".nested").classList.toggle("active");
-        this.classList.toggle("caret-down");
-    });
-    }
-    </script>
- 
+        <!-- Bootstrap core JavaScript-->
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+        
+        <!-- Core plugin JavaScript-->
+        <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+        
+        <!-- Custom scripts for all pages-->
+        <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
 </body>
 
 </html>

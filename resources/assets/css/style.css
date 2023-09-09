@@ -256,7 +256,7 @@ padding-bottom: 5rem;
 	width: 100%;
 	padding: 10px;
 	border: none;
-	border-radius: 4px;
+	border-radius: 999px;
 	background-color: #4caf50;
 	color: #fff;
 	font-size: 16px;
@@ -264,7 +264,7 @@ padding-bottom: 5rem;
   }
   
   button[type="submit"]:hover {
-	background-color: #45a049;
+	background-color: #046c3c;
   }
 
   
@@ -306,7 +306,7 @@ padding-bottom: 5rem;
   /* Style the counter cards */
   .card {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	padding: 16px;
+	padding: 0;
 	text-align: center;
 	background-color: #ffffff;
   }

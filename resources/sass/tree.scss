@@ -16,11 +16,19 @@
   display: flex;
 }
 
-.easy-tree li {
+.easy-tree li, .easy-tree li li {
   list-style-type: none;
   margin: 0;
   padding: 10px 5px 0 5px;
   flex: 0 0 14%;
+}
+
+.userTree{
+  height:190px;
+}
+
+.easy-tree li li .userTree {
+  height: 150px;
 }
 
 
@@ -190,4 +198,10 @@ ul, #myTree {
 
 .active {
   display: block;
+}
+
+.userTree{
+  h6{
+    font-weight: 600;
+  }
 }

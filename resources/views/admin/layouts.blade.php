@@ -13,9 +13,9 @@
 
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet" type="text/css">
 
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
