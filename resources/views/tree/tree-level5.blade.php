@@ -5,8 +5,8 @@
    
     <li>
         <div class="userTree caret">
-            <small><b style="color: #68BB59;">Level: 5</b></small>
-            <h6><b>{{ $level5User->name }} {{ $level5User->lastname }}</b> </h6>
+            <small style="color: #68BB59;">Level: 5</small>
+            <h6>{{ $level5User->name }} {{ $level5User->lastname }}</h6>
             <b>Sponsored Id:</b> {{ $level5User->generatedId }}</p>
         </div>
 

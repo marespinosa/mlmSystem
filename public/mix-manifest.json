@@ -35,7 +35,6 @@
     "/js/chart-pie-demo.js": "/js/chart-pie-demo.js",
     "/js/datatables-demo.js": "/js/datatables-demo.js",
     "/images/2.jpg": "/images/2.jpg",
-    "/images/bannerad.png": "/images/bannerad.png",
     "/images/bannerfor.png": "/images/bannerfor.png",
     "/images/bannerreg.png": "/images/bannerreg.png",
     "/images/favicon.png": "/images/favicon.png",
@@ -54,5 +53,6 @@
     "/images/shop/work-1.jpg": "/images/shop/work-1.jpg",
     "/images/shop/work-2.jpg": "/images/shop/work-2.jpg",
     "/images/shop/work-3.jpg": "/images/shop/work-3.jpg",
-    "/images/shop/work-4.jpg": "/images/shop/work-4.jpg"
+    "/images/shop/work-4.jpg": "/images/shop/work-4.jpg",
+    "/images/bannerad.png": "/images/bannerad.png"
 }
