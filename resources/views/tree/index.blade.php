@@ -17,22 +17,21 @@
 
 
       <div class="tree">
-            <div class="mainheadTree">
-                @if(auth()->user()->profile_picture)
-                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" width="80">
-                @else
-                <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" width="80" />
+            <div class="mainheadTree caret">
+                    <small style="color: #68BB59;">Level: 1</small>
+                    <h6>{{ $downlineUsers['user']->name }} {{ $downlineUsers['user']->lastname }}</h6>
+                    <p><b>Sponsor Id:</b> <input type="text" value="{{ $downlineUsers['user']->generatedId }}" placeholder="{{ $downlineUsers['user']->generatedId }}"></p>
+                </div>
+                
+                <div id="myTree" class="easy-tree">
+                            @if (!empty($downlineUsers['downline']))
+                            @include('tree.tree-level', ['level' => $downlineUsers])    
+                            @endif
+                </div>
         
-                @endif
-        
-               {{ $user->name }} {{ $user->lastname }} <br />
-                <b>Sponsor Id:</b> {{ $user->generatedId }}
-        
+    
             </div>
 
-            @include('tree.tree-level1')
-
-        </div>
 
 
 

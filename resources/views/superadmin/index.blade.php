@@ -32,17 +32,20 @@
             <tr>
                 <th>Sponsored ID</th>
                 <th>Name</th>
-                <th>Account Status</th>
+                <th>Username</th>
+                <th>Upline</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
+
             @foreach($members as $member)
             <tr>
                 <td>{{ $member->generatedId }}</td>
                 <td>{{ $member->name }} {{ $member->lastname }}</td>
-                <td>{{ $member->acountStatus }}</td>
-                <td>
+                <td>{{ $member->username }}</td>
+                <td>{{ $member->sponsor_id_number }}</td>
+                <td width="150px">
                     @if ($member->acountStatus === 'deactivate')
                         <form action="{{ route('superadmin.update', ['id' => $member->id]) }}" method="post">
                             @csrf
@@ -52,7 +55,7 @@
                         <span class="text-success">Activated</span>
                     @endif
                 </td>
-                <td>
+                <td width="200px">
                     @if ($member->acountStatus === 'active')
                         <form action="{{ route('superadmin.update', ['id' => $member->id]) }}" method="post">
                             @csrf
@@ -63,8 +66,8 @@
                     @endif
 
                 </td>
-                <td>
-                    <a href="{{ url('superadmin/edit-data/'.$member->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                <td width="100px">
+                    <a href="{{ url('superadmin/edit-data/'.$member->id) }}"  class="btn btn-success border-raduis">Edit</a>
                 </td>            
             </tr>
             @endforeach

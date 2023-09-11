@@ -28,13 +28,12 @@ Route::controller(LoginRegisterController::class)->group(function() {
 Route::controller(MlmController::class)->group(function() {
     Route::post('/profile', 'showProfile')->name('tree');
     Route::get('/profile', 'showProfile')->name('tree');
-});
-
-
-Route::controller(MlmController::class)->group(function() {
     Route::post('/tree', 'displayAdmin')->name('tree');
     Route::get('/tree', 'displayAdmin')->name('tree');
+
+
 });
+
 
 
 

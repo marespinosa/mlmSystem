@@ -8,15 +8,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Auth\Middleware\Authenticate as Middleware;
+
+
 use App\Models\ProfileUpdates;
 
 
 class UserController extends Controller
 {
 
+
+
     protected $table = 'users'; 
 
     protected $id = 'id'; 
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
 
     public function UpdateProfilesPic(Request $request)

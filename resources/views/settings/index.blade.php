@@ -409,6 +409,19 @@
                     </form>
                 </div>
                 <div class="col-md-6">
+                    @if (Session::has('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                    @elseif (Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
+                    
+                    
+
+                 
                     <p class="mb-2">Password requirements</p>
                     <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
                     <ul class="small text-muted pl-4 mb-0">
