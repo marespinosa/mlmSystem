@@ -15,13 +15,11 @@ $counter = 0;
                   <li>
                         <div class="userTree caret">
                             <small style="color: #68BB59;">Level: 1</small>
-                            @if (auth()->user()->profile_picture)
-                                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" width="80" class="text-align">
-                            @else
-                                <img src="{{ asset('images/favicon.png') }}" alt="{{ $user->name }}" width="80" class="text-align"/>
-                            @endif
+                            <img src="{{ asset($level1User->profile_picture) }}" alt="Profile Picture" width="80" class="text-align">
+
                             <h6>{{ $level1User->name }} {{ $level1User->lastname }}</h6>
-                            <p><b>Sponsor Id:</b> {{ $level1User->generatedId }}</p>
+                            <p><b>Sponsor Id:</b> <input type="text" value="{{ $level1User->generatedId }}" placeholder="{{ $level1User->generatedId }}"></p>
+            
                         </div>
                 
                     <ul class="nested">
@@ -45,12 +43,12 @@ $counter = 0;
                     @endphp
                    
                    <li>                           
-                      <div class="userTree caret">
+
+                        <div class="userTree caret">
                             <small style="color: #68BB59;">Level: 2</small>
                             <h6>{{ $level2User->name }} {{ $level2User->lastname }}</h6>
-                            <p><b>Sponsor Id:</b> {{ $level2User->generatedId }} </p>
-                        </span>
-
+                            <p><b>Sponsor Id:</b> <input type="text" value="{{ $level2User->generatedId }}" placeholder="{{ $level2User->generatedId }}"></p>
+            
                         </div>
 
                         

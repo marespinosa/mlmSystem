@@ -101,7 +101,10 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }}</span>
-				<img src="{{ asset('public/' . auth()->user()->profile_picture) }}" class="img-profile rounded-circle" alt="{{ Auth::user()->name }}"> 
+				 
+                <!-- <img src="{{ asset('public/' . auth()->user()->profile_picture) }}" class="img-profile rounded-circle" alt="{{ Auth::user()->name }}"> --->
+                
+                <img src="{{ asset(auth()->user()->profile_picture) }}" class="img-profile rounded-circle" alt="{{ Auth::user()->name }}"> 
 
             </a>
             <!-- Dropdown - User Information -->

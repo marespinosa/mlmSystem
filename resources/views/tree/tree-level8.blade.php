@@ -7,7 +7,8 @@
             <div class="userTree caret">
                 <small style="color: #68BB59;">Level: 8</small>
                 <h6>{{ $level8User->name }} {{ $level8User->lastname }}</h6>
-                <b>Sponsored Id:</b> {{ $level8User->generatedId }}</p>
+                <p><b>Sponsor Id:</b> <input type="text" value="{{ $level8User->generatedId }}" placeholder="{{ $level8User->generatedId }}"></p>
+            
             </div>
      
             @endforeach

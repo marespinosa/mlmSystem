@@ -7,8 +7,10 @@
     <li>
             <div class="userTree caret">
                 <small style="color: #68BB59;">Level: 4</small>
+                <img src="{{ asset($level4User->profile_picture) }}" alt="Profile Picture" width="80" class="text-align">
                 <h6>{{ $level4User->name }} {{ $level4User->lastname }}</h6>
-                <b>Sponsored Id:</b> {{ $level4User->generatedId }}</p>
+                <small><b>Sponsor Id:</b> <input type="text" value="{{ $level4User->generatedId }}" placeholder="{{ $level4User->generatedId }}"></small>
+            
             </div>
 
         @endforeach

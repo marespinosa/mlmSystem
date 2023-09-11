@@ -24,11 +24,15 @@
 }
 
 .userTree{
-  height:190px;
+  height:230px;
+  h6{
+    text-transform: capitalize;
+  }
 }
 
 .easy-tree li li .userTree {
-  height: 150px;
+  height: 200px;
+  cursor: pointer;
 }
 
 

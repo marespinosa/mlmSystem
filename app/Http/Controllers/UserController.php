@@ -30,10 +30,10 @@ class UserController extends Controller
         if ($request->hasFile('profile_picture')) {
             $image = $request->file('profile_picture');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('profile_images'), $imageName);
+            $image->move(public_path('images'), $imageName);
 
             $user = auth()->user();
-            $user->profile_picture = 'profile_images/' . $imageName;
+            $user->profile_picture = 'images/' . $imageName;
             $user->save();
         }
 
