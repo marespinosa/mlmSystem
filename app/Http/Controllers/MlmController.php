@@ -5,11 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\treeUs;
 use Illuminate\Http\Request;
 
+use Illuminate\Auth\Middleware\Authenticate as Middleware;
+
 
 use App\Http\Controllers\Controller;
 
 class MlmController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function showProfile()
     {
@@ -85,6 +93,19 @@ class MlmController extends Controller
         return view('superadmin.edit-data');
         
     }
+
+    public function sponsorDetails($sponsor_id_number)
+    {
+        $HeadMember = treeUs::where('sponsor_id_number', $sponsor_id_number)->first();
+
+        if (!$member) {
+            return redirect()->route('superadmin.index')->with('error', 'Member not found.');
+        }
+    
+        
+        return view('superadmin.index', compact('HeadMember'));
+    }
+    
 
 
 
