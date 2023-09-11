@@ -9249,6 +9249,7 @@ a:focus {
 .topbar .navbar-search input {
   font-size: 0.85rem;
   height: auto;
+  text-align: left !important;
 }
 .topbar .topbar-divider {
   width: 0;
@@ -10232,3 +10233,4 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
