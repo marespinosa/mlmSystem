@@ -382,11 +382,16 @@
                             <div class="col-md-6">
                                 <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" required>
 
-                                @error('new_password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                @if ($errors->has('new_password'))
+                                    <div class="alert alert-danger">
+                                        @if ($errors->first('new_password') == 'The new password format is invalid.')
+                                            The new password cannot contain spaces.
+                                        @else
+                                            {{ $errors->first('new_password') }}
+                                        @endif
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
 
@@ -419,8 +424,7 @@
                         </div>
                     @endif
                     
-                    
-
+                
                  
                     <p class="mb-2">Password requirements</p>
                     <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>

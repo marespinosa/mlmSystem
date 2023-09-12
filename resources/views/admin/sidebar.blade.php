@@ -81,7 +81,7 @@
     </div>
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="soontopublish.html">
+        <a class="nav-link" href="products">
             <i class="fas fa-fw"></i>
             <span>Featured Products</span></a>
     </li>

@@ -11,7 +11,7 @@
   padding-bottom: 15px;
 }
 
-.easy-tree > ul {
+.easy-tree > ul{
   padding-left: 0;
   display: flex;
 }
@@ -23,15 +23,8 @@
   flex: 0 0 14%;
 }
 
-.userTree{
-  height:230px;
-  h6{
-    text-transform: capitalize;
-  }
-}
 
 .easy-tree li li .userTree {
-  height: 250px;
   cursor: pointer;
 }
 
@@ -162,7 +155,11 @@
 
 .mainheadTree img{
   display: block;
-  margin: 0 auto;
+  margin: 10px auto;
+}
+
+..mainheadTree small{
+  text-transform: uppercase;
 }
 
 .glyphicon{
