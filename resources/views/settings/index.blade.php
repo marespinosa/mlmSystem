@@ -64,7 +64,6 @@
                             {{ session('success') }}
                         </div>
                     @endif
-
                         
             <div class="form-row">
                 <div class="form-group col-md-6">

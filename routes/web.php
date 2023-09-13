@@ -92,7 +92,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::controller(ProductController::class)->group(function() {
-    Route::get('/products', 'create')->name('products.create');
-    Route::post('/products', 'store')->name('products.store');
-    
+    Route::get('/products/addnew', 'create')->name('products.create');
+    Route::post('/products/addnew', 'store')->name('products.store');
 });

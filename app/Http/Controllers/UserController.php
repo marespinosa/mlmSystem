@@ -48,6 +48,9 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Profile picture updated successfully');
     }
 
+
+    
+
     public function index()
     {
         $ProfileUpdates = ProfileUpdates::all();

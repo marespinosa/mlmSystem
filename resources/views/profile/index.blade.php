@@ -130,59 +130,7 @@
                   <div>
                     <p class="text-center">Benefits</p>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="card mb-4 mb-md-0">
-                        <div class="card-body">
-                          <p class="mb-1" style="font-size: .77rem;">Level 1</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="80"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Level 2</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: %" aria-valuenow="72"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Level 3</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: %" aria-valuenow="89"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Level 4</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: %" aria-valuenow="55"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                      <div class="col-md-6">
-                        <div class="card mb-4 mb-md-0">
-                          <div class="card-body">
-                            <p class="mb-1" style="font-size: .77rem;">Level 5</p>
-                            <div class="progress rounded" style="height: 5px;">
-                              <div class="progress-bar" role="progressbar" style="width: %" aria-valuenow="80"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p class="mt-4 mb-1" style="font-size: .77rem;">Level 6</p>
-                            <div class="progress rounded" style="height: 5px;">
-                              <div class="progress-bar" role="progressbar" style="width: %" aria-valuenow="72"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p class="mt-4 mb-1" style="font-size: .77rem;">Level 7</p>
-                            <div class="progress rounded" style="height: 5px;">
-                              <div class="progress-bar" role="progressbar" style="width: %" aria-valuenow="89"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p class="mt-4 mb-1" style="font-size: .77rem;">Level 8</p>
-                      <div class="progress rounded" style="height: 5px;">
-                        <div class="progress-bar" role="progressbar" style="width: %" aria-valuenow="55"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                            </div>
-                          </div>
-                        </div>
+                         
                     <section class="container">
                             <div class="p-btn">
                                 <a class="btn btn-primary btn-xl rounded-pill mt-5" href="/settings">Settings</a>
@@ -200,11 +148,6 @@
     
 
 
-            </div>
-        </div>
-    </div>
-</div>
-    
                
 @endsection
 
