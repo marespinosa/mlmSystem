@@ -45,10 +45,12 @@ class ProductController extends Controller
             $image = $request->file('featured_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images'), $imageName);
-            $product->featured_image = $imageName; // Save the file name in the database
+            $product->featured_image = $imageName;
         }
 
         $product->save();
+
+       
 
         return redirect()->route('products.addnew')->with('success', 'Product created successfully');
     }
