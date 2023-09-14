@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price', 8, 2)->nullable();
             $table->integer('quantity')->nullable();
             $table->string('sku')->nullable();
-            $table->string('profile_picture')->nullable();
+            $table->string('featured_image')->nullable();
             $table->unsignedBigInteger('order_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();

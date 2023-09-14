@@ -16,36 +16,44 @@
     @include('tree.sub-content')
 
     <div class="container">
-        <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
+        <form action="{{ route('products.addnew') }}" method="POST" enctype="multipart/form-data">
             @csrf
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
 
             <div class="row">
                 <div class="col-4">
-                    <div class="form-group">
-                        <label for="featured_image">Profile Picture:</label>
-                        <input type="file" name="featured_image" id="profilePic" accept="images/*">
+                    <div class="form-group featured-image">
+                        <label for="featured_image">Featured Images:</label>
+                        <div id="image-preview"></div>
+                        <input type="file" name="featured_image[]" accept="image/*" multiple>
                     </div>
                 </div>
 
                 <div class="col-8">
                             <div class="form-group">
                                 <label for="name">Product Name</label>
-                                <input type="text" name="name" id="name" class="form-control" required>
+                                <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control" required>
                             </div>
                 
                             <div class="form-group">
                                 <label for="descp">Description</label>
-                                <textarea name="descp" id="descp" class="form-control" required></textarea>
+                                <textarea name="descp" value="{{ old('descp') }}" id="descp" class="form-control" required></textarea>
                             </div>
                 
                             <div class="form-group">
                                 <label for="price">Price</label>
-                                <input type="number" name="price" id="price" class="form-control" step="0.01" required>
+                                <input type="number" name="price" value="{{ old('price') }}" id="price" class="form-control" step="0.01" required>
                             </div>
                 
                             <div class="form-group">
                                 <label for="sku">SKU</label>
-                                <input type="text" name="sku" id="sku" class="form-control" required>
+                                <input type="text" name="sku" id="sku" class="form-control">
                             </div>
                 
                             <div class="form-group">
@@ -71,7 +79,8 @@
 
 
        
-    </div>
+    
+            </div>
 
 </div>
     

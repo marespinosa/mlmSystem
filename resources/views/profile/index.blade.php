@@ -128,7 +128,9 @@
                     </div>
                   </div>
                   <div>
-                    <p class="text-center">Benefits</p>
+                    <p class="text-center">Levels Acheived</p>
+                    
+
                   </div>
                          
                     <section class="container">

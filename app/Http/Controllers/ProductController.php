@@ -15,44 +15,58 @@ class ProductController extends Controller
     }
 
 
+
+    public function index()
+    {
+        $products = ProductModel::all();
+
+        return view('products.index', ['products' => $products]);
+    }
+
+
+
     public function create()
     {
+
         return view('products.addnew');
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'featured_image' => 'required|array', 
+            'featured_image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'name' => 'required|string|max:255',
             'descp' => 'required|string',
             'price' => 'required|numeric',
-            'sku' => 'required|string|max:255',
+            'sku' => 'string|max:255',
             'quantity' => 'required|integer',
-            'featured_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $product = new ProductModel([
-            'name' => $request->input('name'),
-            'descp' => $request->input('descp'),
-            'price' => $request->input('price'),
-            'sku' => $request->input('sku'),
-            'quantity' => $request->input('quantity'),
-            'featured_image' => $imageName,
-            'user_id' => auth()->id(),
-        ]);
+        $images = $request->file('featured_image');
 
-        if ($request->hasFile('featured_image')) {
-            $image = $request->file('featured_image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $product->featured_image = $imageName;
+        $imagePaths = [];
+
+        foreach ($images as $image) {
+            $imageName = time() . '-' . $image->getClientOriginalName();
+            $image->storeAs('public/images', $imageName);
+            $imagePaths[] = 'public/images/' . $imageName;
         }
 
-        $product->save();
+        
 
-       
+        $product = ProductModel::create([
+            'name' => $request->name,
+            'descp' => $request->descp,
+            'price' => $request->price,
+            'sku' => $request->sku,
+            'quantity' => $request->quantity,
+            'image_path' => implode(',', $imagePaths), 
+        ]);
 
         return redirect()->route('products.addnew')->with('success', 'Product created successfully');
+    
+    
     }
 
 

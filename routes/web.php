@@ -90,8 +90,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-
 Route::controller(ProductController::class)->group(function() {
-    Route::get('/products/addnew', 'create')->name('products.create');
-    Route::post('/products/addnew', 'store')->name('products.store');
+    Route::get('products/addnew', 'create')->name('products.create');
+    Route::post('products/addnew', 'store')->name('products.store');
+    Route::post('products/addnew', 'store')->name('products.addnew');
+    Route::get('products', 'index')->name('products.index');
 });
+
+

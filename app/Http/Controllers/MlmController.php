@@ -102,7 +102,6 @@ class MlmController extends Controller
             return redirect()->route('superadmin.index')->with('error', 'Member not found.');
         }
     
-        
         return view('superadmin.index', compact('HeadMember'));
     }
     
