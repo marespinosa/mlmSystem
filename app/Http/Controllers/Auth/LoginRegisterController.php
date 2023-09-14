@@ -51,7 +51,7 @@ class LoginRegisterController extends Controller
 
         $sponsorUsageCount = User::where('sponsor_id_number', $request->sponsor_id_number)->count();
 
-        if ($sponsorUsageCount >= 8) {
+        if ($sponsorUsageCount >= 8 && $request->acountStatus !== 'deactivated') {
             return redirect()->back()->withErrors(['sponsor_id_number' => 'Sponsor ID number is no longer available for registration']);
         }
 
@@ -84,29 +84,18 @@ class LoginRegisterController extends Controller
 
         
        /**  $adminEmail = 'mariconespinosa.info@gmail.com';*/
-        /** Mail::to($adminEmail)->send(new AdminRegistrationNotification($user));*/
+       /** Mail::to($adminEmail)->send(new AdminRegistrationNotification($user));*/
 
 
         return redirect()->route('login')->withSuccess('Wait for your account to be activated');
     }
 
 
-    /**
-     * Display a login form.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function login()
     {
         return view('auth.login');
     }
 
-    /**
-     * Authenticate the user.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
    
     public function authenticate(Request $request)
     {

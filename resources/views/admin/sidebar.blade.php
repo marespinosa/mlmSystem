@@ -7,7 +7,7 @@
  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
         <div class="sidebar-brand-icon rotate-n-15">
         </div>
         <div class="sidebar-brand-text mx-3"><img src="{{ asset('images/logo.png') }}" class="logo" alt="HBWW International"></div>
@@ -17,7 +17,7 @@
 
     <hr class="sidebar-divider my-0">
         <li class="nav-item">
-            <a class="nav-link" href="superadmin">
+            <a class="nav-link" href="/superadmin">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Super Admin</span>
             </a>
@@ -67,6 +67,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Categories:</h6>
+                <a class="collapse-item" href="/products/addnew">Add New</a>
                 <a class="collapse-item" href="soontopublish.html">Beauty Products</a>
                 <a class="collapse-item" href="soontopublish.html">Food Supplements</a>
                 <a class="collapse-item" href="soontopublish.html">Home Care Products</a>
@@ -81,9 +82,9 @@
     </div>
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="soontopublish.html">
+        <a class="nav-link" href="/products">
             <i class="fas fa-fw"></i>
-            <span>Featured Products</span></a>
+            <span>Starter Kit</span></a>
     </li>
 
     <li class="nav-item">

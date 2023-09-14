@@ -18,9 +18,12 @@
 
       <div class="tree">
             <div class="mainheadTree caret">
-                    <small style="color: #68BB59;">Level: 1</small>
+                <img src="{{ asset($downlineUsers['user']->profile_picture) }}" alt="Profile Picture" width="80" class="text-align rounded-circle">
                     <h6>{{ $downlineUsers['user']->name }} {{ $downlineUsers['user']->lastname }}</h6>
                     <p><b>Sponsor Id:</b> <input type="text" value="{{ $downlineUsers['user']->generatedId }}" placeholder="{{ $downlineUsers['user']->generatedId }}"></p>
+                    <small><b>Account Status: {{ $downlineUsers['user']->acountStatus }}</b></small><br />
+                    <small><b>Sales Report:</b></small> <br />
+                    <small><b>Monthly Bonus:</b></small><br />
                 </div>
                 
                 <div id="myTree" class="easy-tree">

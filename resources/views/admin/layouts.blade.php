@@ -70,13 +70,40 @@
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-        
-        <!-- Core plugin JavaScript-->
-        <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
-        
-        <!-- Custom scripts for all pages-->
-        <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-
+    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            function readURL(input) {
+                if (input.files && input.files.length > 0) {
+                    $('#image-preview').html(''); 
+    
+                    for (let i = 0; i < input.files.length; i++) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const img = $('<img>').attr('src', e.target.result);
+                            $('#image-preview').append(img);
+                        };
+                        reader.readAsDataURL(input.files[i]);
+                    }
+    
+                    // Add a "Cancel" button
+                    const cancelButton = $('<button>').text('X');
+                    cancelButton.click(function () {
+                        // Clear the selected images and reset the file input
+                        $('#image-preview').html('');
+                        $('input[type="file"]').val('');
+                    });
+                    $('#image-preview').append(cancelButton);
+                }
+            }
+    
+            // Listen for changes in the file input
+            $('input[type="file"]').change(function () {
+                readURL(this);
+            });
+        });
+    </script>
     
 
  

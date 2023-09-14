@@ -13,6 +13,7 @@
 }
 
 
+
 .padding-left{
     padding-left: 10px;
 }
@@ -41,3 +42,37 @@
     display: none;
 }
 
+.userTree small{
+ text-transform: capitalize;
+}
+
+.padding{
+    padding: 10px;
+}
+
+.rounded-circle{
+    border: 1px solid #ddd !important;
+}
+
+.featured-image input{
+    border: 0 none !important
+}
+
+.form-control textarea{
+    border-radius: 999px !important
+}
+
+#image-preview img{
+    width:150px;
+}
+
+#image-preview button{
+    position: absolute;
+    left: 70%;
+    border: 1px solid #ddd;
+    background: none;
+    font-weight: 900;
+    font-size: 18px;
+    border-radius: 999px;
+    padding: 10px 15px;
+}

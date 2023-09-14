@@ -14,6 +14,7 @@ class UpdateProfilePics extends Migration
             $table->string('company')->nullable();
             $table->string('zipcode')->nullable();
             $table->string('city')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
         });
     }
 

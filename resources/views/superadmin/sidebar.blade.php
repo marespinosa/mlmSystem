@@ -83,7 +83,7 @@
     <li class="nav-item">
         <a class="nav-link" href="soontopublish.html">
             <i class="fas fa-fw"></i>
-            <span>Featured Products</span></a>
+            <span>Starter Kit</span></a>
     </li>
 
     <li class="nav-item">

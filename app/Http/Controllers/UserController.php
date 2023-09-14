@@ -17,8 +17,6 @@ use App\Models\ProfileUpdates;
 class UserController extends Controller
 {
 
-
-
     protected $table = 'users'; 
 
     protected $id = 'id'; 
@@ -50,6 +48,9 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Profile picture updated successfully');
     }
 
+
+    
+
     public function index()
     {
         $ProfileUpdates = ProfileUpdates::all();
@@ -78,10 +79,18 @@ class UserController extends Controller
 
 
     public function changePassword(Request $request)
-    {
+    {   
         $request->validate([
             'old_password' => 'required',
-            'new_password' => 'required|min:8|confirmed',
+            'new_password' => [
+                'required',
+                'min:8',
+                'confirmed',
+                'regex:/^[^\s]+$/',
+                'string', 
+            ],
+        ], [
+            'new_password.regex' => 'The new password cannot contain spaces.',
         ]);
 
         $user = Auth::user();

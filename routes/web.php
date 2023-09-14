@@ -5,6 +5,8 @@ use App\Http\Controllers\MlmController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserDisplayMlm;
 
+use App\Http\Controllers\ProductController;
+
 
 Route::get('/', function () {
     return view('index');
@@ -33,11 +35,6 @@ Route::controller(MlmController::class)->group(function() {
 
 
 });
-
-
-
-
-
 
 
 
@@ -87,6 +84,17 @@ Route::controller(UserDisplayMlm::class)->group(function() {
     Route::get('/tree', 'CurrentSponsor')->name('tree');
     
 });
-Auth::routes();
 
+
+Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::controller(ProductController::class)->group(function() {
+    Route::get('products/addnew', 'create')->name('products.create');
+    Route::post('products/addnew', 'store')->name('products.store');
+    Route::post('products/addnew', 'store')->name('products.addnew');
+    Route::get('products', 'index')->name('products.index');
+});
+
+

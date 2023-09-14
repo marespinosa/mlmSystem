@@ -45,10 +45,7 @@ class UserDisplayMlm extends Controller
     private function getDownlineUsers($sponsorId, $level)
     {
 
-        $downlineUsers = sponsorTree::where('sponsor_id_number', $sponsorId)
-        ->where('acountStatus', 'active')
-        ->get();
-
+        $downlineUsers = sponsorTree::where('sponsor_id_number', $sponsorId)->get();
 
         if ($level >= 20 || $downlineUsers->isEmpty()) {
             return [];
@@ -59,6 +56,7 @@ class UserDisplayMlm extends Controller
         foreach ($downlineUsers as $user) {
             $result[$user->generatedId] = [
                 'user' => $user,
+                'levelUser' =>  $level,
                 'downline' => $this->getDownlineUsers($user->generatedId, $level + 1),
             ];
         }
