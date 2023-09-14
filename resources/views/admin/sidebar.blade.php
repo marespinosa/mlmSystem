@@ -67,7 +67,9 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Categories:</h6>
-                <a class="collapse-item" href="/products/addnew">Add New</a>
+                @if ($user->userlevel === 'Admin')
+                 <a class="collapse-item" href="/products/addnew">Add New</a>
+                @endif
                 <a class="collapse-item" href="soontopublish.html">Beauty Products</a>
                 <a class="collapse-item" href="soontopublish.html">Food Supplements</a>
                 <a class="collapse-item" href="soontopublish.html">Home Care Products</a>
