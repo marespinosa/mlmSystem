@@ -31,7 +31,12 @@
                     <div class="form-group featured-image">
                         <label for="featured_image">Featured Images:</label>
                         <div id="image-preview"></div>
-                        <input type="file" name="featured_image[]" accept="image/*" multiple>
+                        <input type="file" name="featured_image">
+
+                        @error('featured_image')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
                     </div>
                 </div>
 
@@ -39,16 +44,27 @@
                             <div class="form-group">
                                 <label for="name">Product Name</label>
                                 <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control" required>
+                                @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            
                             </div>
                 
                             <div class="form-group">
                                 <label for="descp">Description</label>
                                 <textarea name="descp" value="{{ old('descp') }}" id="descp" class="form-control" required></textarea>
+                                @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                 
                             <div class="form-group">
                                 <label for="price">Price</label>
                                 <input type="number" name="price" value="{{ old('price') }}" id="price" class="form-control" step="0.01" required>
+                                @error('price')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            
                             </div>
                 
                             <div class="form-group">
@@ -59,6 +75,20 @@
                             <div class="form-group">
                                 <label for="quantity">Quantity</label>
                                 <input type="number" name="quantity" id="quantity" class="form-control" required>
+                                @error('quantity')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                              <label class="padding-left">Category</label>
+                                <select name="category" class="border-raduis width100">
+                                    <option value="Beauty Products">Beauty Products</option>
+                                    <option value="Food Supplements">Food Supplements</option>
+                                    <option value="Home Care Products">Home Care Products</option>
+                                    <option value="Cosmetics and Scent">Cosmetics and Scent</option>
+                                </select>
+                               
                             </div>
 
                                <button type="submit" class="btn btn-primary">Create Product</button>

@@ -30,10 +30,11 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Sponsored ID</th>
+                <th>Your Sponsored ID</th>
                 <th>Name</th>
                 <th>Username</th>
-                <th>Upline</th>
+                <th>Registered Date</th>
+                <th>Upline ID</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -44,6 +45,7 @@
                 <td>{{ $member->generatedId }}</td>
                 <td>{{ $member->name }} {{ $member->lastname }}</td>
                 <td>{{ $member->username }}</td>
+                <td>{{ $member->created_at }}</td>
                 <td>{{ $member->sponsor_id_number }}</td>
                 <td width="150px">
                     @if ($member->acountStatus === 'deactivate')
@@ -74,6 +76,11 @@
         </tbody>
     </table>
 
+        <div class="members-pagination">
+            {{ $members->links() }}
+        </div>
+
+</div>
 
 
 
