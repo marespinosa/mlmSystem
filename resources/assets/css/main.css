@@ -12,6 +12,10 @@
     text-align: left !important;
 }
 
+.form-group select{
+    color:#ddd !important;
+}
+
 
 
 .padding-left{
@@ -20,6 +24,7 @@
 
 .custom-control-label, label, .form-group label{
     font-weight: 400;
+    text-align: left;
 }
 
 .aligncenter {

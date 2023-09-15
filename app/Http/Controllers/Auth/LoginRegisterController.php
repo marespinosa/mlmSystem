@@ -103,26 +103,26 @@ class LoginRegisterController extends Controller
             'username' => 'required',
             'password' => 'required',
         ]);
-
+    
         $user = User::where('username', $credentials['username'])->first();
-
+    
         if ($user && $user->acountStatus === 'active') {
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-
-                switch ($user->userlevel) {
-                    case 'Admin':
-                        return redirect()->route('superadmin.index')->withSuccess('Welcome, Admin! You have successfully logged in!');
-                        break;
-                    case 'Member':
+    
+                if ($user->userlevel === 'Member') {
+                    if ($user->first_login) {
+                        $user->first_login = true;
+                        $user->save();
+    
+                        return redirect()->route('products')->withSuccess('Welcome, Member! This is your first time logging in!');
+                    } else {
                         return redirect()->route('dashboard')->withSuccess('Welcome, Member! You have successfully logged in!');
-                        break;
-                    case 'Stockies':
-                        return redirect()->route('dashboard')->withSuccess('Welcome, Stockies! You have successfully logged in!');
-                        break;
-                    default:
-                        return redirect()->route('dashboard')->withSuccess('Welcome! You have successfully logged in!');
-                        break;
+                    }
+                } elseif ($user->userlevel === 'Admin' || $user->userlevel === 'Stockies') {
+                    return redirect()->route('dashboard')->withSuccess('Welcome, ' . $user->userlevel . '! You have successfully logged in!');
+                } else {
+                    return redirect()->route('dashboard')->withSuccess('Welcome! You have successfully logged in!');
                 }
             } else {
                 return back()->withErrors([
@@ -135,6 +135,7 @@ class LoginRegisterController extends Controller
             ])->onlyInput('username');
         }
     }
+    
 
     
     public function dashboard()
