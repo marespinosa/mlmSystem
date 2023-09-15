@@ -13,7 +13,8 @@
 }
 
 .form-group select{
-    color:#ddd !important;
+    color:#6e707e !important;
+    text-align: left !important;
 }
 
 
@@ -80,4 +81,26 @@
     font-size: 18px;
     border-radius: 999px;
     padding: 10px 15px;
+}
+
+.members-pagination{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.members-pagination div svg{
+    position: relative;
+    width:50px !important;
+}
+
+
+.members-pagination p.leading-5{
+    position: absolute;
+    margin-top: -2em;
+}
+
+.members-pagination div{
+    margin: 10px 0;
 }

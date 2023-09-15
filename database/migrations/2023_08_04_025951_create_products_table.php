@@ -16,11 +16,12 @@ class CreateProductsTable extends Migration
             $table->integer('quantity')->nullable();
             $table->string('sku')->nullable();
             $table->string('featured_image')->nullable();
+            $table->string('image_path')->nullable();
+            $table->string('category')->nullable();
             $table->unsignedBigInteger('order_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

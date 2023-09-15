@@ -36,7 +36,7 @@ class MlmController extends Controller
 
     public function activateAccount()
     {
-        $members = treeUs::all(); 
+        $members = treeUs::orderBy('created_at', 'desc')->paginate(8);
         return view('superadmin.index', compact('members'));
     }
 
