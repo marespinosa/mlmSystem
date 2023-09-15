@@ -111,18 +111,12 @@ class LoginRegisterController extends Controller
                 $request->session()->regenerate();
     
                 if ($user->userlevel === 'Member') {
-                    // Check if it's the first time login for the Member
                     if ($user->first_login) {
-                        // Update the first_login flag
                         $user->first_login = true;
                         $user->save();
-
-                        @dd($user->first_login);
     
-                        // Redirect to the product page
-                        return redirect()->route('product')->withSuccess('Welcome, Member! This is your first time logging in!');
+                        return redirect()->route('products')->withSuccess('Welcome, Member! This is your first time logging in!');
                     } else {
-                        // If not the first time login, redirect to the dashboard
                         return redirect()->route('dashboard')->withSuccess('Welcome, Member! You have successfully logged in!');
                     }
                 } elseif ($user->userlevel === 'Admin' || $user->userlevel === 'Stockies') {
