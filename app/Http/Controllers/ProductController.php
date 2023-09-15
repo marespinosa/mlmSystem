@@ -23,16 +23,26 @@ class ProductController extends Controller
         return view('products.index', ['products' => $products]);
     } 
 
+
+    public function beautyProducts()
+    {
+        $products = ProductModel::all();
+
+        return view('products.beautypro', ['products' => $products]);
+    } 
+
+
+
     public function create()
     {
-
         return view('products.addnew');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'featured_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'featured_image' => 'required',
+            'featured_image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'name' => 'string|max:255',
             'descp' => 'string',
             'price' => 'numeric',
@@ -40,8 +50,16 @@ class ProductController extends Controller
             'category' => 'string',
         ]); 
     
-        $image_path = $request->file('featured_image')->store('images', 'public');
-
+        $files = [];
+            if($request->hasfile('featured_image'))
+            {
+                foreach($request->file('featured_image') as $file)
+                {
+                    $name = time().rand(1,50).'.'.$file->extension();
+                    $file->move(public_path('featured_image'), $name);  
+                    $files[] = $name;  
+                }
+            }
     
         $product = ProductModel::create([
             'name' => $request->name,
@@ -49,12 +67,12 @@ class ProductController extends Controller
             'price' => $request->price,
             'sku' => $request->sku,
             'quantity' => $request->quantity,
-            'featured_image' => $image_path,
+            'image_path' => implode(',', $files),
             'category' => $request->category,
         ]);
     
         return redirect()->route('products.addnew')->with('success', 'Product created successfully');
-    }
+    } 
     
 
 

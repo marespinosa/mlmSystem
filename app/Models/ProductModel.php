@@ -20,7 +20,7 @@ class ProductModel extends Model
         'price',
         'sku',
         'quantity',
-        'featured_image',
+        'image_path',
         'category',
     ];
 
@@ -32,6 +32,11 @@ class ProductModel extends Model
     public function scopeByCategory($query, $category)
     {
         return $query->where('category', $category);
+    }
+
+    public function setFilenamesAttribute($value)
+    {
+        $this->attributes['image_path'] = json_encode($value);
     }
 
 

@@ -31,9 +31,9 @@
                     <div class="form-group featured-image">
                         <label for="featured_image">Featured Images:</label>
                         <div id="image-preview"></div>
-                        <input type="file" name="featured_image">
-
-                        @error('featured_image')
+                        <input type="file" name="featured_image[]" accept="image/*" multiple>
+                        
+                        @error('featured_image[]')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
 

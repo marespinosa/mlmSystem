@@ -36,7 +36,7 @@
                         </thead>
 
                         @foreach($products as $product)
-                        @if($product->id == 7)
+                        @if($product->category == 'Beauty Products')
                             <tr>
                                 <td>
                                     <img src="{{ asset('images/starterKit.jpeg') }}" width="200px" alt="{{ $product->name }}" />

@@ -95,6 +95,7 @@ Route::controller(ProductController::class)->group(function() {
     Route::post('products/addnew', 'store')->name('products.store');
     Route::post('products/addnew', 'store')->name('products.addnew');
     Route::get('products', 'index')->name('products.index');
+    Route::get('products/beautypro', 'beautyProducts')->name('products.beautypro');
 });
 
 
