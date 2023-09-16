@@ -1,6 +1,6 @@
 @php
     $pageTitle = 'Products';
-    $WelcomeNote = 'Food Supplements - Products';
+    $WelcomeNote = 'All Products';
     $alignment = 'aligncenter';
 @endphp
 
@@ -19,7 +19,7 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <a href="/products/all" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-sm text-white-50"></i> See All Products</a>
-        </div>
+                </div>
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
@@ -29,14 +29,13 @@
                             <tr>
                                 <th></th>
                                 <th>Product Name</th>
-                                <th width="450px">Description</th>
+                                <th width="400px">Description</th>
                                 <th>Price</th>
                                 <th>Order</th>
                             </tr>
                         </thead>
 
                         @foreach($products as $product)
-                        @if($product->category == 'Food Supplements')
                             <tr>
                                 <td>
                                     <img src="{{ Storage::url('/' . $product->featured_image) }}" width="150px" alt="{{ $product->name }}" />
@@ -46,8 +45,8 @@
                                 <td>{{ $product->price }}</td>
                                 <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm " href="checkout.html">Check Out</a></td>
                             </tr>
-                        @endif
                     @endforeach
+                    
 
                         
                             </tbody>

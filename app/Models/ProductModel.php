@@ -19,6 +19,7 @@ class ProductModel extends Model
         'descp',
         'stockistprice',
         'price',
+        'srp',
         'sku',
         'quantity',
         'featured_image',
@@ -33,11 +34,6 @@ class ProductModel extends Model
     public function scopeByCategory($query, $category)
     {
         return $query->where('category', $category);
-    }
-
-    public function setFilenamesAttribute($value)
-    {
-        $this->attributes['featured_image'] = json_encode($value);
     }
 
 

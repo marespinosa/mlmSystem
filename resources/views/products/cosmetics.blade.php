@@ -1,6 +1,6 @@
 @php
     $pageTitle = 'Products';
-    $WelcomeNote = 'Food Supplements - Products';
+    $WelcomeNote = 'Cosmetics and Scent - Products ';
     $alignment = 'aligncenter';
 @endphp
 
@@ -29,14 +29,14 @@
                             <tr>
                                 <th></th>
                                 <th>Product Name</th>
-                                <th width="450px">Description</th>
+                                <th width="400px">Description</th>
                                 <th>Price</th>
                                 <th>Order</th>
                             </tr>
                         </thead>
 
                         @foreach($products as $product)
-                        @if($product->category == 'Food Supplements')
+                        @if($product->category == 'Cosmetics and Scent')
                             <tr>
                                 <td>
                                     <img src="{{ Storage::url('/' . $product->featured_image) }}" width="150px" alt="{{ $product->name }}" />
@@ -48,6 +48,7 @@
                             </tr>
                         @endif
                     @endforeach
+                    
 
                         
                             </tbody>

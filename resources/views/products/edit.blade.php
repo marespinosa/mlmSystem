@@ -1,6 +1,6 @@
 @php
     $pageTitle = 'Products';
-    $WelcomeNote = 'Add New Product';
+    $WelcomeNote = 'Edit Product';
     $alignment = 'alignleft';
 @endphp
 
@@ -16,7 +16,7 @@
     @include('tree.sub-content')
 
     <div class="container">
-        <form action="{{ route('products.addnew') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('products.edit') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             @if (session('success'))
