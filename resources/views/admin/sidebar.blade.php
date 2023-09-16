@@ -70,10 +70,10 @@
                 @if ($user->userlevel === 'Admin')
                  <a class="collapse-item" href="/products/addnew">Add New</a>
                 @endif
-                <a class="collapse-item" href="products/beautypro">Beauty Products</a>
-                <a class="collapse-item" href="products/foodcup">Food Supplements</a>
-                <a class="collapse-item" href="products/homecare">Home Care Products</a>
-                <a class="collapse-item" href="products/cosmetics">Cosmetics and Scent</a>
+                <a class="collapse-item" href="/products/beautypro">Beauty Products</a>
+                <a class="collapse-item" href="/products/foodcup">Food Supplements</a>
+                <a class="collapse-item" href="/products/homecare">Home Care Products</a>
+                <a class="collapse-item" href="/products/cosmetics">Cosmetics and Scent</a>
             </div>
         </div>
     </li>

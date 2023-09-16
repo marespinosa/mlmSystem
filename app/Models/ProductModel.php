@@ -17,10 +17,11 @@ class ProductModel extends Model
     protected $fillable = [
         'name',
         'descp',
+        'stockistprice',
         'price',
         'sku',
         'quantity',
-        'image_path',
+        'featured_image',
         'category',
     ];
 
@@ -36,7 +37,7 @@ class ProductModel extends Model
 
     public function setFilenamesAttribute($value)
     {
-        $this->attributes['image_path'] = json_encode($value);
+        $this->attributes['featured_image'] = json_encode($value);
     }
 
 

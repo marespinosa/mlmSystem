@@ -31,6 +31,27 @@ class ProductController extends Controller
         return view('products.beautypro', ['products' => $products]);
     } 
 
+    public function Cosmetics()
+    {
+        $products = ProductModel::all();
+
+        return view('products.cosmetics', ['products' => $products]);
+    } 
+
+    public function FoodSuple()
+    {
+        $products = ProductModel::all();
+
+        return view('products.foodcup', ['products' => $products]);
+    } 
+
+    public function homeCare()
+    {
+        $products = ProductModel::all();
+
+        return view('products.homecare', ['products' => $products]);
+    } 
+
 
 
     public function create()
@@ -42,35 +63,30 @@ class ProductController extends Controller
     {
         $request->validate([
             'featured_image' => 'required',
-            'featured_image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'name' => 'string|max:255',
             'descp' => 'string',
             'price' => 'numeric',
+            'stockistprice' => 'numeric',
+            'srp' => 'numeric',
             'quantity' => 'integer',
             'category' => 'string',
         ]); 
-    
-        $files = [];
-            if($request->hasfile('featured_image'))
-            {
-                foreach($request->file('featured_image') as $file)
-                {
-                    $name = time().rand(1,50).'.'.$file->extension();
-                    $file->move(public_path('featured_image'), $name);  
-                    $files[] = $name;  
-                }
-            }
+
+        $image_path = $request->file('featured_image')->store('featured_image', 'public');
+
     
         $product = ProductModel::create([
             'name' => $request->name,
             'descp' => $request->descp,
             'price' => $request->price,
+            'stockistprice'  => $request->stockistprice,
+            'srp'  => $request->srp,
             'sku' => $request->sku,
             'quantity' => $request->quantity,
-            'image_path' => implode(',', $files),
+            'featured_image' => $image_path,
             'category' => $request->category,
         ]);
-    
+
         return redirect()->route('products.addnew')->with('success', 'Product created successfully');
     } 
     

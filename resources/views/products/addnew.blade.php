@@ -31,9 +31,9 @@
                     <div class="form-group featured-image">
                         <label for="featured_image">Featured Images:</label>
                         <div id="image-preview"></div>
-                        <input type="file" name="featured_image[]" accept="image/*" multiple>
+                        <input type="file" name="featured_image" accept="image/*" multiple>
                         
-                        @error('featured_image[]')
+                        @error('featured_image')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
 
@@ -53,15 +53,33 @@
                             <div class="form-group">
                                 <label for="descp">Description</label>
                                 <textarea name="descp" value="{{ old('descp') }}" id="descp" class="form-control" required></textarea>
-                                @error('name')
+                                @error('descp')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                 
                             <div class="form-group">
-                                <label for="price">Price</label>
-                                <input type="number" name="price" value="{{ old('price') }}" id="price" class="form-control" step="0.01" required>
+                                <label for="stockistprice">Price for Stockist</label>
+                                <input type="number" name="stockistprice" value="{{ old('stockistprice') }}" id="stockistprice" class="form-control" required>
+                                @error('stockistprice')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price">Price for Member</label>
+                                <input type="number" name="price" value="{{ old('price') }}" id="price" class="form-control" required>
                                 @error('price')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            
+                            </div>
+
+                            <div class="form-group">
+                                <label for="srp">SRP</label>
+                                <input type="number" name="srp" value="{{ old('srp') }}" id="srp" class="form-control" required>
+                                @error('srp')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             

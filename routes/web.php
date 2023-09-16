@@ -94,8 +94,11 @@ Route::controller(ProductController::class)->group(function() {
     Route::get('products/addnew', 'create')->name('products.create');
     Route::post('products/addnew', 'store')->name('products.store');
     Route::post('products/addnew', 'store')->name('products.addnew');
+    
     Route::get('products', 'index')->name('products.index');
     Route::get('products/beautypro', 'beautyProducts')->name('products.beautypro');
+    Route::get('products/cosmetics', 'Cosmetics')->name('products.cosmetics');
+    Route::get('products/foodcup', 'FoodSuple')->name('products.foodcup');
+    Route::get('products/homecare', 'homeCare')->name('products.homecare');
 });
-
 

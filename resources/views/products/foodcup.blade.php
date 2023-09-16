@@ -1,6 +1,6 @@
 @php
     $pageTitle = 'Products';
-    $WelcomeNote = 'Beauty Products';
+    $WelcomeNote = 'Food Supplements - Products';
     $alignment = 'aligncenter';
 @endphp
 
@@ -36,7 +36,7 @@
                         </thead>
 
                         @foreach($products as $product)
-                        @if($product->category == 'Beauty Products')
+                        @if($product->category == 'Food Supplements')
                             <tr>
                                 <td>
                                     <img src="{{ asset('images/starterKit.jpeg') }}" width="200px" alt="{{ $product->name }}" />
