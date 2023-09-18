@@ -23,13 +23,13 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Product Name</th>
-                                <th width="400px">Description</th>
+                                <th width="200px">Product Name</th>
+                                <th width="300px">Description</th>
+                                <th>Stocks</th>
                                 <th>Price</th>
                                 <th>Order</th>
                             </tr>
@@ -42,15 +42,17 @@
                                 </td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->descp }}</td>
+                                <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->price }}</td>
-                                <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm " href="checkout.html">Check Out</a></td>
+                                <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="addcart">Add to Cart</a></td>
+                            
+                            
                             </tr>
                     @endforeach
-                    
-
-                        
                             </tbody>
                     </table>
+
+
                 </div>
             </div>
         </div>

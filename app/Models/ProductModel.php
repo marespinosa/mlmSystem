@@ -24,6 +24,7 @@ class ProductModel extends Model
         'quantity',
         'featured_image',
         'category',
+        'user_id', 
     ];
 
     public function user()
@@ -31,10 +32,22 @@ class ProductModel extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_items', 'product_id', 'order_id');
+    }
+
+
+    
+
+
+
     public function scopeByCategory($query, $category)
     {
         return $query->where('category', $category);
     }
 
-
+    
 }
+
+

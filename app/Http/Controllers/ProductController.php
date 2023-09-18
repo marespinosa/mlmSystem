@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProductModel;
+use App\Models\User;
+
+use Illuminate\Support\Facades\Auth;
+
+
 
 
 class ProductController extends Controller
@@ -18,10 +23,28 @@ class ProductController extends Controller
 
     public function index()
     {
+        if (Auth::check()) {
+
+            $user = Auth::user();
+    
+            $currentAccountStatus = $user->acountStatus;
+
+        } else {
+            $currentAccountStatus = 'deactivate';
+        }
+        $products = ProductModel::all();
+    
+        return view('products.index', ['products' => $products, 'currentAccountStatus' => $currentAccountStatus]);
+    }
+
+
+    public function addnewPage()
+    {
         $products = ProductModel::all();
 
-        return view('products.index', ['products' => $products]);
+        return view('products.addnew', ['products' => $products]);
     } 
+
 
     public function viewAll()
     {
@@ -29,7 +52,6 @@ class ProductController extends Controller
 
         return view('products.all', ['products' => $products]);
     } 
-
 
 
     public function beautyProducts()

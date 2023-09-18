@@ -28,15 +28,15 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Product Name</th>
-                                <th width="450px">Description</th>
+                                <th width="200px">Product Name</th>
+                                <th width="300px">Description</th>
                                 <th>Price</th>
                                 <th>Order</th>
                             </tr>
                         </thead>
 
                         @foreach($products as $product)
-                        @if($product->id == 7)
+                        @if($product->id == 13)
                             <tr>
                                 <td>
                                     <img src="{{ asset('images/starterKit.jpeg') }}" width="200px" alt="{{ $product->name }}" />
@@ -44,11 +44,17 @@
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->descp }}</td>
                                 <td>{{ $product->price }}</td>
-                                <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm " href="checkout.html">Check Out</a></td>
+                                <td>
+                                    @if($currentAccountStatus == 'active')
+                                        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="addcart">Add to Cart</a>
+                                    @else
+                                        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Purchased</a>
+                                    @endif
+                                </td>
                             </tr>
                         @endif
                     @endforeach
-
+                    
                         
                             </tbody>
                     </table>

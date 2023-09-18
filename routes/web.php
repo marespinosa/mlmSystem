@@ -101,6 +101,7 @@ Route::controller(ProductController::class)->group(function() {
     Route::get('products/foodcup', 'FoodSuple')->name('products.foodcup');
     Route::get('products/homecare', 'homeCare')->name('products.homecare');
     Route::get('products/all', 'viewAll')->name('products.all');
+    Route::get('products/addnew', 'addnewPage')->name('products.addnewPage');
 
 
 });
