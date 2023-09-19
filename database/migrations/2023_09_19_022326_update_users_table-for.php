@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateUsersTable04 extends Migration
+class UpdateUsersTableFor extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,14 @@ class UpdateUsersTable04 extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('userlevel');
+            $table->unsignedBigInteger('products_id')->nullable();
+            $table->unsignedBigInteger('orders_id')->nullable();
+            $table->unsignedBigInteger('OrderItems_id')->nullable();
+
+            $table->foreign('OrderItems_id')->references('id')->on('OrderItems');
+            $table->foreign('products_id')->references('id')->on('products');
+            $table->foreign('orders_id')->references('id')->on('orders'); 
+
         });
     }
 

@@ -23,6 +23,21 @@ class UpdateUsersTable extends Migration
             $table->string('nationality');
             $table->string('sponsor_id_number');
             $table->string('phoneNumber');
+            $table->string('userlevel');
+            $table->string('generatedId');
+            $table->string('acountStatus');
+            $table->unsignedInteger('sponsor_usage_count')->default(0);
+            $table->string('email')->nullable()->change();
+            $table->string('profile_picture')->nullable();
+            $table->string('company')->nullable();
+            $table->string('zipcode')->nullable();
+            $table->string('city')->nullable();
+            
+            $table->unsignedBigInteger('orders_id')->nullable();
+            $table->unsignedBigInteger('OrderItems_id')->nullable();
+            $table->unsignedBigInteger('products_id')->nullable();
+
+
         });
 
     }

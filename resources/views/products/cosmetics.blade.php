@@ -1,6 +1,6 @@
 @php
     $pageTitle = 'Products';
-    $WelcomeNote = 'Starter Kit - Products';
+    $WelcomeNote = 'Cosmetics and Scent - Products ';
     $alignment = 'aligncenter';
 @endphp
 
@@ -17,7 +17,7 @@
 
     <div class="container">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <a href="hbwwinternational.shop.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            <a href="/products/all" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-sm text-white-50"></i> See All Products</a>
         </div>
         <div class="card shadow mb-4">
@@ -30,31 +30,28 @@
                                 <th></th>
                                 <th width="200px">Product Name</th>
                                 <th width="300px">Description</th>
+                                <th>Stocks</th>
                                 <th>Price</th>
                                 <th>Order</th>
                             </tr>
                         </thead>
 
                         @foreach($products as $product)
-                        @if($product->id == 1)
+                        @if($product->category == 'Cosmetics and Scent')
                             <tr>
                                 <td>
-                                    <img src="{{ asset('images/starterKit.jpeg') }}" width="200px" alt="{{ $product->name }}" />
+                                    <img src="{{ Storage::url('/' . $product->featured_image) }}" width="150px" alt="{{ $product->name }}" />
                                 </td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->descp }}</td>
+                                <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->price }}</td>
-                                <td>
-                                    @if($currentAccountStatus == 'active')
-                                        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="addcart">Add to Cart</a>
-                                    @else
-                                        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Purchased</a>
-                                    @endif
-                                </td>
+                                <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="addcart">Add to Cart</a></td>
                             </tr>
                         @endif
                     @endforeach
                     
+
                         
                             </tbody>
                     </table>

@@ -16,7 +16,7 @@ class profileUpdates extends Model
     protected $id = 'id'; 
 
 
-    protected $fillable = [
+    protected $fillable = [ 
         'name',
         'lastname',
         'email',

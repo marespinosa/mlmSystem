@@ -40,7 +40,6 @@ class User extends Model implements Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-   
 
     protected static function boot()
     {
@@ -102,5 +101,9 @@ class User extends Model implements Authenticatable
         return 'remember_token';
     }
 
+
+
+
+    
 
 }
