@@ -38,8 +38,6 @@ class ProductModel extends Model
     }
 
 
-    
-
 
 
     public function scopeByCategory($query, $category)
