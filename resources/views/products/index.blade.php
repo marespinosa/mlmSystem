@@ -36,7 +36,7 @@
                         </thead>
 
                         @foreach($products as $product)
-                        @if($product->id == 13)
+                        @if($product->id == 1)
                             <tr>
                                 <td>
                                     <img src="{{ asset('images/starterKit.jpeg') }}" width="200px" alt="{{ $product->name }}" />
