@@ -109,11 +109,11 @@ Route::controller(ProductController::class)->group(function() {
 });
 
 
+
 Route::controller(CartController::class)->group(function() {
-   
-    Route::match(['get', 'post'], 'products/all/{product}', 'add')->name('cart.add');
 
-
-
+   Route::post('cart', 'addToCart')->name('cart.add');
+   Route::get('cart', 'addToCart')->name('cart.add');
 });
 
+Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');

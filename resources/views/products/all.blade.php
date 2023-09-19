@@ -36,23 +36,25 @@
                         </thead>
 
                         @foreach($products as $product)
-                            <tr>
-                                <td>
-                                    <img src="{{ Storage::url('/' . $product->featured_image) }}" width="150px" alt="{{ $product->name }}" />
-                                </td>
-                                <td>{{ $product->name }}</td>
+                        <tr>
+                            <td>
+                                <img src="{{ Storage::url('/' . $product->featured_image) }}" width="150px" alt="{{ $product->name }}" />
+                            </td>
+                            <form method="POST" action="{{ route('cart.add', ['product' => $product->id]) }}">
+                                @csrf
+                    
+                                <td><input type="hidden" name="id" value="{{ $product->id }}" class="form-control">
+                                <input type="text" name="name" value="{{ $product->name }}" class="form-control"></td>
                                 <td>{{ $product->descp }}</td>
-                                <td>{{ $product->quantity }}</td>
-                                <td>{{ $product->price }}</td>
+                                <td><input type="text" name="quantity" value="{{ $product->quantity }}" class="form-control"></td>
+                                <td><input type="text" name="price" value="{{ $product->price }}" class="form-control"></td>
                                 <td>
-                                    <form method="POST" action="{{ route('cart.add', ['product' => $product->id]) }}">
-                                        @csrf
-                                        <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add to Cart</button>
-                                    </form>
+                                    <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add to Cart</button>
                                 </td>
-                            
-                            </tr>
+                            </form>
+                        </tr>
                     @endforeach
+                    
                             </tbody>
                     </table>
 
