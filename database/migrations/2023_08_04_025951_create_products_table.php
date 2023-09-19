@@ -21,13 +21,9 @@ class CreateProductsTable extends Migration
             $table->decimal('srp', 8, 2)->nullable();
 
             $table->unsignedBigInteger('orders_id')->nullable();
-            $table->unsignedBigInteger('order_items_id')->nullable();
+            $table->unsignedBigInteger('OrderItems_id')->nullable();
             $table->unsignedBigInteger('users_id')->nullable();
         
-           
-            $table->foreign('orders_id')->references('id')->on('orders');
-            $table->foreign('order_items_id')->references('id')->on('order_items');
-            $table->foreign('users_id')->references('id')->on('users'); 
           
             $table->timestamps();
         });

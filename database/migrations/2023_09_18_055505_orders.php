@@ -19,14 +19,8 @@ class Orders extends Migration
             $table->string('status')->nullable();
 
             $table->unsignedBigInteger('products_id')->nullable();
-            $table->unsignedBigInteger('order_items_id')->nullable();
+            $table->unsignedBigInteger('OrderItems_id')->nullable();
             $table->unsignedBigInteger('users_id')->nullable();
-        
-            $table->foreign('users_id')->references('id')->on('users');
-            $table->foreign('products_id')->references('id')->on('products');
-            $table->foreign('order_items_id')->references('id')->on('order_items'); 
-
-         
 
             $table->timestamps();
         });

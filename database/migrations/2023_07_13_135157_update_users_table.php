@@ -32,14 +32,12 @@ class UpdateUsersTable extends Migration
             $table->string('company')->nullable();
             $table->string('zipcode')->nullable();
             $table->string('city')->nullable();
-
+            
             $table->unsignedBigInteger('orders_id')->nullable();
-            $table->unsignedBigInteger('order_items_id')->nullable();
+            $table->unsignedBigInteger('OrderItems_id')->nullable();
             $table->unsignedBigInteger('products_id')->nullable();
-        
-            $table->foreign('products_id')->references('id')->on('products');
-            $table->foreign('orders_id')->references('id')->on('orders');
-            $table->foreign('order_items_id')->references('id')->on('order_items'); 
+
+
         });
 
     }
