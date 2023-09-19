@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['customer_id', 'total_amount', 'status'];
+    protected $fillable = ['user_id', 'total_amount', 'status'];
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // Define the relationship with the 'order_items' table

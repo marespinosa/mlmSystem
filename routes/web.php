@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserDisplayMlm;
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
+
 
 
 Route::get('/', function () {
@@ -102,6 +104,15 @@ Route::controller(ProductController::class)->group(function() {
     Route::get('products/homecare', 'homeCare')->name('products.homecare');
     Route::get('products/all', 'viewAll')->name('products.all');
     Route::get('products/addnew', 'addnewPage')->name('products.addnewPage');
+
+
+});
+
+
+Route::controller(CartController::class)->group(function() {
+   
+    Route::match(['get', 'post'], 'products/all/{product}', 'add')->name('cart.add');
+
 
 
 });

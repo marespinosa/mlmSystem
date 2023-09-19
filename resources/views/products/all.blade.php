@@ -44,8 +44,12 @@
                                 <td>{{ $product->descp }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->price }}</td>
-                                <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="addcart">Add to Cart</a></td>
-                            
+                                <td>
+                                    <form method="POST" action="{{ route('cart.add', ['product' => $product->id]) }}">
+                                        @csrf
+                                        <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add to Cart</button>
+                                    </form>
+                                </td>
                             
                             </tr>
                     @endforeach
