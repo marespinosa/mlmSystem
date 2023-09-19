@@ -23,41 +23,29 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    @if (count($cartItems) > 0)
+                    <table>
                         <thead>
                             <tr>
-                                <th></th>
-                                <th width="200px">Product Name</th>
-                                <th width="300px">Description</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
                                 <th>Price</th>
-                                <th>Order</th>
                             </tr>
                         </thead>
-
-                        @foreach($products as $product)
-                        @if($product->id == 1)
-                            <tr>
-                                <td>
-                                    <img src="{{ asset('images/starterKit.jpeg') }}" width="200px" alt="{{ $product->name }}" />
-                                </td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->descp }}</td>
-                                <td>{{ $product->price }}</td>
-                                <td>
-                                    @if($currentAccountStatus == 'active')
-                                        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="addcart">Add to Cart</a>
-                                    @else
-                                        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Purchased</a>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endif
-                    @endforeach
-                    
-                        
-                            </tbody>
+                        <tbody>
+                            @foreach ($cartItems as $item)
+                                <tr>
+                                    <td>{{ $item['name'] }}</td>
+                                    <td>{{ $item['quantity'] }}</td>
+                                    <td>${{ $item['price'] }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
+                @else
+                    <p>Your cart is empty.</p>
+                @endif
+
                 </div>
             </div>
         </div>
