@@ -34,7 +34,7 @@ class ProductModel extends Model
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class, 'order_items', 'product_id', 'order_id');
+        return $this->belongsToMany(Order::class, 'orderitems', 'product_id', 'order_id');
     }
 
 

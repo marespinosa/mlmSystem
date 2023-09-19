@@ -14,7 +14,7 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // Define the relationship with the 'order_items' table
+    // Define the relationship with the 'orderitems' table
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
