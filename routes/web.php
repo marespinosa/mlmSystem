@@ -105,15 +105,13 @@ Route::controller(ProductController::class)->group(function() {
     Route::get('products/all', 'viewAll')->name('products.all');
     Route::get('products/addnew', 'addnewPage')->name('products.addnewPage');
 
+    Route::get('cart', 'index')->name('cart.index');
+    Route::get('cart', 'cart')->name('cart.cart');
+    Route::get('cart/{id}', 'addToCart')->name('cart.add');
+
+    Route::patch('cart', 'updateCart')->name('cart.updateCart');
+    Route::delete('cart', 'remove')->name('cart.remove');
+
 
 });
 
-
-
-Route::controller(CartController::class)->group(function() {
-
-   Route::post('cart', 'addToCart')->name('cart.add');
-   Route::get('cart', 'addToCart')->name('cart.add');
-});
-
-Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');

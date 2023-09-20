@@ -37,19 +37,29 @@
                         </thead>
 
                         @foreach($products as $product)
-                        @if($product->category == 'Beauty Products' && $product->id != 7)
+                        @if($product->category == 'Beauty Products' && $product->id != 1)
                             <tr>
+
                                 <td>
                                     <img src="{{ Storage::url('/' . $product->featured_image) }}" width="150px" alt="{{ $product->name }}" />
                                 </td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->descp }}</td>
-                                <td>{{ $product->quantity }}</td>
-                                <td>{{ $product->price }}</td>
-                                <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="addcart">Add to Cart</a></td>
-                            </tr>
-                        @endif
-                    @endforeach
+                 
+                    <form method="POST" action="{{ route('cart.add', ['product' => $product->id]) }}">
+                        @csrf
+            
+                        <td><input type="hidden" name="id" value="{{ $product->id }}" class="form-control">
+                        <input type="text" name="name" value="{{ $product->name }}" class="form-control"></td>
+                        <td>{{ $product->descp }}</td>
+                        <td><input type="text" name="quantity" class="form-control"> <br /> <small>Current Stocks: {{ $product->quantity }}</small></td>
+                        <td><input type="text" name="price" value="{{ $product->price }}" class="form-control"></td>
+                        <td>
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add to Cart</button>
+                        </td>
+                    </form>
+                </tr>
+                @endif
+            @endforeach
+            
                     
 
                         

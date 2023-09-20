@@ -27,32 +27,35 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th width="200px">Product Name</th>
+                                <th width="250px">Product Name</th>
                                 <th width="300px">Description</th>
-                                <th>Stocks</th>
-                                <th>Price</th>
+                                <th>Member Price</th>
                                 <th>Order</th>
                             </tr>
                         </thead>
 
                         @foreach($products as $product)
+                        @if($product->id != 1 )
+
+            
+
                         <tr>
                             <td>
                                 <img src="{{ Storage::url('/' . $product->featured_image) }}" width="150px" alt="{{ $product->name }}" />
                             </td>
-                            <form method="POST" action="{{ route('cart.add', ['product' => $product->id]) }}">
-                                @csrf
-                    
+                           
                                 <td><input type="hidden" name="id" value="{{ $product->id }}" class="form-control">
-                                <input type="text" name="name" value="{{ $product->name }}" class="form-control"></td>
-                                <td>{{ $product->descp }}</td>
-                                <td><input type="text" name="quantity" value="{{ $product->quantity }}" class="form-control"></td>
-                                <td><input type="text" name="price" value="{{ $product->price }}" class="form-control"></td>
-                                <td>
-                                    <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add to Cart</button>
+                                    {{ $product->name }}</td>
+                                <td>{{ $product->descp }} <br /><br />
+                                    <small>Current Stocks: {{ $product->quantity }}</small>
                                 </td>
-                            </form>
+                                <td>{{ $product->price }}</td>
+                                <td>
+                                    <p class="btn-holder"><a href="{{ url('/cart/'.$product->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
+                                </td>
+                           
                         </tr>
+                        @endif
                     @endforeach
                     
                             </tbody>

@@ -37,8 +37,10 @@
                     @if(auth()->user()->profile_picture)
 
                         <!----- 
-                        <img src="{{ asset('public/' . auth()->user()->profile_picture) }}" alt="Profile Picture">     
+                        <img src="{{ asset('public/' . auth()->user()->profile_picture) }}" alt="Profile Picture" width="100">     
                         ------>
+
+                        <div id="image-preview"></div>
                         
 						<img src="{{ asset( auth()->user()->profile_picture) }}" alt="Profile Picture" width="100"> 
                     @else

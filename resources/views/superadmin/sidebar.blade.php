@@ -84,27 +84,18 @@
     </div>
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="soontopublish.html">
+        <a class="nav-link" href="/products">
             <i class="fas fa-fw"></i>
             <span>Starter Kit</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="soontopublish.html">
+        <a class="nav-link" href="/cart">
             <i class="fas fa-fw"></i>
             <span>My Cart</span></a>
     </li>
 
-    <hr class="sidebar-divider d-none d-md-block">
-    <div class="sidebar-heading">
-        Unilevel
-    </div>
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="List.html">
-            <i class="fas fa-fw"></i>
-            <span>List</span></a>
-    </li>
+   
     <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Sidebar Toggler (Sidebar) -->
