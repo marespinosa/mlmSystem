@@ -4,7 +4,7 @@
     $alignment = 'aligncenter';
 @endphp
 
-@extends('admin.layouts')
+@extends('products.layouts')
 
 
 @section('content')
@@ -23,6 +23,14 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
+                    
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                            <a href="/cart" />Cart Here</a>
+                        </div>
+                    @endif
+                    
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -35,28 +43,29 @@
                         </thead>
 
                         @foreach($products as $product)
-                        @if($product->id != 1 )
-
-            
-
+                        @if($product->id != 2 )
                         <tr>
                             <td>
                                 <img src="{{ Storage::url('/' . $product->featured_image) }}" width="150px" alt="{{ $product->name }}" />
                             </td>
-                           
                                 <td><input type="hidden" name="id" value="{{ $product->id }}" class="form-control">
                                     {{ $product->name }}</td>
                                 <td>{{ $product->descp }} <br /><br />
                                     <small>Current Stocks: {{ $product->quantity }}</small>
                                 </td>
                                 <td>{{ $product->price }}</td>
+
                                 <td>
-                                    <p class="btn-holder"><a href="{{ url('/cart/'.$product->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
+                                    
+                                    <a href="{{ url('/cart/'.$product->id) }}" class="btn btn-primary add-to-cart-button" role="button">Add to cart</a>
+
                                 </td>
                            
                         </tr>
                         @endif
                     @endforeach
+
+                    
                     
                             </tbody>
                     </table>

@@ -23,7 +23,13 @@
                     <p><b>Sponsor Id:</b> <input type="text" value="{{ $downlineUsers['user']->generatedId }}" placeholder="{{ $downlineUsers['user']->generatedId }}"></p>
                     <small><b>Account Status: {{ $downlineUsers['user']->acountStatus }}</b></small><br />
                     <small><b>Sales Report:</b></small> <br />
-                    <small><b>Monthly Bonus:</b></small><br />
+                   
+                    @if ($downlineUsers['bonus'] > 0)
+                        <small>Rebates: Php{{ $downlineUsers['bonus'] }}</small>
+                    @else
+                        <small>No Rebates available.</small>
+                    @endif
+
                 </div>
                 
                 <div id="myTree" class="easy-tree">

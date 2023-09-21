@@ -4,7 +4,7 @@
     $alignment = 'aligncenter';
 @endphp
 
-@extends('admin.layouts')
+@extends('products.layouts')
 
 
 @section('content')
@@ -64,9 +64,6 @@
                   
                 </div>
            
-
-               
-
 
               <div class="form-group">
                 <label for="productCategory">Product Category:</label>

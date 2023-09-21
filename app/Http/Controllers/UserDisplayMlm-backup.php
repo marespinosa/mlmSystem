@@ -21,55 +21,71 @@ class UserDisplayMlm extends Controller
         $sponsor = null;
 
     
-    if ($currentUser->generatedId) {
-   
-        $downlineUsers = [];
-
         if ($currentUser->generatedId) {
             $downlineUsers = $this->getDownlineUsers($currentUser->generatedId, 1);
-        }
-    
-        return view('tree.index', [
-            'user' => $currentUser,
-            'sponsor' => $sponsor,
-            'downlineUsers' => [
-                'user' => $currentUser,
-                'downline' => $downlineUsers,
-            ],
-        ]);
+            $bonus = $this->calculateBonus($downlineUsers);
         
-    }
+          
+            $data = [
+                'user' => $currentUser,
+                'sponsor' => $sponsor,
+                'downlineUsers' => [
+                    'user' => $currentUser,
+                    'downline' => $downlineUsers['downline'],
+                    'bonus' => $bonus, 
+                ],
+            ];
+        
+            return view('tree.index', $data);
+        }
+        
 
 }
 
-private function getDownlineUsers($sponsorId, $level)
-{
-    $downlineUsers = sponsorTree::where('sponsor_id_number', $sponsorId)->get();
+    private function getDownlineUsers($sponsorId, $level)
+    {
 
-    if ($level >= 20 || $downlineUsers->isEmpty()) {
-        return [];
-    }
+        $downlineUsers = sponsorTree::where('sponsor_id_number', $sponsorId)->get();
 
-    $result = [];
+        if ($level >= 20 || $downlineUsers->isEmpty()) {
+            return [];
+        }
 
-    foreach ($downlineUsers as $user) {
-        $lastCheckoutDate = $user->orders_id; 
-        $daysSinceLastCheckout = now()->diffInDays($lastCheckoutDate);
 
-        if ($daysSinceLastCheckout <= 30) {
+        $result = [];
+
+        foreach ($downlineUsers as $user) {
             $result[$user->generatedId] = [
                 'user' => $user,
-                'levelUser' => $level,
+                'levelUser' =>  $level,
+                'acountStatus' =>  $acountStatus,
                 'downline' => $this->getDownlineUsers($user->generatedId, $level + 1),
             ];
-        } else {
-            // User has not checked out within the last 30 days, so skip them
         }
+
+        return $result;
     }
 
-    return $result;
-}
-
+    private function calculateBonus($downlineUsers)
+    {
+        $bonus = 0;
+        $currentLevel = 0;
+    
+        foreach ($downlineUsers as $userId => &$data) {
+            $data['bonus'] = 0; 
+    
+            if ($data['levelUser'] <= 8 && $data['user']->acountStatus == 'active') {
+                $data['bonus'] = 100; 
+            }
+    
+            $bonus += $data['bonus'];
+    
+            $bonus += $this->calculateBonus($data['downline']);
+        }
+    
+        return $bonus;
+    }
+    
 
 
     
