@@ -1,10 +1,10 @@
 @php
     $pageTitle = 'Products';
-    $WelcomeNote = 'Starter Kit - Products';
+    $WelcomeNote = 'Your Orders';
     $alignment = 'aligncenter';
 @endphp
 
-@extends('admin.layouts')
+@extends('cart.layouts')
 
 
 @section('content')
@@ -16,44 +16,71 @@
     @include('tree.sub-content')
 
     <div class="container">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <a href="hbwwinternational.shop.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-sm text-white-50"></i> See All Products</a>
-        </div>
-        <div class="card shadow mb-4">
-            <div class="card-body">
-                <div class="table-responsive">
-                    @if (count($cartItems) > 0)
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cartItems as $item)
-                                <tr>
-                                    <td>{{ $item['name'] }}</td>
-                                    <td>{{ $item['quantity'] }}</td>
-                                    <td>${{ $item['price'] }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @else
-                    <p>Your cart is empty.</p>
-                @endif
+      
+        
+    <table id="cart" class="table table-hover table-condensed">
+        <thead>
+        <tr>
+            <th style="width:30%">Product</th>
+            <th style="width:10%">Price</th>
+            <th style="width:15%">Quantity</th>
+            <th style="width:22%" class="text-center">Subtotal</th>
+            <th style="width:20%"></th>
+        </tr>
+        </thead>
+        <tbody>
 
-                </div>
-            </div>
-        </div>
-    <!-- /.container-fluid -->
-        </div>
-    </div>
-    
+        <?php $total = 0 ?>
+
+        @if(session('cart'))
+            @foreach(session('cart') as $id => $details)
+
+                <?php $total += $details['price'] * $details['quantity'] ?>
+
+                <tr>
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <h4 class="nomargin">{{ $details['name'] }}</h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-th="Price">Php {{ $details['price'] }}</td>
+                    <td data-th="Quantity">
+                        <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity" />
+                    </td>
+                    <td data-th="Subtotal" class="text-center">Php {{ $details['price'] * $details['quantity'] }}</td>
+                    <td class="actions" data-th="">
+                        <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}">Add</button>
+                        <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}">Remove</button>
+                    </td>
+                </tr>
+            @endforeach
+        @endif
+
+                <tr>  
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="{{ route('checkout') }}">Process to Checkout</a></td></tr>
+        </tbody>
+        <tfoot>
+        <tr class="visible-xs">
+            <td class="text-center"><strong>Total {{ $total }}</strong></td>
+        </tr>
+        <tr>
+            <td><a href="{{ url('/products/all') }}" class="btn btn-primary"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+            <td colspan="2" class="hidden-xs"></td>
+            <td class="hidden-xs text-center"><strong>Total Php {{ $total }}</strong></td>
+          
+        </tr>
+        </tfoot>
+    </table>
+
+   
+
 @endsection
 
-</div>
 
+   

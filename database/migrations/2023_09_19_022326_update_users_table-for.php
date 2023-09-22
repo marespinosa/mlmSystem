@@ -14,9 +14,10 @@ class UpdateUsersTableFor extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('OrderItems_id')->nullable();
             $table->unsignedBigInteger('products_id')->nullable();
             $table->unsignedBigInteger('orders_id')->nullable();
-            $table->unsignedBigInteger('OrderItems_id')->nullable();
+
 
             $table->foreign('OrderItems_id')->references('id')->on('OrderItems');
             $table->foreign('products_id')->references('id')->on('products');

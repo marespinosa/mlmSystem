@@ -4,7 +4,7 @@
     $alignment = 'aligncenter';
 @endphp
 
-@extends('admin.layouts')
+@extends('products.layouts')
 
 
 @section('content')
@@ -23,6 +23,13 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
+
+                    @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                        <a href="/cart" />Cart Here</a>
+                    </div>
+                @endif
                     
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -35,25 +42,31 @@
                             </tr>
                         </thead>
 
-                        @foreach($products as $product)
-                        @if($product->id == 1)
-                            <tr>
-                                <td>
-                                    <img src="{{ asset('images/starterKit.jpeg') }}" width="200px" alt="{{ $product->name }}" />
-                                </td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->descp }}</td>
-                                <td>{{ $product->price }}</td>
-                                <td>
-                                    @if($currentAccountStatus == 'active')
-                                        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="addcart">Add to Cart</a>
-                                    @else
-                                        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Purchased</a>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endif
-                    @endforeach
+
+                    @foreach($products as $product)
+                    @if($product->id == 2 )
+                    <tr>
+                        <td>
+                            <img src="{{ Storage::url('/' . $product->featured_image) }}" width="150px" alt="{{ $product->name }}" />
+                        </td>
+                            <td><input type="hidden" name="id" value="{{ $product->id }}" class="form-control">
+                                {{ $product->name }}</td>
+                            <td>{{ $product->descp }} <br /><br />
+                                <small>Current Stocks: {{ $product->quantity }}</small>
+                            </td>
+                            <td>{{ $product->price }}</td>
+
+                            <td>
+                                
+                                <a href="{{ url('/cart/'.$product->id) }}" class="btn btn-primary add-to-cart-button" role="button">Add to cart</a>
+
+                            </td>
+                       
+                    </tr>
+                    @endif
+                @endforeach
+
+
                     
                         
                             </tbody>

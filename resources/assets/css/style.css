@@ -437,3 +437,16 @@ padding-bottom: 5rem;
 .input-group input{
   text-align: left !important;
 }
+
+.checkoutform input[type="text"], .checkoutform input[type="email"], 
+.checkoutform input[type="number"], .checkoutform select{
+  width:100% !important;
+  text-align: left !important;
+  border-radius: 999px !important;
+  font-size: .8rem;
+  padding: 1.5rem 1rem;
+ }
+
+.checkoutform .col-md-6{
+    margin-bottom: 20px; 
+  }

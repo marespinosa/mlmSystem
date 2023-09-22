@@ -55,7 +55,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">x</span>
+                        <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -72,40 +72,6 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            function readURL(input) {
-                if (input.files && input.files.length > 0) {
-                    $('#image-preview').html(''); 
-    
-                    for (let i = 0; i < input.files.length; i++) {
-                        const reader = new FileReader();
-                        reader.onload = function (e) {
-                            const img = $('<img>').attr('src', e.target.result);
-                            $('#image-preview').append(img);
-                        };
-                        reader.readAsDataURL(input.files[i]);
-                    }
-    
-                    // Add a "Cancel" button
-                    const cancelButton = $('<button>').text('X');
-                    cancelButton.click(function () {
-                        // Clear the selected images and reset the file input
-                        $('#image-preview').html('');
-                        $('input[type="file"]').val('');
-                    });
-                    $('#image-preview').append(cancelButton);
-                }
-            }
-    
-            // Listen for changes in the file input
-            $('input[type="file"]').change(function () {
-                readURL(this);
-            });
-        });
-    </script>
-    
-
  
 </body>
 

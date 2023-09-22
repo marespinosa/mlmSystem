@@ -7,6 +7,8 @@ use App\Http\Controllers\UserDisplayMlm;
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+
 
 
 
@@ -84,6 +86,9 @@ Route::controller(UserController::class)->group(function() {
 Route::controller(UserDisplayMlm::class)->group(function() {
     Route::post('/tree', 'CurrentSponsor')->name('tree');
     Route::get('/tree', 'CurrentSponsor')->name('tree');
+    Route::post('/profile', 'CurrentSponsorProfile')->name('tree');
+    Route::get('/profile', 'CurrentSponsorProfile')->name('tree');
+
     
 });
 
@@ -105,15 +110,24 @@ Route::controller(ProductController::class)->group(function() {
     Route::get('products/all', 'viewAll')->name('products.all');
     Route::get('products/addnew', 'addnewPage')->name('products.addnewPage');
 
+    Route::get('cart', 'index')->name('cart.index');
+    Route::get('cart', 'cart')->name('cart.cart');
+
+    Route::get('cart/{id}', 'addToCart')->name('cart.add');
+
+    Route::patch('cart', 'updateCart')->name('cart.updateCart');
+    Route::delete('cart', 'remove')->name('cart.remove');
 
 });
 
 
 
-Route::controller(CartController::class)->group(function() {
+Route::controller(CheckoutController::class)->group(function() {
+    Route::get('/checkout', 'index')->name('checkout');
+    Route::post('/checkout', 'store')->name('checkout.store');
+    
 
-   Route::post('cart', 'addToCart')->name('cart.add');
-   Route::get('cart', 'addToCart')->name('cart.add');
 });
 
-Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
+
+

@@ -15,14 +15,9 @@ class UpdateOrdersTable01 extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             
-            $table->unsignedBigInteger('users_id')->nullable();
-            $table->unsignedBigInteger('products_id')->nullable();
-            $table->unsignedBigInteger('OrderItems_id')->nullable();
-
             $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('products_id')->references('id')->on('products');
-            $table->foreign('OrderItems_id')->references('id')->on('OrderItems'); 
-
+            $table->foreign('OrderItems_id')->references('id')->on('OrderItems');
         });
     }
 
