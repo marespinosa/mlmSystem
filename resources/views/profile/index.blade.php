@@ -18,13 +18,11 @@
         
         @include('admin.title')
 
-      
-
-
+    
         <section>
             <div class="container py-5">
               <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-8">
                   <div class="card mb-4">
                     <div class="card-body text-center">
 
@@ -86,9 +84,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-8">
-                  <div class="card mb-4">
+                  <div class="card mb-4" style="margin-top:20px">
                     <div class="card-body">
                       <div class="row">
                         <div class="col-sm-3">
@@ -127,10 +123,36 @@
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <p class="text-center">Levels Acheived</p>
-                    
 
+                </div>
+                <div class="col-lg-4">
+                  <div>
+                    <div class="card mb-4 mb-md-0">
+                      <div class="card-body">
+                        <p class="mb-4"></span>Levels Acheived And Bonuses</p> 
+                        
+                        <hr />
+
+                        @foreach ($downlineUsers['bonuses'] as $level => $bonus)
+
+                        <p class="mt-4 mb-1" style="font-size: 16px;"><strong>Level {{ $level }} </strong> 
+                          <br /><span>
+                          <strong>Bonus:</strong> Php {{ $bonus }} </span> </p>
+                        
+                        <hr />
+                         
+                      @endforeach  
+
+                     
+                      
+                        
+                       
+                       
+                      </div>
+                    </div>
+                  </div>
+                   
+               
                   </div>
                          
                     <section class="container">
@@ -144,7 +166,7 @@
                     </div>
                 </div>
               </div>
-            </div>
+          
           </section>
       
     

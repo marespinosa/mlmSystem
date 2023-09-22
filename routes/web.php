@@ -86,6 +86,8 @@ Route::controller(UserController::class)->group(function() {
 Route::controller(UserDisplayMlm::class)->group(function() {
     Route::post('/tree', 'CurrentSponsor')->name('tree');
     Route::get('/tree', 'CurrentSponsor')->name('tree');
+    Route::post('/profile', 'CurrentSponsorProfile')->name('tree');
+    Route::get('/profile', 'CurrentSponsorProfile')->name('tree');
 
     
 });

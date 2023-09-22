@@ -37,7 +37,6 @@
                                 <th></th>
                                 <th width="200px">Product Name</th>
                                 <th width="300px">Description</th>
-                                <th>Stocks</th>
                                 <th>Price</th>
                                 <th>Order</th>
                             </tr>

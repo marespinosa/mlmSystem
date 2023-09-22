@@ -88,7 +88,7 @@ class CheckoutController extends Controller
     
         session()->forget('cart');
     
-        return redirect()->route('order.confirmation');
+        return redirect()->route('checkoutprocess.confirmation');
     }
 
 }

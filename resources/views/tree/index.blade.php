@@ -23,11 +23,41 @@
                     <p><b>Sponsor Id:</b> <input type="text" value="{{ $downlineUsers['user']->generatedId }}" placeholder="{{ $downlineUsers['user']->generatedId }}"></p>
                     <small><b>Account Status: {{ $downlineUsers['user']->acountStatus }}</b></small><br />
                     <small><b>Sales Report:</b></small> <br />
-                   <p>Bonuses</p>
+                    <p>
+                        @php
+                        $lastLevelWithMember = null;
+                    @endphp
+                    
                     @foreach ($downlineUsers['bonuses'] as $level => $bonus)
-                    <p><small><strong>Level {{ $level }} </strong> Php {{ $bonus }}</small></p>
+                        @if ($bonus > 0)
+                            @php
+                                $lastLevelWithMember = $level;
+                            @endphp
+                        @endif
                     @endforeach
-
+                    
+                    @if ($lastLevelWithMember !== null)
+                    <strong><span>You Reached Level: {{ $lastLevelWithMember }} </strong></span>
+                    @else
+                        <span>No members found in any level.</span>
+                    @endif
+                    
+                    
+                    <a href="/profile" target="_blank">| More Details </a>
+                    </p>
+                    <small><strong>Monthly Sales:</strong>
+                        
+                    <a href="/profile">| More </a>
+                    </small><br />
+                    <small><strong>Renewal Amount:</strong>
+                       
+                    <a href="/profile">| More </a>
+                    </small><br />
+                    <small> <strong>Status: </strong>
+                    <a href="/profile">| More </a>
+                    </small><br />
+                  
+            
                 </div>
                 
                 <div id="myTree" class="easy-tree">

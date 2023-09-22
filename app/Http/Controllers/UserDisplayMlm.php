@@ -13,6 +13,33 @@ class UserDisplayMlm extends Controller
         $this->middleware('auth');
     }
 
+    public function CurrentSponsorProfile()
+    {
+        $currentUser = auth()->user();
+        $sponsor = null;
+
+        if ($currentUser->generatedId) {
+            $downlineUsers = $this->getDownlineUsers($currentUser->generatedId, 1);
+
+            $levelBonuses = [0, 100, 50, 25, 15, 10, 10, 10, 10];
+            $bonuses = [];
+
+            for ($level = 1; $level <= 8; $level++) {
+                $bonuses[$level] = $this->calculateBonus($downlineUsers, $level, $levelBonuses);
+            }
+
+            return view('profile.index', [
+                'user' => $currentUser,
+                'sponsor' => $sponsor,
+                'downlineUsers' => [
+                    'user' => $currentUser,
+                    'downline' => $downlineUsers,
+                    'bonuses' => $bonuses,
+                ],
+            ]);
+        }
+    }
+
     public function CurrentSponsor()
     {
         $currentUser = auth()->user();
@@ -22,6 +49,8 @@ class UserDisplayMlm extends Controller
             $downlineUsers = $this->getDownlineUsers($currentUser->generatedId, 1);
 
             $levelBonuses = [0, 100, 50, 25, 15, 10, 10, 10, 10];
+            $rebeatesMontly = [0, .10, .05, .04, .03, .02, .01, .01, .01];
+            
             $bonuses = [];
 
             for ($level = 1; $level <= 8; $level++) {
@@ -73,13 +102,10 @@ class UserDisplayMlm extends Controller
         // Get the bonus amount for the current level from the array
         $bonus = isset($levelBonuses[$levelUser]) ? $levelBonuses[$levelUser] : 0;
 
-        // Calculate the total bonus for the level
+
         $totalBonus = $bonus * $count;
 
-
-
         return $totalBonus;
-
 
     }
 
@@ -99,5 +125,15 @@ class UserDisplayMlm extends Controller
         }
     
         return $count;
+    }
+
+
+
+    private function monthlyIncome($downlineUsers, $currentUserGeneratedId, $levelUser)
+    {
+        $income = 650;
+        
+
+
     }
 }
