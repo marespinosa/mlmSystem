@@ -63,32 +63,70 @@ class CheckoutController extends Controller
             'city' => 'required|string',
             'status' => 'required|string',
             'payments' => 'required|string',
+            'attachedPayments' => 'required|string',
         ]);
     
-        $user = auth()->user();
-    
-        // Create a new order
-        $order = DB::table('orders')->insertGetId([
-            'user_id' => $user->id, // Change this according to your user system
-            'total' => $request->total, // You need to pass the total from the form
+        $usersmain = auth()->user();
+        $total = $this->calculateTotal($cart);
+
+        $order = checkoutModel::create([
+            'users_id' => $usersmain->id, 
+            'total_amount' => $request->total,
+            'firstName' => $request->firstName,
+            'lastName'=> $request->lastName,
+            'phonenumber'=> $request->phonenumber,
+            'address'=> $request->address,
+            'address2'=> $request->address2,
+            'zipcode'=> $request->zipcode,
+            'city'=> $request->city,
+            'status'=> $request->status,
+            'payments'=> $request->payments,
+            'attachedPayments'=> $request->attachedPayments,
             'created_at' => now(),
         ]);
+
+
+        $order->save();
+
     
         $cart = session()->get('cart');
     
         foreach ($cart as $productId => $item) {
-            DB::table('order_items')->insert([
-                'order_id' => $order,
+            DB::table('orderitems')->insert([
+                'users_id' => $usersmain->id, 
                 'product_name' => $item['name'],
                 'quantity' => $item['quantity'],
-                'price' => $item['price'],
+                'item_price' => $item['price'],
                 'subtotal' => $item['quantity'] * $item['price'],
             ]);
         }
     
         session()->forget('cart');
     
-        return redirect()->route('checkoutprocess.confirmation');
+        return redirect()->route('checkout.checkoutprocess');
     }
+
+
+    public function checkoutConfirmation()
+    {
+        $user = auth()->user();
+        $orderconfirmed = checkoutModel::where('users_id', $user->id)->latest()->first();
+
+            if (!$order) {
+                return redirect()->back()->with('error', 'No order found for this user.');
+            }
+        
+        $orderItems = DB::table('orderitems')
+            ->where('users_id', $user->id)
+            ->where('order_id', $order->id)
+            ->get();
+    
+
+
+        return view('checkout.checkoutprocess', compact('orderconfirmed', 'orderItems'));
+            
+    }
+
+
 
 }

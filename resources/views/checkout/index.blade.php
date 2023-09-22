@@ -6,7 +6,7 @@
 
 @endphp
 
-@extends('cart.layouts')
+@extends('checkout.layouts')
 
 
 @section('content')
@@ -36,7 +36,6 @@
 
                 @foreach ($cartDetails as $item)
          
-
 
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
@@ -75,7 +74,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="firstName">First name</label>
-                            <input type="text" name="firstName" value="{{ $user->name }}" class="form-control" id="firstName" placeholder="" value="" required>
+                            <input type="text" name="firstName" value="{{ old('firstName') }}" class="form-control" id="firstName" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid first name is required.
                             </div>
@@ -338,14 +337,31 @@
 
                     <div class="d-block my-3">
                      
-                        <div class="custom-control custom-radio">
-                          <input name="cod" type="radio" class="custom-control-input" checked required>
-                          <label class="custom-control-label" for="credit">Cash On Delivery</label>
-                      </div>
-                        <div class="custom-control custom-radio">
-                            <input id="Gcash" name="gcash" type="radio" class="custom-control-input" required>
-                            <label class="custom-control-label" for="Gcash">Gcash</label> 
-                        </div>
+                        <div class="d-block my-3">
+                            <div class="custom-control custom-radio">
+                              <input id="overcounter" name="payments" type="radio" class="custom-control-input" checked required>
+                              <label class="custom-control-label" for="overcounter">Cash over the counter</label>
+                              <p>Pay through Ageless Main Office</p> 
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input id="Gcash" name="payments" type="radio" class="custom-control-input" required>
+                              <label class="custom-control-label" for="Gcash">Gcash - 09XXXXXXXXX</label>
+                              <p>Send thru gcash, once paid attach receipt</p>
+                            </div>
+                          </div>
+                          
+                    </div>
+
+                    <div id="gcashForm" style="display: none;">
+
+                        <label for="featured_image">Upload Image:</label>
+                        <div id="image-preview"></div>
+                        <input type="file" name="featured_image" accept="image/*" multiple>
+                        
+                        @error('featured_image')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                      
                     </div>
                    
                    

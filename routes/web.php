@@ -125,7 +125,7 @@ Route::controller(ProductController::class)->group(function() {
 Route::controller(CheckoutController::class)->group(function() {
     Route::get('/checkout', 'index')->name('checkout');
     Route::post('/checkout', 'store')->name('checkout.store');
-    
+    Route::get('/checkoutprocess', 'checkoutConfirmation')->name('orderconfirmed');
 
 });
 

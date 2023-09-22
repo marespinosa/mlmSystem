@@ -22,6 +22,8 @@ class UserDisplayMlm extends Controller
             $downlineUsers = $this->getDownlineUsers($currentUser->generatedId, 1);
 
             $levelBonuses = [0, 100, 50, 25, 15, 10, 10, 10, 10];
+            $rebates = [0, .10, .05, .04, .03, .02, .01, .01, .01];
+
             $bonuses = [];
 
             for ($level = 1; $level <= 8; $level++) {
@@ -49,7 +51,7 @@ class UserDisplayMlm extends Controller
             $downlineUsers = $this->getDownlineUsers($currentUser->generatedId, 1);
 
             $levelBonuses = [0, 100, 50, 25, 15, 10, 10, 10, 10];
-            $rebeatesMontly = [0, .10, .05, .04, .03, .02, .01, .01, .01];
+            $rebates = [0, .10, .05, .04, .03, .02, .01, .01, .01];
             
             $bonuses = [];
 
