@@ -8,7 +8,7 @@
             <h6>{{ $user['user']->name }} {{ $user['user']->lastname }}</h6>
             <p><b>Sponsor Id:</b> <input type="text" value="{{ $user['user']->generatedId }}" placeholder="{{ $user['user']->generatedId }}"></p>
             <small><b>Account Status:</b> {{ $user['user']->acountStatus }}</small><br />
-        
+            
         </div>
 
         @if (!empty($user['downline']))

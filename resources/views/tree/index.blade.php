@@ -23,12 +23,10 @@
                     <p><b>Sponsor Id:</b> <input type="text" value="{{ $downlineUsers['user']->generatedId }}" placeholder="{{ $downlineUsers['user']->generatedId }}"></p>
                     <small><b>Account Status: {{ $downlineUsers['user']->acountStatus }}</b></small><br />
                     <small><b>Sales Report:</b></small> <br />
-                   
-                    @if ($downlineUsers['bonus'] > 0)
-                        <small>Rebates: Php{{ $downlineUsers['bonus'] }}</small>
-                    @else
-                        <small>No Rebates available.</small>
-                    @endif
+                   <p>Bonuses</p>
+                    @foreach ($downlineUsers['bonuses'] as $level => $bonus)
+                    <p><small><strong>Level {{ $level }} </strong> Php {{ $bonus }}</small></p>
+                    @endforeach
 
                 </div>
                 

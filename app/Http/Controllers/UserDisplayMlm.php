@@ -5,11 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\sponsorTree;
 
-use Illuminate\Support\Facades\DB;
-
-
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
-
 class UserDisplayMlm extends Controller
 {
 
@@ -17,92 +12,92 @@ class UserDisplayMlm extends Controller
     {
         $this->middleware('auth');
     }
-  
 
-   public function CurrentSponsor()
-{
+    public function CurrentSponsor()
+    {
         $currentUser = auth()->user();
         $sponsor = null;
 
-    
-    if ($currentUser->generatedId) {
-   
-        $downlineUsers = [];
-
         if ($currentUser->generatedId) {
             $downlineUsers = $this->getDownlineUsers($currentUser->generatedId, 1);
-            $bonus = $this->calculateBonus($downlineUsers, $currentUser->level);
 
-        }
-    
-        return view('tree.index', [
-            'user' => $currentUser,
-            'sponsor' => $sponsor,
-            'downlineUsers' => [
+            $levelBonuses = [0, 100, 50, 25, 15, 10, 10, 10, 10];
+            $bonuses = [];
+
+            for ($level = 1; $level <= 8; $level++) {
+                $bonuses[$level] = $this->calculateBonus($downlineUsers, $level, $levelBonuses);
+            }
+
+            return view('tree.index', [
                 'user' => $currentUser,
-                'downline' => $downlineUsers,
-                'bonus' => $bonus,
-            ],
-        ]);
-        
+                'sponsor' => $sponsor,
+                'downlineUsers' => [
+                    'user' => $currentUser,
+                    'downline' => $downlineUsers,
+                    'bonuses' => $bonuses,
+                ],
+            ]);
+        }
     }
-
-}
 
     private function getDownlineUsers($sponsorId, $level)
     {
-
         $currentUser = auth()->user();
-    
+
         $downlineUsers = sponsorTree::where('sponsor_id_number', $sponsorId)->get();
 
         if ($level >= 20 || $downlineUsers->isEmpty()) {
             return [];
         }
-        
+
         $result = [];
-
-        if ($currentUser->generatedId) {
-            $bonus = $this->calculateBonus($downlineUsers, $currentUser->level);
-
-        }
-
 
         foreach ($downlineUsers as $user) {
             $result[$user->generatedId] = [
                 'user' => $user,
-                'levelUser' =>  $level,
+                'levelUser' => $level,
                 'downline' => $this->getDownlineUsers($user->generatedId, $level + 1),
-                'bonus' => $bonus,
             ];
         }
-
 
         return $result;
     }
 
-
-
-    private function calculateBonus($sponsorId, $levelUser)
+    private function calculateBonus($downlineUsers, $levelUser, $levelBonuses)
     {
-        $bonus = 0;
         $currentUser = auth()->user();
+        $currentUserId = $currentUser->generatedId;
+        
+        $count = $this->countActiveDownlineUsers($downlineUsers, $currentUserId, $levelUser);
 
-        if ($currentUser->generatedId) {
-            $sponsorId = $currentUser->generatedId; 
-            
-            $count = sponsorTree::where('sponsor_id_number', $sponsorId)
-                ->where('acountStatus', 'active')
-                ->count();
-            $bonus = $count * 100;
+        // Get the bonus amount for the current level from the array
+        $bonus = isset($levelBonuses[$levelUser]) ? $levelBonuses[$levelUser] : 0;
+
+        // Calculate the total bonus for the level
+        $totalBonus = $bonus * $count;
+
+
+
+        return $totalBonus;
+
+
+    }
+
+    private function countActiveDownlineUsers($downlineUsers, $currentUserGeneratedId, $levelUser)
+    {
+        $count = 0;
+
+        foreach ($downlineUsers as $user) {
+            if ($user['levelUser'] === $levelUser && 
+                $user['user']->generatedId !== $currentUserGeneratedId &&
+                $user['user']->acountStatus === 'active') { 
+                $count++;
+            }
+            if (!empty($user['downline'])) {
+                $count += $this->countActiveDownlineUsers($user['downline'], $currentUserGeneratedId, $levelUser);
+            }
         }
     
-        return $bonus;
+        return $count;
     }
-    
-
-
-    
-
-
-} 
+}
