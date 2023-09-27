@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\sponsorTree;
+use App\Models\ordersModel;
+use App\Models\ProductModel;
+
 
 class checkoutModel extends Model
 {
@@ -17,9 +20,7 @@ class checkoutModel extends Model
 
     protected $id = 'id'; 
 
-
     protected $fillable = [ 
-        'users_id', 
         'total_amount',
         'firstName',
         'lastName',
@@ -28,15 +29,26 @@ class checkoutModel extends Model
         'address2',
         'zipcode',
         'city',
-        'status',
+        'payments',  
+        'sponsor_id_number',
+        'tracking_no',
+        'status',  
     ];
-
 
     public function sponsorTree()
     {
-        return $this->belongsTo(SponsorTree::class, 'user_id'); // Adjust the foreign key column name if needed
+        return $this->belongsTo(sponsorTree::class, 'users_id');
+    }
+
+    public function ordersModel()
+    {
+        return $this->belongsTo(ordersModel::class, 'orderitems_id'); 
     } 
 
+    public function ProductModel()
+    {
+        return $this->belongsTo(ProductModel::class, 'products_id'); 
+    } 
 
 
 }

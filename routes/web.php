@@ -34,10 +34,7 @@ Route::controller(LoginRegisterController::class)->group(function() {
 Route::controller(MlmController::class)->group(function() {
     Route::post('/profile', 'showProfile')->name('tree');
     Route::get('/profile', 'showProfile')->name('tree');
-    Route::post('/tree', 'displayAdmin')->name('tree');
-    Route::get('/tree', 'displayAdmin')->name('tree');
-
-
+ 
 });
 
 
@@ -112,9 +109,7 @@ Route::controller(ProductController::class)->group(function() {
 
     Route::get('cart', 'index')->name('cart.index');
     Route::get('cart', 'cart')->name('cart.cart');
-
     Route::get('cart/{id}', 'addToCart')->name('cart.add');
-
     Route::patch('cart', 'updateCart')->name('cart.updateCart');
     Route::delete('cart', 'remove')->name('cart.remove');
 
@@ -122,12 +117,15 @@ Route::controller(ProductController::class)->group(function() {
 
 
 
-Route::controller(CheckoutController::class)->group(function() {
-    Route::get('/checkout', 'index')->name('checkout');
-    Route::post('/checkout', 'store')->name('checkout.store');
-    Route::get('/checkoutprocess', 'checkoutConfirmation')->name('orderconfirmed');
 
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::controller(CheckoutController::class)->group(function() {
+        Route::get('/checkout', 'index')->name('checkout.index');
+        Route::get('/confirmedOrder', 'confirmedOrder')->name('checkout.confirmedOrder');
+        Route::post('/checkout', 'index')->name('checkout.placeorder');
+        Route::post('/checkout', 'placeOrder')->name('checkout.placeorder');
+      
+    });
 });
-
-
-

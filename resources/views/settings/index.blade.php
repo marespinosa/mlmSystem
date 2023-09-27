@@ -133,7 +133,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputState5">City</label>
-                    <select id="city" name="city"  id="inputState5" class="form-control">
+                    <select id="city" name="city" style=" padding: 10px; border-radius:999px"  id="inputState5" class="form-control" >
                         <option value="{{ $user->city }}">{{ $user->city }}</option>
                         <option value="Alejal">Alejal</option>
                         <option value="Andili">Andili</option>

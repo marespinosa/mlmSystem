@@ -20,9 +20,13 @@ class CreateProductsTable extends Migration
             $table->decimal('stockistprice', 8, 2)->nullable();
             $table->decimal('srp', 8, 2)->nullable();
 
-            $table->unsignedBigInteger('orders_id')->nullable();
-            $table->unsignedBigInteger('OrderItems_id')->nullable();
             $table->unsignedBigInteger('users_id')->nullable();
+            $table->unsignedBigInteger('orders_id')->nullable();
+            $table->unsignedBigInteger('orderitems_id')->nullable();
+
+            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('orders_id')->references('id')->on('orders');
+            $table->foreign('orderitems_id')->references('id')->on('OrderItems'); 
         
           
             $table->timestamps();

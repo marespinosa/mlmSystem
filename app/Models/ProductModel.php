@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\sponsorTree;
+use App\Models\checkoutModel;
+use App\Models\ordersModel;
+
 
 class ProductModel extends Model
 {
@@ -26,25 +30,34 @@ class ProductModel extends Model
         'quantity',
         'featured_image',
         'category',
-        'user_id', 
     ];
 
-    public function user()
+    public function sponsorTree()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(sponsorTree::class, 'users_id');
     }
 
-    public function orders()
+    public function ordersModel()
     {
-        return $this->belongsToMany(Order::class, 'orderitems', 'product_id', 'order_id');
-    }
+        return $this->belongsTo(ordersModel::class, 'orderitems_id'); 
+    } 
+
+    public function checkoutModel()
+    {
+        return $this->belongsTo(checkoutModel::class, 'orders_id'); 
+    } 
 
 
+    
+
+  
 
     public function scopeByCategory($query, $category)
     {
         return $query->where('category', $category);
     }
+
+
 
     
 }

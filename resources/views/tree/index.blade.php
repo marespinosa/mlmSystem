@@ -22,7 +22,6 @@
                     <h6>{{ $downlineUsers['user']->name }} {{ $downlineUsers['user']->lastname }}</h6>
                     <p><b>Sponsor Id:</b> <input type="text" value="{{ $downlineUsers['user']->generatedId }}" placeholder="{{ $downlineUsers['user']->generatedId }}"></p>
                     <small><b>Account Status: {{ $downlineUsers['user']->acountStatus }}</b></small><br />
-                    <small><b>Sales Report:</b></small> <br />
                     <p>
                         @php
                         $lastLevelWithMember = null;
@@ -37,7 +36,7 @@
                     @endforeach
                     
                     @if ($lastLevelWithMember !== null)
-                    <strong><span>You Reached Level: {{ $lastLevelWithMember }} </strong></span>
+                    <strong><span>Advancing to a level: {{ $lastLevelWithMember }} </strong></span>
                     @else
                         <span>No members found in any level.</span>
                     @endif
@@ -53,7 +52,7 @@
                        
                     <a href="/profile">| More </a>
                     </small><br />
-                    <small> <strong>Status: </strong>
+                    <small> <strong>Monthly Status: </strong>
                     <a href="/profile">| More </a>
                     </small><br />
                   

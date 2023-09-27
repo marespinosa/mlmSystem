@@ -63,7 +63,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><a href="{{ route('checkout') }}">Process to Checkout</a></td></tr>
+                    <td><a href="{{ route('checkout.index') }}">Process to Checkout</a></td></tr>
         </tbody>
         <tfoot>
         <tr class="visible-xs">

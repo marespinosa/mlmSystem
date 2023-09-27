@@ -14,10 +14,13 @@ class UpdateProductsTable04 extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-          
+            $table->unsignedBigInteger('users_id')->nullable();
+            $table->unsignedBigInteger('orders_id')->nullable();
+            $table->unsignedBigInteger('orderitems_id')->nullable();
+
             $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('orders_id')->references('id')->on('orders');
-            $table->foreign('OrderItems_id')->references('id')->on('OrderItems'); 
+            $table->foreign('orderitems_id')->references('id')->on('OrderItems'); 
         });
     }
 

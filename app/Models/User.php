@@ -14,9 +14,16 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
+
+use App\Models\sponsorTree;
+use App\Models\ordersModel;
+
+
 class User extends Model implements Authenticatable
 {
     use HasFactory, Notifiable;
+
+    protected $table = 'users'; 
 
     protected $fillable = [
         'name',

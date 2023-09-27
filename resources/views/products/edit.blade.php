@@ -55,7 +55,7 @@
                 <div class="form-group">
 
                     <label for="featured_image">Upload Image:</label>
-                    <div id="image-preview"></div>
+                    <div id="image-preview" style="width: 150px;"></div>
                     <input type="file" name="featured_image" accept="image/*" multiple>
                     
                     @error('featured_image')

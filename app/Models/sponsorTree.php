@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\checkoutModel;
+use App\Models\ordersModel;
+use App\Models\ProductModel;
 
 class sponsorTree extends Model
 {
@@ -37,9 +39,24 @@ class sponsorTree extends Model
         'remember_token',
     ];
 
-    public function purchases()
+   
+    public function ProductModel()
     {
-        return $this->hasMany(checkoutModel::class, 'user_id'); // Adjust the foreign key column name if needed
+        return $this->belongsTo(ProductModel::class, 'products_id');
     }
 
+    public function ordersModel()
+    {
+        return $this->belongsTo(ordersModel::class, 'orderitems_id'); 
+    } 
+
+    public function checkoutModel()
+    {
+        return $this->belongsTo(checkoutModel::class, 'orders_id'); 
+    } 
+
+
+
+
+    
 }

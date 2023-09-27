@@ -74,11 +74,12 @@
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
     <script>
+        const nearStock = document.getElementById('NearestStock');
         const cashRadioButton = document.getElementById('overcounter');
         const gcashRadioButton = document.getElementById('Gcash');
         const gcashForm = document.getElementById('gcashForm');
       
-        cashRadioButton.addEventListener('change', function() {
+        nearStock.addEventListener('change', function() {
           gcashForm.style.display = 'none';
         });
       

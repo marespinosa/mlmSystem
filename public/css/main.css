@@ -70,7 +70,7 @@
 }
 
 #image-preview img{
-    width:150px;
+    width:150px !important
 }
 
 #image-preview button{
@@ -104,4 +104,8 @@
 
 .members-pagination div{
     margin: 10px 0;
+}
+
+.custom-control-label{
+    font-weight: 900;
 }

@@ -1,6 +1,6 @@
 @php
     $pageTitle = 'Products';
-    $WelcomeNote = 'Checkout Page';
+    $WelcomeNote = 'Got your Order!';
     $alignment = 'aligncenter';
     $user = auth()->user();
 
@@ -20,8 +20,8 @@
 
     <div class="container">
         <div class="row py-5">
-            <div class="col-md-4 order-md-2 mb-4">
-
+            <div class="col-md-6 order-md-2 mb-4">
+                <h2>We will notify you soon.</h2>
             </div>
         </div>
     </div>
