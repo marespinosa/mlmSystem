@@ -17,6 +17,10 @@ use App\Models\ordersModel;
 class CheckoutController extends Controller
 {
 
+   private $cartDetails;
+   
+   private $total; 
+
     
     public function userInfo()
     {
@@ -30,8 +34,6 @@ class CheckoutController extends Controller
 
         return view('checkout.confirmedOrder');
     } 
-
-
 
 
     public function index()
@@ -55,29 +57,40 @@ class CheckoutController extends Controller
             }
         }
 
+
+
         return view('checkout.index', compact('cartDetails', 'total'));
+
+        $this->cartDetails = $cartDetails;
+        $this->total = $total;
+
     }
     
 
     public function placeOrder(Request $request, sponsorTree $sponsorTreeModel)
     {
+        $currentUserId = Auth::id();
 
         $request->validate([
-           'attachedPayments' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+        'attachedPayments' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
 
         $cart = Session::get('cart');
-        
+
+        $cartDetails = session()->get('cartDetails');
+        $total = session()->get('total');
+
         $total = $this->calculateTotal($cart);
 
-         DB::transaction(function () use ($request, $sponsorTreeModel, $total) {
+        $order = new checkoutModel();
+
+        DB::transaction(function () use ($request, $sponsorTreeModel, $total, $order) {
 
             $trackingNo = $request->input('sponsor_id_number') . '_' . rand(1111, 9999);
 
-            $order = new checkoutModel();
-
             $order->firstName = $request->input('firstName');
             $order->lastName = $request->input('lastName');
+            $order->users_id = $request->input('users_id');
             $order->phoneNumber = $request->input('phoneNumber');
             $order->address = $request->input('address');
             $order->address2 = $request->input('address2');
@@ -88,38 +101,42 @@ class CheckoutController extends Controller
             $order->tracking_no = $trackingNo;
             $order->total_amount = $total;
             $order->citybelongto = $request->input('citybelongto');
+
             $order->created_at = now();
 
             if ($request->hasFile('attachedPayments')) {
                 $imagePath = $request->file('attachedPayments')->store('attachedPayments', 'public');
                 $order->attachedPayments = $imagePath;
             }
-    
-            
-            $cartItems = $sponsorTreeModel->where('users_id', Auth::id())->get();
-
-            $orderItems = $cartItems->map(function ($item) use ($order) {
-                return [
-                    'orders_id' => $order->id,
-                    'products_id' => $item->products_id,
-                    'product_name' => $item->product->name,
-                    'item_price' => $item->product->price,
-                    'quantity' => $item->quantity,
-                    'subtotal' => $item->quantity * $item->product->price,
-                ];
-            });
-            
-            ordersModel::insert($orderItems->toArray());
 
             $order->save(); 
-          
         });
 
+        $orderItems = [];
+
+        foreach ($cart as $productId => $item) {
+            $product = ProductModel::find($productId);
+
+            if ($product) {
+                $orderItems[] = [
+                    'orders_id' => $order->id,
+                    'products_id' => $productId,
+                    'product_name' => $product->name,
+                    'item_price' => $item['price'],
+                    'quantity' => $item['quantity'],
+                    'subtotal' => $item['quantity'] * $item['price'],
+                    'users_id' => $currentUserId,
+                ];
+            }
+        }
+
+        DB::table('orderitems')->insert($orderItems);
 
         Session::forget('cart');
 
         return redirect()->route('checkout.confirmedOrder')->with('success', 'Order placed successfully.');
     }
+
     
 
     private function calculateTotal($cart)

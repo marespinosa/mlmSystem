@@ -77,6 +77,9 @@
                         <div class="col-md-6">
                             <label for="firstName">First name</label>
                             <input type="hidden" name="sponsor_id_number" value="{{  $user->sponsor_id_number }}" class="form-control">
+                            <input type="hidden" name="users_id" value="{{  $user->id }}" class="form-control">
+
+
                             <input type="text" name="firstName" value="{{  $user->name  }}" class="form-control" id="firstName">
                             <div class="invalid-feedback">
                                 Valid first name is required.
