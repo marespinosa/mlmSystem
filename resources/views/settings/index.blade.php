@@ -433,19 +433,11 @@
                         <li>Minimum 8 character</li>
                         <li>At least one special character</li>
                         <li>At least one number</li>
+                        <li>No space</li>
                         <li>Can't be the same as a previous password</li>
                     </ul>
                 </div>
-            </div>
-
-            
-
-                
-
-                </div>
-            </div>
-    </div>
-
+    
 
 
 </div>

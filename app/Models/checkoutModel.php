@@ -32,7 +32,8 @@ class checkoutModel extends Model
         'payments',  
         'sponsor_id_number',
         'tracking_no',
-        'status',  
+        'status',
+        'citybelongto', 
     ];
 
     public function sponsorTree()

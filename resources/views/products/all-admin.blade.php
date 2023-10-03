@@ -36,9 +36,10 @@
                             <tr>
                                 <th></th>
                                 <th width="250px">Product Name</th>
-                                <th width="300px">Description</th>
+                                <th width="250px">Description</th>
                                 <th>Member Price</th>
                                 <th>Order</th>
+                                <th>Edit</th>
                             </tr>
                         </thead>
 
@@ -60,6 +61,13 @@
                                     <a href="{{ url('/cart/'.$product->id) }}" class="btn btn-primary add-to-cart-button" role="button">Add to cart</a>
                                     
                                 </td>
+
+                                <td>
+                                        
+                                    <a href="{{ url('/products/edit/'.$product->id) }}" class="btn btn-primary add-to-cart-button" role="button">Edit</a>
+
+                                </td>
+
                            
                         </tr>
                         @endif

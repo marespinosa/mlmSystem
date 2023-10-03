@@ -35,8 +35,8 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th width="250px">Product Name</th>
-                                    <th width="300px">Description</th>
+                                    <th width="200px">Product Name</th>
+                                    <th width="250px">Description</th>
                                     <th>Member Price</th>
                                     <th>Order</th>
                                 </tr>
@@ -58,9 +58,12 @@
                                     <td>{{ $product->price }}</td>
                                     <td>
                                     
-                                        <a href="{{ url('/cart/'.$product->id) }}" class="btn btn-warning btn-block text-center add-to-cart-button" role="button">Add to cart</a>
+                                        <a href="{{ url('/cart/'.$product->id) }}" class="btn btn-primary add-to-cart-button" role="button">Add to cart</a>
     
                                     </td>
+
+                                 
+                                   
                             </tr>
                             @endif
                         @endforeach

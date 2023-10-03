@@ -69,8 +69,10 @@
                 <h6 class="collapse-header">Categories:</h6>
                 @if ($user->userlevel === 'Admin')
                  <a class="collapse-item" href="/products/addnew">Add New</a>
+                 <a class="collapse-item" href="/products/all-admin">All Products</a>
+                @else
+                    <a class="collapse-item" href="/products/all">All Products</a>
                 @endif
-                <a class="collapse-item" href="/products/all">All Products</a>
                 <a class="collapse-item" href="/products/beautypro">Beauty Products</a>
                 <a class="collapse-item" href="/products/foodcup">Food Supplements</a>
                 <a class="collapse-item" href="/products/homecare">Home Care Products</a>

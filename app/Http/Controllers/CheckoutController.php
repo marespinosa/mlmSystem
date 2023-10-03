@@ -62,38 +62,59 @@ class CheckoutController extends Controller
     public function placeOrder(Request $request, sponsorTree $sponsorTreeModel)
     {
 
+        $request->validate([
+           'attachedPayments' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+        ]);
+
         $cart = Session::get('cart');
         
         $total = $this->calculateTotal($cart);
 
          DB::transaction(function () use ($request, $sponsorTreeModel, $total) {
-            $order = checkoutModel::create([
-                'firstName' => $request->input('firstName'),
-                'lastName' => $request->input('lastName'),
-                'phoneNumber' => $request->input('phoneNumber'),
-                'address' => $request->input('address'),
-                'address2' => $request->input('address2'),
-                'zipcode' => $request->input('zipcode'),
-                'city' => $request->input('city'),
-                'payments' => $request->input('payments'),
-                'sponsor_id_number' => $request->input('sponsor_id_number'),
-                'tracking_no' => $request->input('sponsor_id_number') . rand(1111, 9999),
-                'total_amount' => $total,
-                'citybelongto' => $request->input('citybelongto'),
-                'created_at' => now(),
-            ]);
 
+            $trackingNo = $request->input('sponsor_id_number') . '_' . rand(1111, 9999);
+
+            $order = new checkoutModel();
+
+            $order->firstName = $request->input('firstName');
+            $order->lastName = $request->input('lastName');
+            $order->phoneNumber = $request->input('phoneNumber');
+            $order->address = $request->input('address');
+            $order->address2 = $request->input('address2');
+            $order->zipcode = $request->input('zipcode');
+            $order->city = $request->input('city');
+            $order->payments = $request->input('payments');
+            $order->sponsor_id_number = $request->input('sponsor_id_number');
+            $order->tracking_no = $trackingNo;
+            $order->total_amount = $total;
+            $order->citybelongto = $request->input('citybelongto');
+            $order->created_at = now();
+
+            if ($request->hasFile('attachedPayments')) {
+                $imagePath = $request->file('attachedPayments')->store('attachedPayments', 'public');
+                $order->attachedPayments = $imagePath;
+            }
+    
+            
             $cartItems = $sponsorTreeModel->where('users_id', Auth::id())->get();
 
-            foreach ($cartItems as $item) {
-                ordersModel::create([
+            $orderItems = $cartItems->map(function ($item) use ($order) {
+                return [
                     'orders_id' => $order->id,
                     'products_id' => $item->products_id,
-                    'price' => $item->product->price,
+                    'product_name' => $item->product->name,
+                    'item_price' => $item->product->price,
                     'quantity' => $item->quantity,
-                ]);
-            }
+                    'subtotal' => $item->quantity * $item->product->price,
+                ];
+            });
+            
+            ordersModel::insert($orderItems->toArray());
+
+            $order->save(); 
+          
         });
+
 
         Session::forget('cart');
 

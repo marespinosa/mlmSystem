@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\checkoutModel;
-use App\Models\ordersModel;
+use App\Models\sponsorTree;
 use App\Models\ProductModel;
+
 
 class ordersModel extends Model
 {
@@ -23,10 +24,12 @@ class ordersModel extends Model
     protected $fillable = [ 
         'orders_id',
         'products_id',
-        'price',
+        'product_name',
+        'item_price',
         'quantity',
+        'subtotal',
     ];
-  
+
     public function sponsorTree()
     {
         return $this->belongsTo(sponsorTree::class, 'users_id');

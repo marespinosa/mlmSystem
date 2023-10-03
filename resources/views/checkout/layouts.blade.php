@@ -82,6 +82,10 @@
         nearStock.addEventListener('change', function() {
           gcashForm.style.display = 'none';
         });
+
+        cashRadioButton.addEventListener('change', function() {
+          gcashForm.style.display = 'none';
+        });
       
         gcashRadioButton.addEventListener('change', function() {
           gcashForm.style.display = 'block';

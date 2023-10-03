@@ -19,6 +19,11 @@
 
 
     <div class="container">
+
+        <form action="{{ route('checkout.placeorder') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+
         <div class="row py-5">
             <div class="col-md-4 order-md-2 mb-4">
                 @php
@@ -26,6 +31,8 @@
                 $countSales = 0;
 
                 @endphp
+
+          
 
                 
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -62,10 +69,8 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-8 order-md-1">
+            <div class="col-md-8 order-md-1 checkoutform">
 
-                <form action="{{ route('checkout.placeorder') }}" method="POST" enctype="multipart/form-data" class="checkoutform">
-                    @csrf
 
                 <h4 class="mb-3">Billing address</h4>
                     <div class="row">
@@ -338,11 +343,12 @@
                      
                         <div class="d-block my-3">
                             <div class="control-payments custom-radio">
-                              <input id="NearestStock" name="payments" type="radio" class="custom-control-input" value="Nearest Stockist in your area">
+                              <input id="NearestStock" name="payments" type="radio" class="custom-control-input" value="Nearest Stockist in your area" checked>
                               <label class="custom-control-label" for="NearestStock">Nearest Stockist in your area</label>
                               <div class="form-group col-md-6">
                                 <label for="citybelongto">Select City</label>
                                 <select id="citybelongto" name="citybelongto" style=" padding: 10px; border-radius:999px">
+                                    <option value=""> </option>
                                     <option value="Alejal">Alejal</option>
                                     <option value="Andili">Andili</option>
                                     <option value="Andop">Andop</option>
@@ -553,13 +559,13 @@
 
                             </div>
                             <div class="control-payments custom-radio">
-                                <input id="overcounter" name="payments" type="radio" class="custom-control-input" value="Cash over the counter">                                
+                                <input id="overcounter" name="payments" type="radio" class="custom-control-input" value="Cash over the counter" checked>                                
                                 <label class="custom-control-label" for="overcounter">Cash over the counter</label>
                                 <p>Payment through main office</p>
                             </div>
 
                             <div class="control-payments custom-radio">
-                              <input id="Gcash" name="payments" type="radio" class="custom-control-input" value="Gcash" >
+                              <input id="Gcash" name="payments" type="radio" class="custom-control-input" value="Gcash">
                               <label class="custom-control-label" for="Gcash">Gcash - 09483969466 or 09369610882</label>
                               <p>Send thru gcash, once paid attach receipt</p>
                             </div>
@@ -573,8 +579,7 @@
                     <div id="gcashForm" style="display: none;">
 
                         <label for="attachedPayments">Upload Image:</label>
-                        <div id="image-preview" style="width: 150px;"></div>
-                        <input type="file" name="attachedPayments" accept="image/*" multiple>
+                        <input type="file" name="attachedPayments" accept="image/*">
                         
                         @error('attachedPayments')
                         <div class="alert alert-danger">{{ $message }}</div>

@@ -93,6 +93,7 @@ class UserController extends Controller
             'new_password.regex' => 'The new password cannot contain spaces.',
         ]);
 
+
         $user = Auth::user();
 
         if (Hash::check($request->old_password, $user->password)) {

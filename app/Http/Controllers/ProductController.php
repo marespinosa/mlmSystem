@@ -17,8 +17,6 @@ class ProductController extends Controller
         $this->middleware('auth');
     }
 
-
-
     public function index()
     {
         if (Auth::check()) {
@@ -50,6 +48,14 @@ class ProductController extends Controller
 
         return view('products.all', ['products' => $products]);
     } 
+
+    public function viewAllAdmin()
+    {
+        $products = ProductModel::all();
+
+        return view('products.all-admin', ['products' => $products]);
+    } 
+
 
 
     public function beautyProducts()
@@ -142,6 +148,7 @@ class ProductController extends Controller
         ]);
     
         $product = ProductModel::find($id);
+        
         if (!$product) {
             return redirect()->back()->with('error', 'Product not found');
         }

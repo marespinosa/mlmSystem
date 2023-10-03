@@ -58,7 +58,7 @@
                             <td>{{ $product->price }}</td>
                             <td>
                             
-                                <a href="{{ url('/cart/'.$product->id) }}" class="btn btn-warning btn-block text-center add-to-cart-button" role="button">Add to cart</a>
+                                <a href="{{ url('/cart/'.$product->id) }}" class="btn btn-primary add-to-cart-button" role="button">Add to cart</a>
 
                             </td>
                     </tr>
