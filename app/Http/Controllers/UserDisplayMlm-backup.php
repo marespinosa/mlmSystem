@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\sponsorTree;
+use App\Models\checkoutModel;
 
 class UserDisplayMlm extends Controller
 {
@@ -42,6 +43,9 @@ class UserDisplayMlm extends Controller
         }
     }
 
+
+
+
     public function CurrentSponsor()
     {
         $currentUser = auth()->user();
@@ -51,7 +55,6 @@ class UserDisplayMlm extends Controller
             $downlineUsers = $this->getDownlineUsers($currentUser->generatedId, 1);
 
             $levelBonuses = [0, 100, 50, 25, 15, 10, 10, 10, 10];
-            $rebates = [0, .10, .05, .04, .03, .02, .01, .01, .01];
             
             $bonuses = [];
 
@@ -74,33 +77,27 @@ class UserDisplayMlm extends Controller
     private function getDownlineUsers($sponsorId, $level)
     {
         $currentUser = auth()->user();
-        
+
         $downlineUsers = sponsorTree::where('sponsor_id_number', $sponsorId)->get();
-        
+
         if ($level >= 20 || $downlineUsers->isEmpty()) {
             return [];
         }
-        
+
         $result = [];
-        
+
         foreach ($downlineUsers as $user) {
-            
-            $lastPurchase = $user->purchases()
-                ->where('created_at', '>=', now()->subDays(30))
-                ->sum('amount');
-            
-            if ($lastPurchase >= 650) {
-                $result[$user->generatedId] = [
-                    'user' => $user,
-                    'levelUser' => $level,
-                    'downline' => $this->getDownlineUsers($user->generatedId, $level + 1),
-                ];
-            }
+            $result[$user->generatedId] = [
+                'user' => $user,
+                'levelUser' => $level,
+                'downline' => $this->getDownlineUsers($user->generatedId, $level + 1),
+            ];
         }
-        
+
         return $result;
     }
-    
+
+
 
     private function calculateBonus($downlineUsers, $levelUser, $levelBonuses)
     {
@@ -109,7 +106,6 @@ class UserDisplayMlm extends Controller
         
         $count = $this->countActiveDownlineUsers($downlineUsers, $currentUserId, $levelUser);
 
-        // Get the bonus amount for the current level from the array
         $bonus = isset($levelBonuses[$levelUser]) ? $levelBonuses[$levelUser] : 0;
 
 
@@ -124,6 +120,12 @@ class UserDisplayMlm extends Controller
         $count = 0;
 
         foreach ($downlineUsers as $user) {
+
+            $currentMonthTotal = checkoutModel::whereYear('created_at', now()->year)
+            ->whereMonth('created_at', now()->month)
+            ->sum('total_amount');
+
+
             if ($user['levelUser'] === $levelUser && 
                 $user['user']->generatedId !== $currentUserGeneratedId &&
                 $user['user']->acountStatus === 'active') { 
@@ -138,12 +140,51 @@ class UserDisplayMlm extends Controller
     }
 
 
+    private function rebatesCount($totalAmount, $rebates){
+        rsort($rebates);
 
-    private function monthlyIncome($downlineUsers, $currentUserGeneratedId, $levelUser)
-    {
-        $income = 650;
-        
-
+        $rebateAmounts = [];
+        $totalWithRebates = [];
+    
+        foreach ($rebates as $rebate) {
+            $rebateAmount = $totalAmount * $rebate;
+            $totalAmount -= $rebateAmount;
+            $rebateAmounts[] = $rebateAmount;
+            $totalWithRebates[] = $totalAmount;
+        }
+    
+        $results = [];
+    
+        for ($i = 0; $i < count($rebates); $i++) {
+            $results[] = [
+                'Rebate Percentage' => $rebates[$i] * 100 . "%",
+                'Rebate Amount' => '$' . number_format($rebateAmounts[$i], 2),
+                'Total Amount with Rebate' => '$' . number_format($totalWithRebates[$i], 2)
+            ];
+        }
+    
+        return $results;
+    }
 
     }
+
+    // Total amount of purchase
+$totalAmount = 1000; // Replace this with your actual total amount
+
+// Rebate percentages
+$rebates = [0, 0.10, 0.05, 0.04, 0.03, 0.02, 0.01, 0.01, 0.01];
+
+// Calculate rebates and get results
+$results = calculateRebates($totalAmount, $rebates);
+
+// Display the results
+foreach ($results as $result) {
+    echo "Rebate Percentage: " . $result['Rebate Percentage'] . "\n";
+    echo "Rebate Amount: " . $result['Rebate Amount'] . "\n";
+    echo "Total Amount with Rebate: " . $result['Total Amount with Rebate'] . "\n\n";
 }
+
+
+
+
+

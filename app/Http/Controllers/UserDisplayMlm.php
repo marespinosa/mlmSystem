@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\sponsorTree;
+use App\Models\checkoutModel;
 
 class UserDisplayMlm extends Controller
 {
@@ -42,6 +43,9 @@ class UserDisplayMlm extends Controller
         }
     }
 
+
+
+
     public function CurrentSponsor()
     {
         $currentUser = auth()->user();
@@ -51,7 +55,6 @@ class UserDisplayMlm extends Controller
             $downlineUsers = $this->getDownlineUsers($currentUser->generatedId, 1);
 
             $levelBonuses = [0, 100, 50, 25, 15, 10, 10, 10, 10];
-            $rebates = [0, .10, .05, .04, .03, .02, .01, .01, .01];
             
             $bonuses = [];
 
@@ -94,6 +97,8 @@ class UserDisplayMlm extends Controller
         return $result;
     }
 
+
+
     private function calculateBonus($downlineUsers, $levelUser, $levelBonuses)
     {
         $currentUser = auth()->user();
@@ -101,7 +106,6 @@ class UserDisplayMlm extends Controller
         
         $count = $this->countActiveDownlineUsers($downlineUsers, $currentUserId, $levelUser);
 
-        // Get the bonus amount for the current level from the array
         $bonus = isset($levelBonuses[$levelUser]) ? $levelBonuses[$levelUser] : 0;
 
 
@@ -116,6 +120,12 @@ class UserDisplayMlm extends Controller
         $count = 0;
 
         foreach ($downlineUsers as $user) {
+
+            $currentMonthTotal = checkoutModel::whereYear('created_at', now()->year)
+            ->whereMonth('created_at', now()->month)
+            ->sum('total_amount');
+
+
             if ($user['levelUser'] === $levelUser && 
                 $user['user']->generatedId !== $currentUserGeneratedId &&
                 $user['user']->acountStatus === 'active') { 
@@ -130,12 +140,40 @@ class UserDisplayMlm extends Controller
     }
 
 
+    private function rebatesCount($totalAmount, $rebates){
 
-    private function monthlyIncome($downlineUsers, $currentUserGeneratedId, $levelUser)
-    {
-        $income = 650;
-        
+        rsort($rebates);
+
+        $rebateAmounts = [];
+        $totalWithRebates = [];
+    
+        foreach ($rebates as $rebate) {
+            $rebateAmount = $totalAmount * $rebate;
+            $totalAmount -= $rebateAmount;
+            $rebateAmounts[] = $rebateAmount;
+            $totalWithRebates[] = $totalAmount;
+        }
+    
+        $results = [];
+    
+        for ($i = 0; $i < count($rebates); $i++) {
+            $results[] = [
+                'Rebate Percentage' => $rebates[$i] * 100 . "%",
+                'Rebate Amount' => '$' . number_format($rebateAmounts[$i], 2),
+                'Total Amount with Rebate' => '$' . number_format($totalWithRebates[$i], 2)
+            ];
+        }
+    
+        return $results;
+
+    }
+
+
+
+    
 
 
     }
-}
+
+
+
