@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 
+use App\Http\Controllers\OrderController;
 
 
 
@@ -122,9 +123,6 @@ Route::controller(ProductController::class)->group(function() {
 
 
 
-
-
-
 Route::group(['middleware' => 'auth'], function () {
     Route::controller(CheckoutController::class)->group(function() {
         Route::get('/checkout', 'index')->name('checkout.index');
@@ -134,3 +132,13 @@ Route::group(['middleware' => 'auth'], function () {
       
     });
 });
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::controller(OrderController::class)->group(function() {
+    Route::get('/orders/all', 'allOrders')->name('orders.all');
+    Route::get('/orders/index', 'index')->name('orders.index');
+    Route::get('/orders/index', 'indexOrders')->name('orders.indexOrders');
+    });
+});
+

@@ -14,7 +14,6 @@
     </a>
 
     @if ($user->userlevel === 'Admin')
-
     <hr class="sidebar-divider my-0">
         <li class="nav-item">
             <a class="nav-link" href="/superadmin">
@@ -22,6 +21,7 @@
                 <span>Super Admin</span>
             </a>
         </li>
+
     @endif
 
 
@@ -38,7 +38,7 @@
 
      <!-- Divider -->
     <hr class="sidebar-divider">
-    
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -81,16 +81,25 @@
         </div>
     </li>
     <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-    <div class="sidebar-heading">
-        Shop
-    </div>
+    
+    
     <!-- Nav Item - Tables -->
     <li class="nav-item">
         <a class="nav-link" href="/products">
             <i class="fas fa-fw"></i>
             <span>Starter Kit</span></a>
     </li>
+
+    @if ($user->userlevel === 'Admin')
+       <hr class="sidebar-divider my-0">
+        <li class="nav-item">
+            <a class="nav-link" href="/orders/all">
+                <i class="fas fa-fw fa-cart-plus"></i>
+                <span>Orders</span>
+            </a>
+        </li>
+
+    @endif
 
     <li class="nav-item">
         <a class="nav-link" href="/cart">

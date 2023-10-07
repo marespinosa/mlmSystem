@@ -57,8 +57,6 @@ class CheckoutController extends Controller
             }
         }
 
-
-
         return view('checkout.index', compact('cartDetails', 'total'));
 
         $this->cartDetails = $cartDetails;
@@ -87,8 +85,7 @@ class CheckoutController extends Controller
         DB::transaction(function () use ($request, $sponsorTreeModel, $total, $order) {
 
             $trackingNo = $request->input('sponsor_id_number') . '_' . rand(1111, 9999);
-
-            $order->firstName = $request->input('firstName');
+            $order->firstName = $request->input('firstName'); 
             $order->lastName = $request->input('lastName');
             $order->users_id = $request->input('users_id');
             $order->phoneNumber = $request->input('phoneNumber');
@@ -101,7 +98,6 @@ class CheckoutController extends Controller
             $order->tracking_no = $trackingNo;
             $order->total_amount = $total;
             $order->citybelongto = $request->input('citybelongto');
-
             $order->created_at = now();
 
             if ($request->hasFile('attachedPayments')) {
@@ -126,6 +122,7 @@ class CheckoutController extends Controller
                     'quantity' => $item['quantity'],
                     'subtotal' => $item['quantity'] * $item['price'],
                     'users_id' => $currentUserId,
+
                 ];
             }
         }

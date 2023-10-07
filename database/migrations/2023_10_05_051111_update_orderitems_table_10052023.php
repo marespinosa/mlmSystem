@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateOrdersTable09272023 extends Migration
+class UpdateOrderitemsTable10052023 extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class UpdateOrdersTable09272023 extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->string('citybelongto')->nullable();
-            $table->string('attachedPayments')->nullable();
+        Schema::table('orderitems', function (Blueprint $table) {
+            $table->unsignedBigInteger('orderitems_id')->nullable();
         });
     }
 
@@ -26,7 +25,7 @@ class UpdateOrdersTable09272023 extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
+        Schema::table('orderitems', function (Blueprint $table) {
             //
         });
     }

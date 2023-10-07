@@ -455,3 +455,7 @@ padding-bottom: 5rem;
     line-height: 22px;
   }
 
+.textalignRight{
+  text-align: right;
+  float: right;
+}

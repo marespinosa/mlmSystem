@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\sponsorTree;
 use App\Models\ordersModel;
 use App\Models\ProductModel;
-
+use App\Models\OrdersShow;
 
 class checkoutModel extends Model
 {
